@@ -16,6 +16,7 @@
 
 */
 import React from "react";
+import validator from 'validator';
 import classnames from "classnames";
 // react plugin used to create datetimepicker
 import ReactDatetime from "react-datetime";
@@ -35,6 +36,8 @@ import {
   Container,
   Row,
   Col,
+  Modal,
+  Label,
 } from "reactstrap";
 
 // core components
@@ -62,6 +65,21 @@ export default function NuovaPrenotazione() {
   const [squares7and8, setSquares7and8] = React.useState("");
   const [partenzaF, setPartenzaF] = React.useState(false);
   const [destinazioneF, setDestinazioneF] = React.useState(false);
+  const [nome, setNome] = React.useState(false);
+  const [scadenza, setScadenza] = React.useState(false);
+  const [numero, setNumero] = React.useState(false);
+  const [formModal, setFormModal] = React.useState(false);
+
+  const [errorMessage, setErrorMessage] = React.useState('')
+    
+  const validateCreditCard = (value) => {
+    
+    if (validator.isCreditCard(value)) {
+      setErrorMessage('Numero Carta Valida.')
+    } else {
+      setErrorMessage('Numero carta non valido!')
+    }
+  }
   
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
@@ -180,16 +198,102 @@ export default function NuovaPrenotazione() {
                         <ManciaAutista/>
                         <FormGroup check id="paga" className="text-left" style={{display: "none"}}>
                             <Button
-                                type="submit"
                                 className="btn-round" 
                                 color="primary" 
                                 size="lg"
-                                onClick={() => check_disponibilita()}
+                                onClick={() => setFormModal(true)}
                             >
                                 Concludi e Paga <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
                       </Form>
+                          {/* Start Form Modal */}
+                          <Modal
+                            modalClassName="modal-black"
+                            isOpen={formModal}
+                            toggle={() => setFormModal(false)}
+                          >
+                            <div className="modal-header justify-content-center">
+                              <button className="close" onClick={() => setFormModal(false)}>
+                                <i className="tim-icons icon-simple-remove text-white" />
+                              </button>
+                              <div className="text-muted text-center ml-auto mr-auto">
+                                <h3 className="mb-0">Inserisci i dati della tua carta</h3>
+                              </div>
+                            </div>
+                            <div className="modal-body">
+                              <Form role="form">
+                                <FormGroup className="mb-3">
+                                  <InputGroup
+                                    className={classnames("input-group-alternative", {
+                                      "input-group-focus": numero,
+                                    })}
+                                  >
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="tim-icons icon-credit-card" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Numero Carta (tutto attaccato)"
+                                      type="text"
+                                      onFocus={(e) => setNumero(true)}
+                                      onBlur={(e) => setNumero(false)}
+                                      onChange={(e) => validateCreditCard(e.target.value)}
+                                    />
+                                    <span style={{
+                                        fontWeight: 'bold',
+                                      }}>{errorMessage}
+                                    </span>
+                                  </InputGroup>
+                                </FormGroup>
+                                <FormGroup>
+                                  <InputGroup
+                                    className={classnames("input-group-alternative", {
+                                      "input-group-focus": nome,
+                                    })}
+                                  >
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="tim-icons icon-single-02" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Nome"
+                                      type="text"
+                                      onFocus={(e) => setNome(true)}
+                                      onBlur={(e) => setNome(false)}
+                                    />
+                                  </InputGroup>
+                                </FormGroup>
+                                <FormGroup>
+                                  <InputGroup
+                                    className={classnames("input-group-alternative", {
+                                      "input-group-focus": scadenza,
+                                    })}
+                                  >
+                                    <InputGroupAddon addonType="prepend">
+                                      <InputGroupText>
+                                        <i className="tim-icons icon-calendar-60" />
+                                      </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                      placeholder="Scadenza"
+                                      type="text"
+                                      onFocus={(e) => setScadenza(true)}
+                                      onBlur={(e) => setScadenza(false)}
+                                    />
+                                  </InputGroup>
+                                </FormGroup>
+                                <div className="text-center">
+                                  <Button className="my-4" color="primary" type="button">
+                                    Paga
+                                  </Button>
+                                </div>
+                              </Form>
+                            </div>
+                          </Modal>
+                          {/* End Form Modal */}
                     </CardBody>
                   </Card>
                 </Col>
