@@ -33,7 +33,7 @@ export default function mancia() {
         <>
             <FormGroup id="Mancia">
                 <Label for="valore_mancia">Imposta Mancia</Label>
-                <Input type="number" name="valore_mancia" id="valore_mancia" style={{color: "#ba54f5"}} onChange={() => show_button_paga()}/>
+                <Input type="number" name="valore_mancia" id="valore_mancia" min="0" style={{color: "#ba54f5"}} onChange={() => show_button_paga()}/>
             </FormGroup>
         </>
   );
