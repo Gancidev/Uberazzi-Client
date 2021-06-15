@@ -21,6 +21,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 // reactstrap components
 import {
   FormGroup,
+  Input,
+  Label,
 } from "reactstrap";
 
 export default function Conferma_autista() {
@@ -35,13 +37,12 @@ export default function Conferma_autista() {
   };
     return (
         <>
-            <FormGroup tag="fieldset" id="Autista">
-                <legend>Vuoi usufruire del servizio Autista?</legend>
-                <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
-                    inputProps={{ 'aria-label': 'primary checkbox' }}
-                /> Si
+            <FormGroup check className="mt-3" id="Autista">
+                <Label check>
+                <Input defaultChecked type="checkbox" checked={checked} onChange={handleChange}/>
+                <span className="form-check-sign" />
+                    Assegnami un Autista!
+                </Label>
             </FormGroup>
         </>
   );
