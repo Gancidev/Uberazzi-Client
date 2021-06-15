@@ -18,8 +18,7 @@
 import React from "react";
 
 // core components
-import IndexNavbar from "components/Navbars/PersonalNavBar.js";
-import PageHeader from "components/PageHeader/PageHeader.js";
+import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
 // sections for this page/view
@@ -36,5 +35,9 @@ import Examples from "views/IndexSections/Examples.js";
 import Download from "views/IndexSections/Download.js";
 
 export default function VeicoliPage() {
-    return("");
+    return(
+      <>
+        <PersonalNavBar />
+        <Footer />
+      </>);
 }
