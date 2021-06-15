@@ -16,34 +16,15 @@
 
 */
 import React from "react";
-import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 
 // core components
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
-// sections for this page/view
-import Basics from "views/IndexSections/Basics.js";
-import Navbars from "views/IndexSections/Navbars.js";
-import Tabs from "views/IndexSections/Tabs.js";
-import Pagination from "views/IndexSections/Pagination.js";
-import Notifications from "views/IndexSections/Notifications.js";
-import Typography from "views/IndexSections/Typography.js";
-import JavaScript from "views/IndexSections/JavaScript.js";
-import NucleoIcons from "views/IndexSections/NucleoIcons.js";
-import Signup from "views/IndexSections/Signup.js";
-import Examples from "views/IndexSections/Examples.js";
-import Download from "views/IndexSections/Download.js";
-
 // reactstrap components
 import {
     Button,
-    Card,
-    CardHeader,
-    CardBody,
     Table,
-    TabContent,
-    TabPane,
     Container,
     Row,
     Col,
@@ -51,9 +32,7 @@ import {
 
 export default function VeicoliPage() {
     const [squares1to6, setSquares1to6] = React.useState("");
-  const [squares7and8, setSquares7and8] = React.useState("");
-  const [partenzaF, setPartenzaF] = React.useState(false);
-  const [destinazioneF, setDestinazioneF] = React.useState(false);
+    const [squares7and8, setSquares7and8] = React.useState("");
   
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
@@ -101,54 +80,6 @@ export default function VeicoliPage() {
                                     id="square8"
                                     style={{ transform: squares7and8 }}
                                 />
-                            </Col>
-                            <Table>
-                                <thead>
-                                    <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                        </Row>
-                        <div className="register-bg" />
-                                <div
-                                    className="square square-1"
-                                    id="square1"
-                                    style={{ transform: squares1to6 }}
-                                />
-                                <div
-                                    className="square square-2"
-                                    id="square2"
-                                    style={{ transform: squares1to6 }}
-                                />
-                                <div
-                                    className="square square-3"
-                                    id="square3"
-                                    style={{ transform: squares1to6 }}
-                                />
                                 <div
                                     className="square square-4"
                                     id="square4"
@@ -164,6 +95,46 @@ export default function VeicoliPage() {
                                     id="square6"
                                     style={{ transform: squares1to6 }}
                                 />
+                            </Col>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                    <th>ID</th>
+                                    <th>Veicolo</th>
+                                    <th>Condizioni</th>
+                                    <th>Conferma</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td><Button className="btn-simple"
+                                        color="success"><i className="tim-icons icon-check-2"/></Button></td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td><Button className="btn-simple"
+                                        color="success"><i className="tim-icons icon-check-2"/></Button></td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td><Button className="btn-simple"
+                                        color="success"><i className="tim-icons icon-check-2"/></Button></td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </Row>                             
+                        <div
+                            className="square square-3"
+                            id="square3"
+                            style={{ transform: squares1to6 }}
+                        />                             
                     </Container>
                 </div>
             </div>
