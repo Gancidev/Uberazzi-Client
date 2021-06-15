@@ -57,7 +57,7 @@ function check_disponibilita(){
     }
 }
 
-export default function RegisterPage() {
+export default function NuovaPrenotazione() {
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
   const [partenzaF, setPartenzaF] = React.useState(false);
@@ -175,12 +175,9 @@ export default function RegisterPage() {
                                 Procedi <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
-                        <SelectVeicoli>
-                        </SelectVeicoli>
-                        <ConfermaAutista>
-                        </ConfermaAutista>
-                        <ManciaAutista>
-                        </ManciaAutista>
+                        <SelectVeicoli/>
+                        <ConfermaAutista/>
+                        <ManciaAutista/>
                         <FormGroup check id="paga" className="text-left" style={{display: "none"}}>
                             <Button
                                 type="submit"
