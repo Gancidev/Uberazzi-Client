@@ -37,7 +37,6 @@ import {
   Row,
   Col,
   Modal,
-  Label,
 } from "reactstrap";
 
 // core components
