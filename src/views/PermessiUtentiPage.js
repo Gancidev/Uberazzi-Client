@@ -141,8 +141,26 @@ export default function PermessiUtenti() {
                                     >
                                         <i className="tim-icons icon-settings-gear-63"></i>
                                     </Button>
-                                    {/* Start Form Modal */}
-                                        <Modal
+                                </td>
+                                </tr>
+                                <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>jacob@fat.com</td>
+                                <td>mark@mdo.it</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td>Larry</td>
+                                <td>the Bird</td>
+                                <td>larry@twitter.org</td>
+                                <td>mark@mdo.it</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                        {/* Start Form Modal */}
+                        <Modal
                                             modalClassName="modal-black"
                                             isOpen={formModal}
                                             toggle={() => setFormModal(false)}
@@ -228,24 +246,6 @@ export default function PermessiUtenti() {
                                             </div>
                                         </Modal>
                                         {/* End Form Modal */}
-                                </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>jacob@fat.com</td>
-                                <td>mark@mdo.it</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>larry@twitter.org</td>
-                                <td>mark@mdo.it</td>
-                                </tr>
-                            </tbody>
-                        </Table>
                     </Container>
                 </div>
             </div>
