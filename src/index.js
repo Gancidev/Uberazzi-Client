@@ -30,7 +30,7 @@ import LoginPage from "views/LoginPage.js";
 import ProfilePage from "views/ProfilePage.js";
 import PrenotazioniPage from "views/PrenotazioniPage.js";
 import NuovaPrenotazionePage from "views/NuovaPrenotazionePage.js";
-
+import ModificaPrenotazionePage from "views/ModificaPrenotazionePage.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -59,6 +59,10 @@ ReactDOM.render(
       <Route
         path="/nuova_prenotazione"
         render={(props) => <NuovaPrenotazionePage {...props} />}
+      />
+      <Route
+        path="/modifica_prenotazione"
+        render={(props) => <ModificaPrenotazionePage {...props} />}
       />
       <Redirect from="/" to="/home" />
     </Switch>
