@@ -39,7 +39,6 @@ import {
     InputGroup,
     Modal,
   } from "reactstrap";
-import { NULL } from "node-sass";
 
   
 
@@ -50,7 +49,7 @@ export default function PermessiUtenti() {
   const [scadenza, setScadenza] = React.useState(false);
   const [numero, setNumero] = React.useState(false);
   const [formModal, setFormModal] = React.useState(false);
-  var id_utente = NULL;
+  var id_utente = "";
   function apriForm(id){
         setFormModal(true);
         id_utente = id;
