@@ -33,6 +33,7 @@ import NuovaPrenotazionePage from "views/NuovaPrenotazionePage.js";
 import ModificaPrenotazionePage from "views/ModificaPrenotazionePage.js";
 import VeicoliPage from "views/VeicoliPage.js";
 import PermessiUtentiPage from "views/PermessiUtentiPage.js";
+import CorsePage from "views/CorsePage.js"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -73,6 +74,10 @@ ReactDOM.render(
       <Route
         path="/permessi_utenti"
         render={(props) => <PermessiUtentiPage {...props} />}
+      />
+      <Route
+        path="/corse"
+        render={(props) => <CorsePage {...props} />}
       />
       <Redirect from="/" to="/home" />
     </Switch>
