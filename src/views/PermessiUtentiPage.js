@@ -16,8 +16,6 @@
 
 */
 import React from "react";
-import validator from 'validator';
-import classnames from "classnames";
 
 // core components
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
@@ -31,42 +29,24 @@ import {
     Container,
     Row,
     Col,
-    FormGroup,
     Form,
-    Input,
-    InputGroupAddon,
-    InputGroupText,
-    InputGroup,
     Modal,
   } from "reactstrap";
 
-  
+  var id_utente=0;
 
 export default function PermessiUtenti() {
-  const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
-  const [nome, setNome] = React.useState(false);
-  const [scadenza, setScadenza] = React.useState(false);
-  const [numero, setNumero] = React.useState(false);
   const [formModal, setFormModal] = React.useState(false);
-  var id_utente = "";
   function apriForm(id){
-        setFormModal(true);
-        id_utente = id;
+      console.log(id);
+      id_utente = id;
+      setFormModal(true);
     }
-  function assegna_permessi(permessi){
-      alert("Assegno i permessi"+permessi+" All'utente:"+id_utente);
+  function assegna_permessi(){
+      var permessi = document.getElementById("selezione_permessi");
+      alert("Assegno i permessi: "+permessi.value+" All'utente:"+id_utente);
 
-  }
-  const [errorMessage, setErrorMessage] = React.useState('')
-    
-  const validateCreditCard = (value) => {
-    
-    if (validator.isCreditCard(value)) {
-      setErrorMessage('Numero Carta Valida.')
-    } else {
-      setErrorMessage('Numero carta non valido!')
-    }
   }
 
   React.useEffect(() => {
@@ -81,13 +61,6 @@ export default function PermessiUtenti() {
   const followCursor = (event) => {
     let posX = event.clientX - window.innerWidth / 2;
     let posY = event.clientY - window.innerWidth / 6;
-    setSquares1to6(
-      "perspective(500px) rotateY(" +
-        posX * 0.05 +
-        "deg) rotateX(" +
-        posY * -0.05 +
-        "deg)"
-    );
     setSquares7and8(
       "perspective(500px) rotateY(" +
         posX * 0.02 +
@@ -193,7 +166,8 @@ export default function PermessiUtenti() {
                             <Form role="form">
                                 <SelectPermessi/>
                                 <div className="text-center">
-                                <Button className="my-4" color="primary" type="button">
+                                <Button className="my-4" color="primary" type="button"
+                                onClick={() => assegna_permessi()}>
                                     Assegna
                                 </Button>
                                 </div>
