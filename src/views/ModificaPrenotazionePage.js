@@ -40,9 +40,9 @@ import {
 // core components
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
-import SelectVeicoli from "components/NuovaPrenotazione/select_veicolo.js";
-import ConfermaAutista from "components/NuovaPrenotazione/conferma_autista.js";
-import ManciaAutista from "components/NuovaPrenotazione/mancia.js";
+import SelectVeicoli from "components/ModificaPrenotazione/select_veicolo.js";
+import ConfermaAutista from "components/ModificaPrenotazione/conferma_autista.js";
+import ManciaAutista from "components/ModificaPrenotazione/mancia.js";
 
 function check_disponibilita(){
     var partenza = document.getElementById("partenza");
@@ -112,6 +112,7 @@ export default function NuovaPrenotazione() {
                   />
                   <Card className="card-register" style={{overflow: "inherit"}}>
                     <CardHeader>
+                      <br></br>
                       <CardTitle tag="h4" style={{fontSize: "3em"}} > Modifica Prenotazione</CardTitle>
                     </CardHeader>
                     <CardBody>
