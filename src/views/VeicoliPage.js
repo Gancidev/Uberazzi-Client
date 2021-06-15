@@ -34,10 +34,29 @@ import Signup from "views/IndexSections/Signup.js";
 import Examples from "views/IndexSections/Examples.js";
 import Download from "views/IndexSections/Download.js";
 
+// reactstrap components
+import {
+    Button,
+    Card,
+    CardHeader,
+    CardBody,
+    Table,
+    TabContent,
+    TabPane,
+    Container,
+    Row,
+    Col,
+  } from "reactstrap";
+
 export default function VeicoliPage() {
     return(
       <>
         <PersonalNavBar />
+        <div className="wrapper">
+            <div className="page-header">
+                blabla
+            </div>
+        </div>
         <Footer />
       </>);
 }
