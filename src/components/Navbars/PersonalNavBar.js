@@ -72,7 +72,7 @@ export default function IndexNavbar() {
       <Container>
         <div className="navbar-translate">
           <NavbarBrand id="navbar-brand">
-            <img src={"https://raw.githubusercontent.com/Montemusso/Uberazzi/main/img/logo.webp?token=AROXCTXKPITISOIEHYDHF3TAZW5IU"} alt="" width="30%"></img>
+            <img src={"https://raw.githubusercontent.com/Gancidev/Uberazzi-Client/main/src/assets/img/logo.webp?token=AROXCTV2A2DLFBLI6IFL33TA2H5XM"} alt="" width="30%"></img>
           </NavbarBrand>
           <button
             aria-expanded={collapseOpen}
