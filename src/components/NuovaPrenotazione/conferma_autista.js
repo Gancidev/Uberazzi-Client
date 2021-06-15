@@ -38,6 +38,7 @@ export default function Conferma_autista() {
             <FormGroup tag="fieldset" id="Autista" style={{display: "none"}}>
                 <legend>Vuoi usufruire del servizio Autista?</legend>
                 <Checkbox
+                    aria-label="Si"
                     checked={checked}
                     onChange={handleChange}
                     inputProps={{ 'aria-label': 'primary checkbox' }}

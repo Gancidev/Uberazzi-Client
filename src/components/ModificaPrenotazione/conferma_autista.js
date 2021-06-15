@@ -41,7 +41,7 @@ export default function Conferma_autista() {
                     checked={checked}
                     onChange={handleChange}
                     inputProps={{ 'aria-label': 'primary checkbox' }}
-                />
+                /> Si
             </FormGroup>
         </>
   );
