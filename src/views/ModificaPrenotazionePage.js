@@ -172,7 +172,7 @@ export default function NuovaPrenotazione() {
                                 size="lg"
                                 onClick={() => check_disponibilita()}
                             >
-                                Procedi <i className="tim-icons icon-double-right"/>
+                                Controlla la nuova disponibilità <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
                         <SelectVeicoli/>
@@ -186,7 +186,7 @@ export default function NuovaPrenotazione() {
                                 size="lg"
                                 onClick={() => check_disponibilita()}
                             >
-                                Concludi e Paga <i className="tim-icons icon-double-right"/>
+                                Concludi e Ricalcola Prezzo <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
                       </Form>
