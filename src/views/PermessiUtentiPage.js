@@ -16,7 +16,8 @@
 
 */
 import React from "react";
-import { ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+import validator from 'validator';
+import classnames from "classnames";
 
 // core components
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
@@ -25,23 +26,38 @@ import Footer from "components/Footer/Footer.js";
 // reactstrap components
 import {
     Button,
-    Card,
-    CardHeader,
-    CardBody,
     Table,
-    TabContent,
-    TabPane,
     Container,
     Row,
     Col,
+    FormGroup,
+    Form,
+    Input,
+    InputGroupAddon,
+    InputGroupText,
+    InputGroup,
+    Modal,
   } from "reactstrap";
 
-export default function VeicoliPage() {
+export default function PermessiUtenti() {
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
-  const [partenzaF, setPartenzaF] = React.useState(false);
-  const [destinazioneF, setDestinazioneF] = React.useState(false);
+  const [nome, setNome] = React.useState(false);
+  const [scadenza, setScadenza] = React.useState(false);
+  const [numero, setNumero] = React.useState(false);
+  const [formModal, setFormModal] = React.useState(false);
   
+  const [errorMessage, setErrorMessage] = React.useState('')
+    
+  const validateCreditCard = (value) => {
+    
+    if (validator.isCreditCard(value)) {
+      setErrorMessage('Numero Carta Valida.')
+    } else {
+      setErrorMessage('Numero carta non valido!')
+    }
+  }
+
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
@@ -93,10 +109,11 @@ export default function VeicoliPage() {
                         <Table striped variant="dark">
                             <thead>
                                 <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                    <th>#</th>
+                                    <th>Nome</th>
+                                    <th>Cognome</th>
+                                    <th>Email</th>
+                                    <th>Modifica Ruolo</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -104,19 +121,117 @@ export default function VeicoliPage() {
                                 <th scope="row">1</th>
                                 <td>Mark</td>
                                 <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>mark@mdo.it</td>
+                                <td>
+                                    <Button
+                                        className="btn-simple"
+                                        color="primary"
+                                        onClick={() => setFormModal(true)}
+                                    >
+                                        <i className="tim-icons icon-settings-gear-63"></i>
+                                    </Button>
+                                    {/* Start Form Modal */}
+                                        <Modal
+                                            modalClassName="modal-black"
+                                            isOpen={formModal}
+                                            toggle={() => setFormModal(false)}
+                                        >
+                                            <div className="modal-header justify-content-center">
+                                            <button className="close" onClick={() => setFormModal(false)}>
+                                                <i className="tim-icons icon-simple-remove text-white" />
+                                            </button>
+                                            <div className="text-muted text-center ml-auto mr-auto">
+                                                <h3 className="mb-0">Inserisci i dati della tua carta</h3>
+                                            </div>
+                                            </div>
+                                            <div className="modal-body">
+                                            <Form role="form">
+                                                <FormGroup className="mb-3">
+                                                <InputGroup
+                                                    className={classnames("input-group-alternative", {
+                                                    "input-group-focus": numero,
+                                                    })}
+                                                >
+                                                    <InputGroupAddon addonType="prepend">
+                                                    <InputGroupText>
+                                                        <i className="tim-icons icon-credit-card" />
+                                                    </InputGroupText>
+                                                    </InputGroupAddon>
+                                                    <Input
+                                                    placeholder="Numero Carta (tutto attaccato)"
+                                                    type="text"
+                                                    onFocus={(e) => setNumero(true)}
+                                                    onBlur={(e) => setNumero(false)}
+                                                    onChange={(e) => validateCreditCard(e.target.value)}
+                                                    />
+                                                    <span style={{
+                                                        fontWeight: 'bold',
+                                                    }}>{errorMessage}
+                                                    </span>
+                                                </InputGroup>
+                                                </FormGroup>
+                                                <FormGroup>
+                                                <InputGroup
+                                                    className={classnames("input-group-alternative", {
+                                                    "input-group-focus": nome,
+                                                    })}
+                                                >
+                                                    <InputGroupAddon addonType="prepend">
+                                                    <InputGroupText>
+                                                        <i className="tim-icons icon-single-02" />
+                                                    </InputGroupText>
+                                                    </InputGroupAddon>
+                                                    <Input
+                                                    placeholder="Nome"
+                                                    type="text"
+                                                    onFocus={(e) => setNome(true)}
+                                                    onBlur={(e) => setNome(false)}
+                                                    />
+                                                </InputGroup>
+                                                </FormGroup>
+                                                <FormGroup>
+                                                <InputGroup
+                                                    className={classnames("input-group-alternative", {
+                                                    "input-group-focus": scadenza,
+                                                    })}
+                                                >
+                                                    <InputGroupAddon addonType="prepend">
+                                                    <InputGroupText>
+                                                        <i className="tim-icons icon-calendar-60" />
+                                                    </InputGroupText>
+                                                    </InputGroupAddon>
+                                                    <Input
+                                                    placeholder="Scadenza"
+                                                    type="text"
+                                                    onFocus={(e) => setScadenza(true)}
+                                                    onBlur={(e) => setScadenza(false)}
+                                                    />
+                                                </InputGroup>
+                                                </FormGroup>
+                                                <div className="text-center">
+                                                <Button className="my-4" color="primary" type="button">
+                                                    Paga
+                                                </Button>
+                                                </div>
+                                            </Form>
+                                            </div>
+                                        </Modal>
+                                        {/* End Form Modal */}
+                                </td>
                                 </tr>
                                 <tr>
                                 <th scope="row">2</th>
                                 <td>Jacob</td>
                                 <td>Thornton</td>
-                                <td>@fat</td>
+                                <td>jacob@fat.com</td>
+                                <td>mark@mdo.it</td>
                                 </tr>
                                 <tr>
                                 <th scope="row">3</th>
                                 <td>Larry</td>
                                 <td>the Bird</td>
-                                <td>@twitter</td>
+                                <td>larry@twitter.org</td>
+                                <td>mark@mdo.it</td>
                                 </tr>
                             </tbody>
                         </Table>
