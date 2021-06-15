@@ -26,12 +26,17 @@ import {
 function show_option_autista(){
     var selezione = document.getElementById("selezione");
     var autista = document.getElementById("Autista");
+    var mancia = document.getElementById("Mancia");
+    var paga = document.getElementById("paga");
+
     if(selezione.value==="Auto"){
         autista.style.display="block";
+        paga.style.display="none";
+
     }
     else{
         autista.style.display="none";
-        var paga = document.getElementById("paga");
+        mancia.style.display="none";
         paga.style.display="block";
     }
 }
