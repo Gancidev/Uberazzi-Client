@@ -148,7 +148,6 @@ export default function PermessiUtenti() {
                                 <td>Jacob</td>
                                 <td>Thornton</td>
                                 <td>jacob@fat.com</td>
-                                <td>mark@mdo.it</td>
                                 <td>
                                     <Button
                                         className="btn-simple"
@@ -164,7 +163,6 @@ export default function PermessiUtenti() {
                                 <td>Larry</td>
                                 <td>the Bird</td>
                                 <td>larry@twitter.org</td>
-                                <td>mark@mdo.it</td>
                                 <td>
                                     <Button
                                         className="btn-simple"
