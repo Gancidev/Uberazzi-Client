@@ -102,8 +102,7 @@ export default function VeicoliPage() {
                                 style={{ transform: squares7and8 }}
                             />
                         </Col>
-                    </Row>
-                        <Table striped variant="dark">
+                        <Table>
                             <thead>
                                 <tr>
                                 <th>#</th>
@@ -133,6 +132,40 @@ export default function VeicoliPage() {
                                 </tr>
                             </tbody>
                         </Table>
+                        <Col>
+                            <div className="register-bg" />
+                            <div
+                                className="square square-1"
+                                id="square1"
+                                style={{ transform: squares1to6 }}
+                            />
+                            <div
+                                className="square square-2"
+                                id="square2"
+                                style={{ transform: squares1to6 }}
+                            />
+                            <div
+                                className="square square-3"
+                                id="square3"
+                                style={{ transform: squares1to6 }}
+                            />
+                            <div
+                                className="square square-4"
+                                id="square4"
+                                style={{ transform: squares1to6 }}
+                            />
+                            <div
+                                className="square square-5"
+                                id="square5"
+                                style={{ transform: squares1to6 }}
+                            />
+                            <div
+                                className="square square-6"
+                                id="square6"
+                                style={{ transform: squares1to6 }}
+                            />
+                        </Col>
+                    </Row>
                     </Container>
                 </div>
             </div>
