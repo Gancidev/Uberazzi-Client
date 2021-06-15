@@ -31,6 +31,7 @@ import ProfilePage from "views/ProfilePage.js";
 import PrenotazioniPage from "views/PrenotazioniPage.js";
 import NuovaPrenotazionePage from "views/NuovaPrenotazionePage.js";
 import ModificaPrenotazionePage from "views/ModificaPrenotazionePage.js";
+import VeicoliPage from "views/VeicoliPage";
 
 ReactDOM.render(
   <BrowserRouter>
