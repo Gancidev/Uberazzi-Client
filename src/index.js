@@ -64,6 +64,10 @@ ReactDOM.render(
         path="/modifica_prenotazione"
         render={(props) => <ModificaPrenotazionePage {...props} />}
       />
+      <Route
+        path="/veicoli"
+        render={(props) => <VeicoliPage {...props} />}
+      />
       <Redirect from="/" to="/home" />
     </Switch>
   </BrowserRouter>,
