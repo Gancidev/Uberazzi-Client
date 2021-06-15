@@ -38,6 +38,9 @@ import {
     InputGroup,
     Modal,
   } from "reactstrap";
+import { NULL } from "node-sass";
+
+  
 
 export default function PermessiUtenti() {
   const [squares1to6, setSquares1to6] = React.useState("");
@@ -46,7 +49,15 @@ export default function PermessiUtenti() {
   const [scadenza, setScadenza] = React.useState(false);
   const [numero, setNumero] = React.useState(false);
   const [formModal, setFormModal] = React.useState(false);
-  
+  var id_utente = NULL;
+  function apriForm(id){
+        setFormModal(true);
+        id_utente = id;
+    }
+  function assegna_permessi(permessi){
+      alert("Assegno i permessi"+permessi+" All'utente:"+id_utente);
+
+  }
   const [errorMessage, setErrorMessage] = React.useState('')
     
   const validateCreditCard = (value) => {
@@ -126,7 +137,7 @@ export default function PermessiUtenti() {
                                     <Button
                                         className="btn-simple"
                                         color="primary"
-                                        onClick={() => setFormModal(true)}
+                                        onClick={() => apriForm(1)}
                                     >
                                         <i className="tim-icons icon-settings-gear-63"></i>
                                     </Button>
