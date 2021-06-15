@@ -89,83 +89,81 @@ export default function VeicoliPage() {
             <div className="page-header">
                 <div className="content">
                     <Container className="align-items-center">
-                    <Row>
-                        <Col className="offset-md-3" lg="5" md="6">
-                            <div
-                                className="square square-7"
-                                id="square7"
-                                style={{ transform: squares7and8 }}
-                            />
-                            <div
-                                className="square square-8"
-                                id="square8"
-                                style={{ transform: squares7and8 }}
-                            />
-                        </Col>
-                        <Table>
-                            <thead>
-                                <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </Table>
-                        <Col>
-                            <div className="register-bg" />
-                            <div
-                                className="square square-1"
-                                id="square1"
-                                style={{ transform: squares1to6 }}
-                            />
-                            <div
-                                className="square square-2"
-                                id="square2"
-                                style={{ transform: squares1to6 }}
-                            />
-                            <div
-                                className="square square-3"
-                                id="square3"
-                                style={{ transform: squares1to6 }}
-                            />
-                            <div
-                                className="square square-4"
-                                id="square4"
-                                style={{ transform: squares1to6 }}
-                            />
-                            <div
-                                className="square square-5"
-                                id="square5"
-                                style={{ transform: squares1to6 }}
-                            />
-                            <div
-                                className="square square-6"
-                                id="square6"
-                                style={{ transform: squares1to6 }}
-                            />
-                        </Col>
-                    </Row>
+                        <Row>
+                            <Col className="offset-md-3" lg="5" md="6">
+                                <div
+                                    className="square square-7"
+                                    id="square7"
+                                    style={{ transform: squares7and8 }}
+                                />
+                                <div
+                                    className="square square-8"
+                                    id="square8"
+                                    style={{ transform: squares7and8 }}
+                                />
+                            </Col>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </Row>
+                        <div className="register-bg" />
+                                <div
+                                    className="square square-1"
+                                    id="square1"
+                                    style={{ transform: squares1to6 }}
+                                />
+                                <div
+                                    className="square square-2"
+                                    id="square2"
+                                    style={{ transform: squares1to6 }}
+                                />
+                                <div
+                                    className="square square-3"
+                                    id="square3"
+                                    style={{ transform: squares1to6 }}
+                                />
+                                <div
+                                    className="square square-4"
+                                    id="square4"
+                                    style={{ transform: squares1to6 }}
+                                />
+                                <div
+                                    className="square square-5"
+                                    id="square5"
+                                    style={{ transform: squares1to6 }}
+                                />
+                                <div
+                                    className="square square-6"
+                                    id="square6"
+                                    style={{ transform: squares1to6 }}
+                                />
                     </Container>
                 </div>
             </div>
