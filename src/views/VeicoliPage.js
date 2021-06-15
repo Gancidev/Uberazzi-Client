@@ -35,6 +35,6 @@ import Signup from "views/IndexSections/Signup.js";
 import Examples from "views/IndexSections/Examples.js";
 import Download from "views/IndexSections/Download.js";
 
-export default function NuovaPrenotazione() {
+export default function VeicoliPage() {
     return("");
 }
