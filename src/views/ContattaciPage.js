@@ -106,7 +106,7 @@ export default function RegisterPage() {
                                     </InputGroupAddon>
                                     <Input
                                         placeholder="Email*"
-                                        type="text"
+                                        type="email"
                                         onFocus={(e) => setEmailFocus(true)}
                                         onBlur={(e) => setEmailFocus(false)}
                                         required
