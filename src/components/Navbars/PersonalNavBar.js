@@ -1,19 +1,10 @@
 /*!
-
 =========================================================
-* BLK Design System React - v1.2.0
+* Uberazzi - v1.1.1
 =========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
+* Coded by LifeInt
 =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
 */
 import React from "react";
 import { Link } from "react-router-dom";
@@ -170,6 +161,26 @@ export default function IndexNavbar() {
                 <DropdownItem tag={Link} to="/prenotazioni">
                   <i className="tim-icons icon-bullet-list-67" />
                   Prenotazioni
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/permessi_utenti">
+                  <i className="tim-icons icon-key-25" />
+                  Permessi Utenti
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/veicoli">
+                  <i className="tim-icons icon-settings" />
+                  Gestione Veicoli
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/corse">
+                  <i className="tim-icons icon-bus-front-12" />
+                  Corse
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/recupero_password">
+                  <i className="tim-icons icon-lock-circle" />
+                  Recupero Password
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/notifica_ritardo">
+                  <i className="tim-icons icon-alert-circle-exc" />
+                  Notifica Ritardo
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

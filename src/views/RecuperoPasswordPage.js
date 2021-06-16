@@ -30,11 +30,10 @@ import {
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
-export default function RegisterPage() {
+export default function RecuperoPasswordPage() {
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
   const [emailFocus, setEmailFocus] = React.useState(false);
-  const [passwordFocus, setPasswordFocus] = React.useState(false);
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
@@ -85,7 +84,7 @@ export default function RegisterPage() {
                   <Card className="card-register">
                     <CardHeader>
                       <br></br>
-                      <CardTitle tag="h4" style={{fontSize: "4em"}}>Login</CardTitle>
+                      <CardTitle tag="h4" style={{fontSize: "4em"}}>Recupero Password</CardTitle>
                     </CardHeader>
                     <CardBody>
                       <Form className="form" method="post" action="login.js">
@@ -107,33 +106,9 @@ export default function RegisterPage() {
                             required
                           />
                         </InputGroup>
-                        <InputGroup
-                          className={classnames({
-                            "input-group-focus": passwordFocus,
-                          })}
-                        >
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="tim-icons icon-lock-circle" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            placeholder="Password"
-                            type="text"
-                            onFocus={(e) => setPasswordFocus(true)}
-                            onBlur={(e) => setPasswordFocus(false)}
-                            required
-                          />
-                        </InputGroup>
                         <FormGroup check>
-                          <a
-                          href="/password-smarrita"
-                          >
-                            Password Smarrita?
-                          </a>
-                          <br></br>
                             <Button className="btn-round" color="primary" size="lg" type="submit">
-                                Accedi <i className="tim-icons icon-double-right"/>
+                                Recupera <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
                       </Form>

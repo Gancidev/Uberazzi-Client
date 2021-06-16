@@ -1,19 +1,10 @@
 /*!
-
 =========================================================
-* BLK Design System React - v1.2.0
+* Uberazzi - v1.1.1
 =========================================================
-
-* Product Page: https://www.creative-tim.com/product/blk-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
+* Coded by LifeInt
 =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
 */
 import React from "react";
 import ReactDOM from "react-dom";
@@ -33,8 +24,9 @@ import NuovaPrenotazionePage from "views/NuovaPrenotazionePage.js";
 import ModificaPrenotazionePage from "views/ModificaPrenotazionePage.js";
 import VeicoliPage from "views/VeicoliPage.js";
 import PermessiUtentiPage from "views/PermessiUtentiPage.js";
-import CorsePage from "views/CorsePage.js"
-
+import CorsePage from "views/CorsePage.js";
+import RecuperoPassword from "views/RecuperoPasswordPage.js";
+import NotificaRitardo from "views/NotificaRitardoPage.js";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -78,6 +70,14 @@ ReactDOM.render(
       <Route
         path="/corse"
         render={(props) => <CorsePage {...props} />}
+      />
+      <Route
+        path="/recupero_password"
+        render={(props) => <RecuperoPassword {...props} />}
+      />
+      <Route
+        path="/notifica_ritardo"
+        render={(props) => <NotificaRitardo {...props} />}
       />
       <Redirect from="/" to="/home" />
     </Switch>

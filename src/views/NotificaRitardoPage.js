@@ -33,8 +33,7 @@ import Footer from "components/Footer/Footer.js";
 export default function RegisterPage() {
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
-  const [emailFocus, setEmailFocus] = React.useState(false);
-  const [passwordFocus, setPasswordFocus] = React.useState(false);
+  const [ritardoFocus, setRitardoFocus] = React.useState(false);
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
@@ -85,13 +84,13 @@ export default function RegisterPage() {
                   <Card className="card-register">
                     <CardHeader>
                       <br></br>
-                      <CardTitle tag="h4" style={{fontSize: "4em"}}>Login</CardTitle>
+                      <CardTitle tag="h4" style={{fontSize: "4em"}}>Notifica Ritardo</CardTitle>
                     </CardHeader>
                     <CardBody>
                       <Form className="form" method="post" action="login.js">
                         <InputGroup
                           className={classnames({
-                            "input-group-focus": emailFocus,
+                            "input-group-focus": ritardoFocus,
                           })}
                         >
                           <InputGroupAddon addonType="prepend">
@@ -100,40 +99,18 @@ export default function RegisterPage() {
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            placeholder="Email"
-                            type="email"
-                            onFocus={(e) => setEmailFocus(true)}
-                            onBlur={(e) => setEmailFocus(false)}
-                            required
-                          />
-                        </InputGroup>
-                        <InputGroup
-                          className={classnames({
-                            "input-group-focus": passwordFocus,
-                          })}
-                        >
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="tim-icons icon-lock-circle" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            placeholder="Password"
-                            type="text"
-                            onFocus={(e) => setPasswordFocus(true)}
-                            onBlur={(e) => setPasswordFocus(false)}
+                            placeholder="Tempo Stimato (in minuti)"
+                            type="number"
+                            onFocus={(e) => setRitardoFocus(true)}
+                            onBlur={(e) => setRitardoFocus(false)}
+                            min="5"
+                            step="5"
                             required
                           />
                         </InputGroup>
                         <FormGroup check>
-                          <a
-                          href="/password-smarrita"
-                          >
-                            Password Smarrita?
-                          </a>
-                          <br></br>
                             <Button className="btn-round" color="primary" size="lg" type="submit">
-                                Accedi <i className="tim-icons icon-double-right"/>
+                                Invia <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
                       </Form>
