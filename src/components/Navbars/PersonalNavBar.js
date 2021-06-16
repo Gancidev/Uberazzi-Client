@@ -36,15 +36,19 @@ export default function IndexNavbar() {
     };
   },[]);
   const changeColor = () => {
+    var logo = document.getElementById("logo");
     if (
       document.documentElement.scrollTop > 99 ||
       document.body.scrollTop > 99
     ) {
+      logo.style.width="15%";
       setColor("bg-primario");
     } else if (
       document.documentElement.scrollTop < 100 ||
       document.body.scrollTop < 100
     ) {
+      logo = document.getElementById("logo");
+      logo.style.width="40%";
       setColor("navbar-transparent");
     }
   };
@@ -63,7 +67,7 @@ export default function IndexNavbar() {
       <Container>
         <div className="navbar-translate">
           <NavbarBrand id="navbar-brand">
-            <img src={"https://raw.githubusercontent.com/Gancidev/Uberazzi-Client/main/src/assets/img/logo.webp?token=AROXCTV2A2DLFBLI6IFL33TA2H5XM"} alt="" width="30%"></img>
+            <img src={"https://raw.githubusercontent.com/Gancidev/Uberazzi-Client/main/src/assets/img/logo.webp?token=AROXCTV2A2DLFBLI6IFL33TA2H5XM"} id="logo" alt="" Style="width:40%;"/>
           </NavbarBrand>
           <button
             aria-expanded={collapseOpen}
