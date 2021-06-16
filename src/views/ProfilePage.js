@@ -82,46 +82,13 @@ export default function ProfilePage() {
                 <h1 className="profile-title text-left">Nome Cognome</h1>
                 <h5 className="text-on-back">Info</h5>
                 <p className="profile-description">
-                  LOREM IPSUM.
+                  Nome: <br></br>
+                  Cognome: <br></br>
+                  Data di Nascita: <br></br>
+                  Indirizzo: <br></br>
+                  Email: <br></br>
+                  Numero e Tipo Patente: <br></br>
                 </p>
-                <div className="btn-wrapper profile pt-3">
-                  <Button
-                    className="btn-icon btn-round"
-                    color="twitter"
-                    href="https://twitter.com/creativetim"
-                    id="tooltip639225725"
-                    target="_blank"
-                  >
-                    <i className="fab fa-twitter" />
-                  </Button>
-                  <UncontrolledTooltip delay={0} target="tooltip639225725">
-                    Follow us
-                  </UncontrolledTooltip>
-                  <Button
-                    className="btn-icon btn-round"
-                    color="facebook"
-                    href="https://www.facebook.com/creativetim"
-                    id="tooltip982846143"
-                    target="_blank"
-                  >
-                    <i className="fab fa-facebook-square" />
-                  </Button>
-                  <UncontrolledTooltip delay={0} target="tooltip982846143">
-                    Like us
-                  </UncontrolledTooltip>
-                  <Button
-                    className="btn-icon btn-round"
-                    color="dribbble"
-                    href="https://dribbble.com/creativetim"
-                    id="tooltip951161185"
-                    target="_blank"
-                  >
-                    <i className="fab fa-dribbble" />
-                  </Button>
-                  <UncontrolledTooltip delay={0} target="tooltip951161185">
-                    Follow us
-                  </UncontrolledTooltip>
-                </div>
               </Col>
               <Col className="ml-auto mr-auto" lg="4" md="6">
                 <Card className="card-coin card-plain">
@@ -131,7 +98,6 @@ export default function ProfilePage() {
                       className="img-center img-fluid rounded-circle"
                       src={require("assets/img/mike.jpg").default}
                     />
-                    <h4 className="title">Transactions</h4>
                   </CardHeader>
                   <CardBody>
                     <Nav
@@ -189,6 +155,11 @@ export default function ProfilePage() {
                             <tr>
                               <td>2</td>
                               <td>14/06/2021</td>
+                              <td>Annullata</td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>16/06/2021</td>
                               <td>In Corso...</td>
                             </tr>
                           </tbody>
