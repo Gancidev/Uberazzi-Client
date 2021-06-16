@@ -144,11 +144,12 @@ export default function RegisterPage() {
                                 })}
                               >
                               <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
+                                <InputGroupText Style="border: none">
                                   <i className="tim-icons icon-paper" />
                                 </InputGroupText>
                               </InputGroupAddon>
-                              <Input onFocus
+                              <Input
+                                Style="border: none"
                                 placeholder="Testo messaggio"
                                 type="textarea"
                                 onBlur={(e) => setTestoFocus(false)}

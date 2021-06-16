@@ -62,7 +62,7 @@ export default function Footer() {
               </NavItem>
               <NavItem>
                 <NavLink href="https://creative-tim.com/about-us?ref=blkdsr-footer">
-                  About Us
+                  Chi siamo
                 </NavLink>
               </NavItem>
               <NavItem>
