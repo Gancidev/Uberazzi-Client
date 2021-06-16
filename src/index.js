@@ -33,8 +33,9 @@ import NuovaPrenotazionePage from "views/NuovaPrenotazionePage.js";
 import ModificaPrenotazionePage from "views/ModificaPrenotazionePage.js";
 import VeicoliPage from "views/VeicoliPage.js";
 import PermessiUtentiPage from "views/PermessiUtentiPage.js";
-import CorsePage from "views/CorsePage.js"
-
+import CorsePage from "views/CorsePage.js";
+import RecuperoPassword from "views/RecuperoPasswordPage.js";
+import NotificaRitardo from "views/NotificaRitardoPage.js";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -78,6 +79,14 @@ ReactDOM.render(
       <Route
         path="/corse"
         render={(props) => <CorsePage {...props} />}
+      />
+      <Route
+        path="/recupero_password"
+        render={(props) => <RecuperoPassword {...props} />}
+      />
+      <Route
+        path="/notifica_ritardo"
+        render={(props) => <NotificaRitardo {...props} />}
       />
       <Redirect from="/" to="/home" />
     </Switch>
