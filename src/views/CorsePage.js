@@ -21,6 +21,10 @@ import {
     Col,
   } from "reactstrap";
 
+function conferma_corsa(id){
+    alert("La Corsa: "+ id +" e' stata accettata.")
+}
+
 export default function CorsePage() {
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
@@ -59,7 +63,9 @@ export default function CorsePage() {
                                     <td>Catania</td>
                                     <td>07/06/2021 15:30</td>
                                     <td><Button className="btn-simple"
-                                        color="success"><i className="tim-icons icon-check-2"/></Button></td>
+                                        color="success"
+                                        onClick={() => conferma_corsa(1)}
+                                        ><i className="tim-icons icon-check-2"/></Button></td>
                                     </tr>
                                     <tr>
                                     <th scope="row">2</th>
@@ -67,7 +73,9 @@ export default function CorsePage() {
                                     <td>Piazza Scaffa</td>
                                     <td>07/06/2021 15:30</td>
                                     <td><Button className="btn-simple"
-                                        color="success"><i className="tim-icons icon-check-2"/></Button></td>
+                                        color="success"
+                                        onClick={() => conferma_corsa(2)}
+                                        ><i className="tim-icons icon-check-2"/></Button></td>
                                     </tr>
                                     <tr>
                                     <th scope="row">3</th>
@@ -75,7 +83,9 @@ export default function CorsePage() {
                                     <td>Viale Lazio 33</td>
                                     <td>17/03/2021 12:30</td>
                                     <td><Button className="btn-simple"
-                                        color="success"><i className="tim-icons icon-check-2"/></Button></td>
+                                        color="success"
+                                        onClick={() => conferma_corsa(3)}
+                                        ><i className="tim-icons icon-check-2"/></Button></td>
                                     </tr>
                                 </tbody>
                             </Table>
