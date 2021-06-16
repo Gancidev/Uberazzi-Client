@@ -8,8 +8,6 @@
 */
 import React from "react";
 import classnames from "classnames";
-// react plugin used to create datetimepicker
-//import ReactDatetime from "react-datetime";
 // reactstrap components
 import {
   Button,
@@ -40,11 +38,11 @@ export default function RegisterPage() {
   const [soggettoFocus, setSoggettoFocus] = React.useState(false);
 
   React.useEffect(() => {
-    document.body.classList.toggle("contattaci");
+    document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
     // Specify how to clean up after this effect:
     return function cleanup() {
-      document.body.classList.toggle("contattaci");
+      document.body.classList.toggle("register-page");
       document.documentElement.removeEventListener("mousemove", followCursor);
     };
   },[]);
@@ -75,7 +73,7 @@ export default function RegisterPage() {
           <div className="content">
             <Container>
               <Row>
-                <Col className="offset-md-1" lg="10" md="6">
+                <Col className="offset-md-3" lg="5" md="6">
                   <div
                     className="square square-7"
                     id="square7"
@@ -86,61 +84,61 @@ export default function RegisterPage() {
                     id="square8"
                     style={{ transform: squares7and8 }}
                   />
-                  <Card className="card-contattaci" style={{overflow: "inherit"}}>
+                  <Card className="card-register">
                     <CardHeader>
                       <br></br>
-                      <CardTitle tag="h4" style={{fontSize: "4em"}} >Contattaci</CardTitle>
+                      <CardTitle tag="h4" style={{fontSize: "4em"}}>Contattaci</CardTitle>
+                      <small>Compila questo form per inviarci un messaggio</small>
                     </CardHeader>
-                    <small>Compila questo form per inviarci un messaggio</small>
                     <CardBody>
                       <Form className="form" method="post" action="contattaci.js">
-                        <Row>
-                          <Col className="offset-md-2" lg="8" md="6">
-                              <InputGroup
-                              className={classnames({
-                                "input-group-focus": emailFocus,
-                              })}
-                              >
-                                <InputGroupAddon addonType="prepend">
-                                    <InputGroupText>
-                                    <i className="tim-icons icon-email-85" />
-                                    </InputGroupText>
-                                </InputGroupAddon>
-                                <Input
-                                    placeholder="Email*"
-                                    type="text"
-                                    onFocus={(e) => setEmailFocus(true)}
-                                    onBlur={(e) => setEmailFocus(false)}
-                                    required
-                                />
-                              </InputGroup>
-                          </Col>
+                      <Row>
+                            <Col lg="12" md="6">
+                                <InputGroup
+                                    className={classnames({
+                                    "input-group-focus": emailFocus,
+                                    })}
+                                    >
+                                    <InputGroupAddon addonType="prepend">
+                                        <InputGroupText>
+                                        <i className="tim-icons icon-email-85" />
+                                        </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                        placeholder="Email*"
+                                        type="text"
+                                        onFocus={(e) => setEmailFocus(true)}
+                                        onBlur={(e) => setEmailFocus(false)}
+                                        required
+                                    />
+                                </InputGroup>
+                            </Col>
                         </Row>
                         <Row>
-                          <Col className="offset-md-2" lg="8" md="6">
+                            <Col lg="12" md="6">
+                                <InputGroup
+                                className={classnames({
+                                "input-group-focus": soggettoFocus,
+                                })}
+                                >
+                                    <InputGroupAddon addonType="prepend">
+                                        <InputGroupText>
+                                        <i className="tim-icons icon-single-02" />
+                                        </InputGroupText>
+                                    </InputGroupAddon>
+                                    <Input
+                                        placeholder="Soggetto*"
+                                        type="text"
+                                        onFocus={(e) => setSoggettoFocus(true)}
+                                        onBlur={(e) => setSoggettoFocus(false)}
+                                        required
+                                    />
+                                </InputGroup>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col lg="12" md="6">
                             <InputGroup
-                            className={classnames({
-                            "input-group-focus": soggettoFocus,
-                            })}
-                            >
-                                <InputGroupAddon addonType="prepend">
-                                    <InputGroupText>
-                                    <i className="tim-icons icon-single-02" />
-                                    </InputGroupText>
-                                </InputGroupAddon>
-                                <Input
-                                    placeholder="Soggetto*"
-                                    type="text"
-                                    onFocus={(e) => setSoggettoFocus(true)}
-                                    onBlur={(e) => setSoggettoFocus(false)}
-                                    required
-                                />
-                            </InputGroup>
-                          </Col>
-                        </Row>
-                        <Row>
-                            <Col className="offset-md-2" lg="8" md="6">
-                              <InputGroup
                                 className={classnames({
                                   "input-group-focus": testoFocus,
                                 })}
@@ -153,7 +151,6 @@ export default function RegisterPage() {
                               <Input onFocus
                                 placeholder="Testo messaggio"
                                 type="textarea"
-                                onFocus={(e) => setTestoFocus(true)}
                                 onBlur={(e) => setTestoFocus(false)}
                                 required
                               />
@@ -162,7 +159,7 @@ export default function RegisterPage() {
                         </Row>
                         <FormGroup check>
                             <Button className="btn-round" color="primary" size="lg" type="submit">
-                                Contattaci <i className="tim-icons icon-bell-55" />
+                                Invia <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
                       </Form>
