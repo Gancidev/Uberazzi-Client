@@ -47,7 +47,7 @@ export default function Footer() {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://opensource.org/licenses/MIT">
+                <NavLink href="https://www.iubenda.com/privacy-policy/78902839" title="Uberazzi - Policy Privacy" target="_blank">
                   Policy Privacy
                 </NavLink>
               </NavItem>
