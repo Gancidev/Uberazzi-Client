@@ -76,11 +76,10 @@ export default function LandingPage() {
                   Non hai un mezzo e non sai come spostarti?
                 </h1>
                 <p className="text-white mb-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Nullam tempus, est quis pharetra ultricies, tellus elit feugiat urna, a vehicula sapien erat eu leo. 
-                Vestibulum odio nisl, sollicitudin nec urna eget, blandit gravida lectus. 
-                Cras sagittis, dui ac tincidunt imperdiet, odio augue facilisis enim, nec tincidunt augue leo a lorem. 
-                In vel tellus orci. Nunc eget sapien tellus. Nulla a elit neque. Integer tincidunt aliquet nunc id aliquet.
+                Non è un problema! <br></br>
+                Noi di Uberazzi ti forniamo una vasta gamma di veicoli, sarai tu a decidere qual è il veicolo più adatto alle tue esigenze, 
+                che si tratti di un’automobile o di una semplice bicicletti. <br></br>
+                E se non hai la patente non preoccuparti, puoi sempre richiedere la presenza di un’autista per le automobili.
                 </p>
                 <div className="btn-wrapper mb-3">
                   <p className="category text-success d-inline">
@@ -89,8 +88,7 @@ export default function LandingPage() {
                   <Button
                     className="btn-link"
                     color="success"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
+                    href="#faq"
                     size="sm"
                   >
                     <i className="tim-icons icon-minimal-right" />
@@ -145,23 +143,23 @@ export default function LandingPage() {
             </Row>
           </div>
         </div>
-        <section className="section section-lg">
+        <section className="section section-lg" id="faq">
           <Container>
             <Row className="justify-content-center">
               <Col lg="12">
-                <h1 className="text-center">Your best benefit</h1>
+                <h1 className="text-center">Domande Frequenti</h1>
                 <Row className="row-grid justify-content-center">
                   <Col lg="3">
                     <div className="info">
                       <div className="icon icon-primary">
                         <i className="tim-icons icon-money-coins" />
                       </div>
-                      <h4 className="info-title">Low Commission</h4>
+                      <h4 className="info-title">Cos&#39;&egrave; Uberazzi?</h4>
                       <hr className="line-primary" />
                       <p>
-                        Divide details about your work into parts. Write a few
-                        lines about each one. A paragraph describing a feature
-                        will.
+                      Uberazzi ti permette di prenotare una corsa con un veicolo a tua scelta secondo le tue esigenze. 
+                      Il vasto parco veicoli &egrave; stato pensato per venire incontro a quante pi&ugrave; necessit&agrave; possibili, 
+                      permettendo l&#39;utilizzo di automobili, motori e persino biciclette o monopattini.
                       </p>
                     </div>
                   </Col>
@@ -170,12 +168,14 @@ export default function LandingPage() {
                       <div className="icon icon-warning">
                         <i className="tim-icons icon-chart-pie-36" />
                       </div>
-                      <h4 className="info-title">High Incomes</h4>
+                      <h4 className="info-title">Come prenoto una corsa?</h4>
                       <hr className="line-warning" />
                       <p>
-                        Divide details about your product or agency work into
-                        parts. Write a few lines about each one. A paragraph
-                        describing feature will be a feature.
+                      Prenotare una corsa &egrave; facile!
+                      Basta registrarsi dall&#39;apposita sezione e successivamente selezionare la voce &rdquo;Nuova prenotazione&ldquo; dal profilo.
+                      Per effettuare la prenotazione bisogna indicare data e ora della corsa, punto di partenza e di arrivo, 
+                      in modo da fornirti una accurata libert&agrave; di scelta sul veicolo da utilizzare.
+                      Inoltre per le automobili &egrave; prevista la presenza di un autista o meno.
                       </p>
                     </div>
                   </Col>
@@ -184,12 +184,11 @@ export default function LandingPage() {
                       <div className="icon icon-success">
                         <i className="tim-icons icon-single-02" />
                       </div>
-                      <h4 className="info-title">Verified People</h4>
+                      <h4 className="info-title">Dove posso lasciare il mezzo in caso di necessit&agrave;?</h4>
                       <hr className="line-success" />
                       <p>
-                        Divide details about your product or agency work into
-                        parts. Write a few lines about each one. A paragraph
-                        describing be enough.
+                      Uberazzi mette a disposizione dei clienti diversi parcheggi e stalli dove ritirare o lasciare i mezzi a fine corsa, 
+                      ma per qualsiasi necessit&agrave; &egrave; possibile lasciare i mezzi anche al di fuori degli appositi stalli/parcheggi.
                       </p>
                     </div>
                   </Col>
