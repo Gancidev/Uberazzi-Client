@@ -152,7 +152,7 @@ export default function LandingPage() {
                   <Col lg="3">
                     <div className="info">
                       <div className="icon icon-primary">
-                        <i className="tim-icons icon-money-coins" />
+                        <i className="tim-icons icon-world" />
                       </div>
                       <h4 className="info-title">Cos&#39;&egrave; Uberazzi?</h4>
                       <hr className="line-primary" />
@@ -166,7 +166,7 @@ export default function LandingPage() {
                   <Col lg="3">
                     <div className="info">
                       <div className="icon icon-warning">
-                        <i className="tim-icons icon-chart-pie-36" />
+                        <i className="tim-icons icon-delivery-fast" />
                       </div>
                       <h4 className="info-title">Come prenoto una corsa?</h4>
                       <hr className="line-warning" />
@@ -182,7 +182,7 @@ export default function LandingPage() {
                   <Col lg="3">
                     <div className="info">
                       <div className="icon icon-success">
-                        <i className="tim-icons icon-single-02" />
+                        <i className="tim-icons icon-map-big" />
                       </div>
                       <h4 className="info-title">Dove posso lasciare il mezzo in caso di necessit&agrave;?</h4>
                       <hr className="line-success" />
@@ -258,7 +258,7 @@ export default function LandingPage() {
                     <li className="py-2">
                       <div className="d-flex align-items-center">
                         <div className="icon icon-success mb-2">
-                          <i className="tim-icons icon-vector" />
+                          <i className="tim-icons icon-money-coins" />
                         </div>
                         <div className="ml-3">
                           <h6>Pagamenti Sicuri</h6>
@@ -268,7 +268,7 @@ export default function LandingPage() {
                     <li className="py-2">
                       <div className="d-flex align-items-center">
                         <div className="icon icon-success mb-2">
-                          <i className="tim-icons icon-tap-02" />
+                          <i className="tim-icons icon-badge" />
                         </div>
                         <div className="ml-3">
                           <h6>Autisti solo Verificati</h6>
@@ -278,7 +278,7 @@ export default function LandingPage() {
                     <li className="py-2">
                       <div className="d-flex align-items-center">
                         <div className="icon icon-success mb-2">
-                          <i className="tim-icons icon-single-02" />
+                          <i className="tim-icons icon-tap-02" />
                         </div>
                         <div className="ml-3">
                           <h6>Interfaccia User Friendly</h6>
