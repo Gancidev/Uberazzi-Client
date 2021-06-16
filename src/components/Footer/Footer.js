@@ -48,7 +48,7 @@ export default function Footer() {
               </NavItem>
               <NavItem>
                 <NavLink href="https://opensource.org/licenses/MIT">
-                  Cookie Policy
+                  Policy Privacy
                 </NavLink>
               </NavItem>
             </Nav>
