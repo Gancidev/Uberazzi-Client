@@ -216,7 +216,9 @@ export default function LandingPage() {
                     <div className="justify-content-center">
                       <div className="numbers">
                         <CardTitle tag="p">100%</CardTitle>
-                        <p className="card-category text-white">Safe</p>
+                        <p className="card-category text-white">
+                          Sicuro
+                        </p>
                       </div>
                     </div>
                   </CardBody>
@@ -225,9 +227,9 @@ export default function LandingPage() {
                   <CardBody>
                     <div className="justify-content-center">
                       <div className="numbers">
-                        <CardTitle tag="p">573 K</CardTitle>
+                        <CardTitle tag="p">5K</CardTitle>
                         <p className="card-category text-white">
-                          Satisfied customers
+                          Clienti Soddisfatti
                         </p>
                       </div>
                     </div>
@@ -237,8 +239,8 @@ export default function LandingPage() {
                   <CardBody>
                     <div className="justify-content-center">
                       <div className="numbers">
-                        <CardTitle tag="p">10 425</CardTitle>
-                        <p className="card-category text-white">Business</p>
+                        <CardTitle tag="p">100</CardTitle>
+                        <p className="card-category text-white">Mezzi Disponibili</p>
                       </div>
                     </div>
                   </CardBody>
@@ -247,11 +249,10 @@ export default function LandingPage() {
               <Col md="6">
                 <div className="px-md-5">
                   <hr className="line-success" />
-                  <h3>Awesome features</h3>
+                  <h3>Prenota in modo <b>Sicuro</b> e <b>Veloce</b>.</h3>
                   <p>
-                    The design system comes with three pre-built pages to help
-                    you get started faster. You can change the text and images
-                    and you're good to go.
+                    Sfrutta la sicurezza di poter prenotare un mezzo efficiente e sottoposto a manutenzione giornaliera,
+                    con una rapidità unica data dai nostri sistemi di gestione delle richieste e dal personale che se ne occupa.
                   </p>
                   <ul className="list-unstyled mt-5">
                     <li className="py-2">
@@ -260,7 +261,7 @@ export default function LandingPage() {
                           <i className="tim-icons icon-vector" />
                         </div>
                         <div className="ml-3">
-                          <h6>Carefully crafted components</h6>
+                          <h6>Pagamenti Sicuri</h6>
                         </div>
                       </div>
                     </li>
@@ -270,7 +271,7 @@ export default function LandingPage() {
                           <i className="tim-icons icon-tap-02" />
                         </div>
                         <div className="ml-3">
-                          <h6>Amazing page examples</h6>
+                          <h6>Autisti solo Verificati</h6>
                         </div>
                       </div>
                     </li>
@@ -280,7 +281,7 @@ export default function LandingPage() {
                           <i className="tim-icons icon-single-02" />
                         </div>
                         <div className="ml-3">
-                          <h6>Super friendly support team</h6>
+                          <h6>Interfaccia User Friendly</h6>
                         </div>
                       </div>
                     </li>
@@ -298,8 +299,8 @@ export default function LandingPage() {
                 <Row>
                   <Col className="text-left" sm="6">
                     <hr className="line-info" />
-                    <h5 className="card-category">Punti di Interesse</h5>
-                    <CardTitle tag="h2">Mappa Complessiva</CardTitle>
+                    <h5 className="card-category">N.B. Il servizio &egrave; attivo solamente a Palermo e provincia.</h5>
+                    <CardTitle tag="h3">Qui di seguito riportiamo le posizioni degli stalli e dei parcheggi, cos&igrave; potrai trovare il punto di ritiro pi&ugrave; vicino a casa tua.</CardTitle>
                   </Col>
                 </Row>
               </CardHeader>
