@@ -112,6 +112,8 @@ export default function RegisterPage() {
                             type="number"
                             onFocus={(e) => setRitardoFocus(true)}
                             onBlur={(e) => setRitardoFocus(false)}
+                            min="5"
+                            step="5"
                             required
                           />
                         </InputGroup>
