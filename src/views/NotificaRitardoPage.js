@@ -84,7 +84,7 @@ export default function RegisterPage() {
                   <Card className="card-register">
                     <CardHeader>
                       <br></br>
-                      <CardTitle tag="h4" style={{fontSize: "4em"}}>Notifica Ritardo</CardTitle>
+                      <CardTitle tag="h4" style={{fontSize: "3em"}}>Notifica Ritardo</CardTitle>
                     </CardHeader>
                     <CardBody>
                       <Form className="form" method="post" action="login.js">
