@@ -32,23 +32,23 @@ export default function Footer() {
           <Col md="3">
             <Nav>
               <NavItem>
-                <NavLink to="/" tag={Link}>
+                <NavLink to="/home" tag={Link}>
                   Home
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/landing-page" tag={Link}>
-                  Landing
+                <NavLink to="/registrazione" tag={Link}>
+                  Registrati
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/register-page" tag={Link}>
-                  Register
+                <NavLink to="/profilo" tag={Link}>
+                  Profilo
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/profile-page" tag={Link}>
-                  Profile
+                <NavLink href="https://opensource.org/licenses/MIT">
+                  Cookie Policy
                 </NavLink>
               </NavItem>
             </Nav>
@@ -56,8 +56,8 @@ export default function Footer() {
           <Col md="3">
             <Nav>
               <NavItem>
-                <NavLink href="https://creative-tim.com/contact-us?ref=blkdsr-footer">
-                  Contact Us
+                <NavLink href="/contattaci">
+                  Contattaci
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -67,12 +67,12 @@ export default function Footer() {
               </NavItem>
               <NavItem>
                 <NavLink href="https://creative-tim.com/blog?ref=blkdsr-footer">
-                  Blog
+                  Termini e Condizioni
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="https://opensource.org/licenses/MIT">
-                  License
+                  Cookie Policy
                 </NavLink>
               </NavItem>
             </Nav>
