@@ -46,11 +46,6 @@ export default function Footer() {
                   Profilo
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="https://www.iubenda.com/privacy-policy/78902839" title="Uberazzi - Policy Privacy" target="_blank">
-                  Policy Privacy
-                </NavLink>
-              </NavItem>
             </Nav>
           </Col>
           <Col md="3">
@@ -66,19 +61,14 @@ export default function Footer() {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://creative-tim.com/blog?ref=blkdsr-footer">
-                  Termini e Condizioni
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://opensource.org/licenses/MIT">
-                  Cookie Policy
+                <NavLink href="https://www.iubenda.com/privacy-policy/78902839" title="Uberazzi - Policy Privacy" target="_blank">
+                  Policy Privacy
                 </NavLink>
               </NavItem>
             </Nav>
           </Col>
           <Col md="3">
-            <h3 className="title">Follow us:</h3>
+            <h3 className="title">Seguici:</h3>
             <div className="btn-wrapper profile">
               <Button
                 className="btn-icon btn-neutral btn-round btn-simple"
