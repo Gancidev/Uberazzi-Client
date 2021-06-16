@@ -27,6 +27,8 @@ import PermessiUtentiPage from "views/PermessiUtentiPage.js";
 import CorsePage from "views/CorsePage.js";
 import RecuperoPassword from "views/RecuperoPasswordPage.js";
 import NotificaRitardo from "views/NotificaRitardoPage.js";
+import ContattaciPage from "views/ContattaciPage.js"
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -78,6 +80,10 @@ ReactDOM.render(
       <Route
         path="/notifica_ritardo"
         render={(props) => <NotificaRitardo {...props} />}
+      />
+      <Route
+        path="/contattaci"
+        render={(props) => <ContattaciPage {...props} />}
       />
       <Redirect from="/" to="/home" />
     </Switch>
