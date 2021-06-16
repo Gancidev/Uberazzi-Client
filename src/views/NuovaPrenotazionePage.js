@@ -120,6 +120,7 @@ export default function NuovaPrenotazione() {
                   />
                   <Card className="card-register" style={{overflow: "inherit"}}>
                     <CardHeader>
+                      <br></br>
                       <CardTitle tag="h4" style={{fontSize: "3em"}} > Nuova Prenotazione</CardTitle>
                     </CardHeader>
                     <CardBody>
