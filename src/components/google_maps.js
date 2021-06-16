@@ -40,33 +40,38 @@ const mapStyles = {
       return (
         <Map
           google={this.props.google}
-          zoom={8}
+          zoom={12}
           style={mapStyles}
           initialCenter={
             {
-              lat: 37.5080458,
-              lng: 13.6897048
+              lat: 38.13451553373591,
+              lng: 13.339992502102098
             }
           }>
           <Marker
           onClick={this.onMarkerClick}
-          name={'Palermo'}
-          position={{lat: 38.12242903932368, lng: 13.34321042705393}}
+          name={'Teatro Massimo, Palermo, PA'}
+          position={{lat: 38.12020988603305, lng: 13.357235274122457}}
         />
         <Marker
           onClick={this.onMarkerClick}
-          name={'Catania'}
-          position={{lat: 37.5073679743496, lng: 15.077956890763417}}
+          name={'Teatro Politeama, Palermo, PA'}
+          position={{lat: 38.12511083977246, lng: 13.356943784483882}}
         />
         <Marker
           onClick={this.onMarkerClick}
-          name={'Messina'}
-          position={{lat: 38.19385031771301, lng: 15.547111866903386}}
+          name={'Via Uditore, Palermo, PA'}
+          position={{lat: 38.1303653071614, lng: 13.325323765304637}}
         />
         <Marker
           onClick={this.onMarkerClick}
-          name={'Trapani'}
-          position={{lat: 38.0174385218262, lng: 12.536574000197803}}
+          name={'Via Amerigo Vespucci, Carini, PA'}
+          position={{lat: 38.16911734478906, lng: 13.19470832681448}}
+        />
+        <Marker
+          onClick={this.onMarkerClick}
+          name={'Via Primo Carnera, Capaci, PA'}
+          position={{lat: 38.177202816874065, lng: 13.238807622563973}}
         />
         <InfoWindow
           marker={this.state.activeMarker}
