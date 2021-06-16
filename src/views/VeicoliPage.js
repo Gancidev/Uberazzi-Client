@@ -21,6 +21,10 @@ import {
     Col,
   } from "reactstrap";
 
+  function conferma_condizioni(id){
+      alert("Il veicolo: "+ id +" e' in condizioni tali da poter tornare prenotabile.")
+  }
+
 export default function VeicoliPage() {
     const [squares1to6, setSquares1to6] = React.useState("");
     const [squares7and8, setSquares7and8] = React.useState("");
@@ -100,23 +104,29 @@ export default function VeicoliPage() {
                                     <tr>
                                     <th scope="row">1</th>
                                     <td>Mark</td>
-                                    <td>Otto</td>
+                                    <td>Portiera graffiata</td>
                                     <td><Button className="btn-simple"
-                                        color="success"><i className="tim-icons icon-check-2"/></Button></td>
+                                        color="success"
+                                        onClick={() => conferma_condizioni(1)}
+                                        ><i className="tim-icons icon-check-2"/></Button></td>
                                     </tr>
                                     <tr>
                                     <th scope="row">2</th>
                                     <td>Jacob</td>
-                                    <td>Thornton</td>
+                                    <td>Specchietto rotto</td>
                                     <td><Button className="btn-simple"
-                                        color="success"><i className="tim-icons icon-check-2"/></Button></td>
+                                        color="success"
+                                        onClick={() => conferma_condizioni(2)}
+                                        ><i className="tim-icons icon-check-2"/></Button></td>
                                     </tr>
                                     <tr>
                                     <th scope="row">3</th>
                                     <td>Larry</td>
-                                    <td>the Bird</td>
+                                    <td>Paraurti graffiato</td>
                                     <td><Button className="btn-simple"
-                                        color="success"><i className="tim-icons icon-check-2"/></Button></td>
+                                        color="success"
+                                        onClick={() => conferma_condizioni(3)}
+                                        ><i className="tim-icons icon-check-2"/></Button></td>
                                     </tr>
                                 </tbody>
                             </Table>
