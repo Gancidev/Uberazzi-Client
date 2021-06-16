@@ -171,6 +171,18 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-bullet-list-67" />
                   Prenotazioni
                 </DropdownItem>
+                <DropdownItem tag={Link} to="/permessi_utenti">
+                  <i className="tim-icons icon-key-25" />
+                  Permessi Utenti
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/veicoli">
+                  <i className="tim-icons icon-settings" />
+                  Gestione Veicoli
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/corse">
+                  <i className="tim-icons icon-bus-front-12" />
+                  Corse
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
