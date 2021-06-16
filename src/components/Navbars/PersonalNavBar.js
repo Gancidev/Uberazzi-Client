@@ -183,6 +183,14 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-bus-front-12" />
                   Corse
                 </DropdownItem>
+                <DropdownItem tag={Link} to="/recupero_password">
+                  <i className="tim-icons icon-lock-circle" />
+                  Recupero Password
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/notifica_ritardo">
+                  <i className="tim-icons icon-alert-circle-exc" />
+                  Notifica Ritardo
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
