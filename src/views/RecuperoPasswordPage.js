@@ -43,7 +43,6 @@ export default function RecuperoPasswordPage() {
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
   const [emailFocus, setEmailFocus] = React.useState(false);
-  const [passwordFocus, setPasswordFocus] = React.useState(false);
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
