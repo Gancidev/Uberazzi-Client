@@ -84,7 +84,7 @@ export default function RecuperoPasswordPage() {
                   <Card className="card-register">
                     <CardHeader>
                       <br></br>
-                      <CardTitle tag="h4" style={{fontSize: "4em"}}>Recupero Password</CardTitle>
+                      <CardTitle tag="h4" style={{fontSize: "3em"}}>Recupero Password</CardTitle>
                     </CardHeader>
                     <CardBody>
                       <Form className="form" method="post" action="login.js">
