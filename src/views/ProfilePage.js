@@ -64,23 +64,13 @@ export default function ProfilePage() {
     <>
       <PersonalNavBar />
       <div className="wrapper">
-        <div className="page-header">
-          <img
-            alt="..."
-            className="dots"
-            src={require("assets/img/dots.png").default}
-          />
-          <img
-            alt="..."
-            className="path"
-            src={require("assets/img/path4.png").default}
-          />
+        <div className="page-header" style={{maxHeight: "inherit"}}>
           <Container className="align-items-center">
             <Row>
               <Col lg="6" md="6">
                 <h1 className="profile-title text-left">Nome Cognome</h1>
                 <h5 className="text-on-back">Info</h5>
-                <p className="profile-description">
+                <p className="profile-description" style={{marginBottom: "20%"}}>
                   Nome: <br></br>
                   Cognome: <br></br>
                   Data di Nascita: <br></br>
@@ -89,7 +79,7 @@ export default function ProfilePage() {
                   Numero e Tipo Patente: <br></br>
                 </p>
               </Col>
-              <Col className="ml-auto mr-auto" lg="4" md="6">
+              <Col className="ml-auto mr-auto" lg="6" md="6">
                 <Card className="card-coin card-plain">
                   <CardHeader>
                     <img
