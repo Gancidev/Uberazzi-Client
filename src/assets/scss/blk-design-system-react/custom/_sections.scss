@@ -242,6 +242,12 @@
         margin-bottom: 50px;
     }
 
+    @media only screen and (max-width: 780px)  {
+        & > .content{
+            margin-top: 20%;
+        }
+    }
+
     .signup-page & {
         max-height: fit-content;
     }
@@ -1023,6 +1029,12 @@
     color: #393f49;
     background-color: $white;
     border-radius: $border-radius-sm;
+}
+
+@media only screen and (max-width: 780px)  {
+    .spazio{
+        margin-bottom: 20%;
+    }
 }
 
 //
