@@ -143,34 +143,34 @@ export default function LandingPage() {
             </Row>
           </div>
         </div>
-        <section className="section section-lg" id="faq">
+        <section className="section section-lg" id="faq" style={{background: "#17192D"}}>
           <Container>
             <Row className="justify-content-center">
               <Col lg="12">
                 <h1 className="text-center" Style="margin-bottom:inherit;">Domande Frequenti</h1>
                 <Row className="row-grid justify-content-center">
-                  <Col lg="3">
+                  <Col lg="4">
                     <div className="info">
                       <div className="icon icon-primary">
                         <i className="tim-icons icon-world" />
                       </div>
                       <h4 className="info-title">Cos&#39;&egrave; Uberazzi?</h4>
                       <hr className="line-primary" />
-                      <p>
+                      <p style={{textAlign: "justify"}}>
                       Uberazzi ti permette di prenotare una corsa con un veicolo a tua scelta secondo le tue esigenze. 
                       Il vasto parco veicoli &egrave; stato pensato per venire incontro a quante pi&ugrave; necessit&agrave; possibili, 
                       permettendo l&#39;utilizzo di automobili, motori e persino biciclette o monopattini.
                       </p>
                     </div>
                   </Col>
-                  <Col lg="3">
+                  <Col lg="4">
                     <div className="info">
                       <div className="icon icon-warning">
                         <i className="tim-icons icon-delivery-fast" />
                       </div>
                       <h4 className="info-title">Come prenoto una corsa?</h4>
                       <hr className="line-warning" />
-                      <p>
+                      <p style={{textAlign: "justify"}}>
                       Prenotare una corsa &egrave; facile!
                       Basta registrarsi dall&#39;apposita sezione e successivamente selezionare la voce &rdquo;Nuova prenotazione&ldquo; dal profilo.
                       Per effettuare la prenotazione bisogna indicare data e ora della corsa, punto di partenza e di arrivo, 
@@ -179,14 +179,14 @@ export default function LandingPage() {
                       </p>
                     </div>
                   </Col>
-                  <Col lg="3">
+                  <Col lg="4">
                     <div className="info">
                       <div className="icon icon-success">
                         <i className="tim-icons icon-map-big" />
                       </div>
                       <h4 className="info-title">Dove posso lasciare il mezzo in caso di necessit&agrave;?</h4>
                       <hr className="line-success" />
-                      <p>
+                      <p style={{textAlign: "justify"}}>
                       Uberazzi mette a disposizione dei clienti diversi parcheggi e stalli dove ritirare o lasciare i mezzi a fine corsa, 
                       ma per qualsiasi necessit&agrave; &egrave; possibile lasciare i mezzi anche al di fuori degli appositi stalli/parcheggi.
                       </p>
@@ -198,11 +198,7 @@ export default function LandingPage() {
           </Container>
         </section>
         <section className="section section-lg section-safe">
-          <img
-            alt="..."
-            className="path"
-            src={require("assets/img/path5.png").default}
-          />
+          
           <Container>
             <Row className="row-grid justify-content-between">
               <Col md="5">
@@ -291,13 +287,13 @@ export default function LandingPage() {
             </Row>
           </Container>
         </section>
-        <section className="section section-lg" Style="padding-bottom: 0">
+        <section className="section section-lg" Style="padding-bottom: 10px;padding-top: 10px" style={{background: "#17192D"}}>
           
           <Col md="12">
             <Card className="card-chart card-plain">
               <CardHeader>
                 <Row>
-                  <Col className="text-left" sm="6">
+                  <Col className="text-left" sm="12">
                     <hr className="line-info" />
                     <h5 className="card-category">N.B. Il servizio &egrave; attivo solamente a Palermo e provincia.</h5>
                     <CardTitle tag="h3">Qui di seguito riportiamo le posizioni degli stalli e dei parcheggi, cos&igrave; potrai trovare il punto di ritiro pi&ugrave; vicino a casa tua.</CardTitle>
