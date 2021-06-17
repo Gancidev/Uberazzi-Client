@@ -140,15 +140,93 @@
     }
 
     .circle {
-      top: 80%;
+      top: 70%;
       right: 70%;
-      max-height: 115px;
+      max-height: 200px;
     }
 
     .triangle {
       top: 50%;
       left: 45%;
       max-height: 200px;
+    }
+    @media only screen and (max-width: 780px)  {
+      .path {
+        max-width: 40%;
+        right: 10%;
+        top: 20%;
+      }
+  
+      .path2 {
+        position: absolute;
+        opacity: 0.05;
+        width: 25%;
+        right: 70%;
+        top: 30%;
+      }
+  
+      .squares {
+        top: 75%;
+        right: 5%;
+        max-height: 130px;
+      }
+  
+      .wave {
+        top: 14%;
+        right: 65%;
+        max-height: 90px;
+      }
+  
+      .circle {
+        top: 80%;
+        right: 70%;
+        max-height: 150px;
+      }
+  
+      .triangle {
+        top: 50%;
+        left: 30%;
+        max-height: 200px;
+      }
+    }
+    @media only screen and (max-height: 768px)  {
+      .path {
+        max-width: 30%;
+        right: 10%;
+        top: 20%;
+      }
+  
+      .path2 {
+        position: absolute;
+        opacity: 0.05;
+        width: 25%;
+        right: 70%;
+        top: 30%;
+      }
+  
+      .squares {
+        top: 75%;
+        right: 5%;
+        max-height: 130px;
+      }
+  
+      .wave {
+        top: 14%;
+        right: 50%;
+        max-height: 90px;
+      }
+  
+      .circle {
+        top: 70%;
+        right: 75%;
+        max-height: 150px;
+      }
+  
+      .triangle {
+        top: 50%;
+        left: 40%;
+        max-height: 200px;
+      }
     }
   }
 
@@ -546,6 +624,69 @@
       left: 300px;
       top: 400px;
       opacity: .4;
+    }
+
+    .square-1_personale{
+      width: 300px;
+      background-image: url($asset-base-path + "/img/square1.png");
+      top: 175px;
+      right: 150px;
+      opacity: 0.1;
+    }
+
+    .square-2_personale{
+      width: 120px;
+      background-image: url($asset-base-path + "/img/square2.png");
+      opacity: 0.1;
+      top: 310px;
+      right: 390px;
+    }
+
+    .square-3_personale{
+      width: 15%;
+      opacity: 0.1;
+      top: 15%;
+      right: 50%;
+    }
+
+    .square-4_personale{
+      width: 200px;
+      background-image: url($asset-base-path + "/img/square4.png");
+      right: -50px;
+      top: 525px;
+      opacity: 0.1;
+    }
+
+    .square-5_personale{
+      width: 150px;
+      background-image: url($asset-base-path + "/img/square5.png");
+      opacity: 0.1;
+      top: 500px;
+      right: 470px;
+    }
+
+    .square-6_personale{
+      width: 20%;
+      background-image: url($asset-base-path + "/img/square5.png");
+      opacity: 0.1;
+      top: 105px;
+      right: 20px;
+    }
+
+    .square-7_personale{
+      width: 150px;
+      background-image: url($asset-base-path + "/img/square5.png");
+      left: -40px;
+      top: 300px;
+      opacity: .1;
+    }
+
+    .square-8_personale{
+      width: 50%;
+      background-image: url($asset-base-path + "/img/square1.png");
+      left: 50%;
+      top: 350px;
+      opacity: .1;
     }
 }
 

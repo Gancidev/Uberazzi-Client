@@ -24,7 +24,7 @@
 
 .shapes {
   position: absolute;
-  opacity: 0.02;
+  opacity: 0.1;
   z-index: 2;
 }
 
@@ -825,7 +825,7 @@
       }
       &:nth-of-type(3) {
         width: 130px;
-        top: 240px;
+        top: 220px;
         left: 300px;
       }
 
