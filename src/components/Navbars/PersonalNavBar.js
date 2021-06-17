@@ -36,14 +36,14 @@ export default function IndexNavbar() {
   const changeColor = () => {
     var logo = document.getElementById("logo");
     if (
-      document.documentElement.scrollTop > 99 ||
-      document.body.scrollTop > 99
+      document.documentElement.scrollTop > 50 ||
+      document.body.scrollTop > 50
     ) {
       logo.style.width="15%";
       setColor("bg-primario");
     } else if (
-      document.documentElement.scrollTop < 100 ||
-      document.body.scrollTop < 100
+      document.documentElement.scrollTop < 51 ||
+      document.body.scrollTop < 51
     ) {
       logo = document.getElementById("logo");
       logo.style.width="40%";
