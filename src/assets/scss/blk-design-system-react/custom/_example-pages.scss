@@ -186,8 +186,6 @@
     }
   }
   .section:nth-of-type(3) {
-    padding-top: 200px;
-
     .path {
       right: auto;
       left: 50px;
@@ -551,14 +549,6 @@
     }
 }
 
-.index-page,
-.landing-page,
-.profile-page,
-.register-page{
-  background-image: url($asset-base-path + "/img/dots.png");
-  background-size: contain;
-}
-
 @include media-breakpoint-down(md){
   .section:nth-of-type(2) {
     .path {
@@ -608,11 +598,5 @@
         margin-top: 100px;
       }
     }
-  }
-}
-
-@include media-breakpoint-up(md) {
-  .info:first-of-type {
-    padding-top: 60%;
   }
 }
