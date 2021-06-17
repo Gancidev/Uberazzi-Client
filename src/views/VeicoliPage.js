@@ -65,31 +65,41 @@ export default function VeicoliPage() {
                     <Container className="align-items-center">
                         <Row>
                             <Col className="offset-md-3" lg="5" md="6">
-                                <div
-                                    className="square square-7"
-                                    id="square7"
-                                    style={{ transform: squares7and8 }}
-                                />
-                                <div
-                                    className="square square-8"
-                                    id="square8"
-                                    style={{ transform: squares7and8 }}
-                                />
-                                <div
-                                    className="square square-4"
-                                    id="square4"
-                                    style={{ transform: squares1to6 }}
-                                />
-                                <div
-                                    className="square square-5"
-                                    id="square5"
-                                    style={{ transform: squares1to6 }}
-                                />
-                                <div
-                                    className="square square-6"
-                                    id="square6"
-                                    style={{ transform: squares1to6 }}
-                                />
+                            <img
+                                alt="..."
+                                className="square square-7_personale"
+                                id="square7"
+                                src={require("assets/veicoli/auto1.png").default}
+                                style={{ transform: squares7and8 }}
+                            />
+                            <img
+                                alt="..."
+                                className="square square-8_personale"
+                                id="square8"
+                                src={require("assets/veicoli/auto2.png").default}
+                                style={{ transform: squares7and8 }}
+                            />
+                            <img
+                                alt="..."
+                                className="square square-4_personale"
+                                id="square4"
+                                src={require("assets/veicoli/moto1.png").default}
+                                style={{ transform: squares1to6 }}
+                            />
+                             <img
+                                alt="..."
+                                className="square square-5_personale"
+                                id="square5"
+                                src={require("assets/veicoli/moto3.png").default}
+                                style={{ transform: squares1to6 }}
+                            />
+                            <img
+                                alt="..."
+                                className="square square-6_personale"
+                                id="square6"
+                                src={require("assets/veicoli/monopattino1.png").default}
+                                style={{ transform: squares1to6 }}
+                            />
                             </Col>
                             <Table>
                                 <thead>
@@ -131,11 +141,13 @@ export default function VeicoliPage() {
                                 </tbody>
                             </Table>
                         </Row>                             
-                        <div
-                            className="square square-3"
+                        <img
+                            alt="..."
+                            className="square square-3_personale"
                             id="square3"
+                            src={require("assets/veicoli/bici1.png").default}
                             style={{ transform: squares1to6 }}
-                        />                             
+                        />                            
                     </Container>
                 </div>
             </div>
