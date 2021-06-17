@@ -42,7 +42,7 @@ export default function LandingPage() {
           <img
             alt="..."
             className="path"
-            src={require("assets/img/blob.png").default}
+            src={require("assets/veicoli/auto1.png").default}
           />
           <img
             alt="..."
