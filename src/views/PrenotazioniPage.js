@@ -59,7 +59,7 @@ export default function ProfilePage() {
           <img
             alt="..."
             className="path"
-            src={require("assets/img/path4.png").default}
+            src={require("assets/path_rosa/path4.png").default}
           />
           <Container className="align-items-center">
             <Row>
