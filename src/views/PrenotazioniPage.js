@@ -55,12 +55,7 @@ export default function ProfilePage() {
     <>
       <PersonalNavBar />
       <div className="wrapper">
-        <div className="page-header">
-          <img
-            alt="..."
-            className="dots"
-            src={require("assets/img/dots.png").default}
-          />
+        <div className="page-header" style={{maxHeight: "inherit"}}>
           <img
             alt="..."
             className="path"
@@ -68,7 +63,7 @@ export default function ProfilePage() {
           />
           <Container className="align-items-center">
             <Row>
-              <Col className="ml-auto mr-auto" lg="4" md="6">
+              <Col className="ml-auto mr-auto spazio" lg="4" md="6" >
                 <Card className="card-coin card-plain">
                   <CardHeader>
                     <img
@@ -105,7 +100,7 @@ export default function ProfilePage() {
                   </CardBody>
                 </Card>
               </Col>
-              <Col className="ml-auto mr-auto" lg="4" md="6">
+              <Col className="ml-auto mr-auto spazio" lg="4" md="6" >
                 <Card className="card-coin card-plain">
                   <CardHeader>
                     <img
