@@ -82,45 +82,17 @@ export default function LandingPage() {
                 E se non hai la patente non preoccuparti, puoi sempre richiedere la presenza di un’autista per le automobili.
                 </p>
                 <div className="btn-wrapper mb-3">
-                  <p className="category text-success d-inline">
+                  <p className="category text-primary d-inline">
                     Leggi Altro
                   </p>
                   <Button
                     className="btn-link"
-                    color="success"
+                    color="primary"
                     href="#faq"
                     size="sm"
                   >
                     <i className="tim-icons icon-minimal-right" />
                   </Button>
-                </div>
-                <div className="btn-wrapper">
-                  <div className="button-container">
-                    <Button
-                      className="btn-icon btn-simple btn-round btn-neutral"
-                      color="default"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <i className="fab fa-twitter" />
-                    </Button>
-                    <Button
-                      className="btn-icon btn-simple btn-round btn-neutral"
-                      color="default"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <i className="fab fa-dribbble" />
-                    </Button>
-                    <Button
-                      className="btn-icon btn-simple btn-round btn-neutral"
-                      color="default"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <i className="fab fa-facebook" />
-                    </Button>
-                  </div>
                 </div>
               </Col>
               <Col lg="4" md="5">
@@ -133,8 +105,8 @@ export default function LandingPage() {
                 </Button>
                 <br></br>
                 <Button
-                  className="btn-simple"
-                  color="success"
+                  className="btn-simple bottone_premuto"
+                  color="danger"
                   href="/registrazione"
                 >
                   Registrati <i className="tim-icons icon-lock-circle" />
@@ -147,7 +119,7 @@ export default function LandingPage() {
           <Container>
             <Row className="justify-content-center">
               <Col lg="12">
-                <h1 className="text-center" Style="margin-bottom:inherit;">Domande Frequenti</h1>
+                <h1 className="text-center" style={{marginBottom:"inherit"}}>Domande Frequenti</h1>
                 <Row className="row-grid justify-content-center">
                   <Col lg="4">
                     <div className="info">
@@ -198,7 +170,6 @@ export default function LandingPage() {
           </Container>
         </section>
         <section className="section section-lg section-safe">
-          
           <Container>
             <Row className="row-grid justify-content-between">
               <Col md="5">
@@ -244,7 +215,7 @@ export default function LandingPage() {
               </Col>
               <Col md="6">
                 <div className="px-md-5">
-                  <hr className="line-success" />
+                  <hr className="line-primary" />
                   <h3>Prenota in modo <b>Sicuro</b> e <b>Veloce</b>.</h3>
                   <p>
                     Sfrutta la sicurezza di poter prenotare un mezzo efficiente e sottoposto a manutenzione giornaliera,
@@ -253,7 +224,7 @@ export default function LandingPage() {
                   <ul className="list-unstyled mt-5">
                     <li className="py-2">
                       <div className="d-flex align-items-center">
-                        <div className="icon icon-success mb-2">
+                        <div className="icon icon-primary mb-2">
                           <i className="tim-icons icon-money-coins" />
                         </div>
                         <div className="ml-3">
@@ -263,7 +234,7 @@ export default function LandingPage() {
                     </li>
                     <li className="py-2">
                       <div className="d-flex align-items-center">
-                        <div className="icon icon-success mb-2">
+                        <div className="icon icon-primary mb-2">
                           <i className="tim-icons icon-badge" />
                         </div>
                         <div className="ml-3">
@@ -273,7 +244,7 @@ export default function LandingPage() {
                     </li>
                     <li className="py-2">
                       <div className="d-flex align-items-center">
-                        <div className="icon icon-success mb-2">
+                        <div className="icon icon-primary mb-2">
                           <i className="tim-icons icon-tap-02" />
                         </div>
                         <div className="ml-3">
@@ -287,8 +258,7 @@ export default function LandingPage() {
             </Row>
           </Container>
         </section>
-        <section className="section section-lg" Style="padding-bottom: 10px;padding-top: 10px" style={{background: "#17192D"}}>
-          
+        <section className="section section-lg" style={{paddingBottom:"10px", background: "#17192D",paddingTop:"10px",}}>
           <Col md="12">
             <Card className="card-chart card-plain">
               <CardHeader>
