@@ -41,7 +41,7 @@ export default function LandingPage() {
         <div className="page-header">
           <img
             alt="..."
-            className="path"
+            className=" shapes path"
             src={require("assets/veicoli/auto1.png").default}
           />
           <img
@@ -176,7 +176,7 @@ export default function LandingPage() {
                 <img
                   alt="..."
                   className="img-fluid floating"
-                  src={require("assets/img/chester-wade.jpg").default}
+                  src={require("assets/img/guida.jpg").default}
                 />
                 <Card className="card-stats bg-danger">
                   <CardBody>
