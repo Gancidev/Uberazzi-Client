@@ -147,7 +147,7 @@ export default function LandingPage() {
           <Container>
             <Row className="justify-content-center">
               <Col lg="12">
-                <h1 className="text-center">Domande Frequenti</h1>
+                <h1 className="text-center" Style="margin-bottom:inherit;">Domande Frequenti</h1>
                 <Row className="row-grid justify-content-center">
                   <Col lg="3">
                     <div className="info">
@@ -291,7 +291,7 @@ export default function LandingPage() {
             </Row>
           </Container>
         </section>
-        <section className="section section-lg">
+        <section className="section section-lg" Style="padding-bottom: 0">
           
           <Col md="12">
             <Card className="card-chart card-plain">
