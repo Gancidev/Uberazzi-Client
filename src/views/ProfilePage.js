@@ -65,6 +65,11 @@ export default function ProfilePage() {
       <PersonalNavBar />
       <div className="wrapper">
         <div className="page-header" style={{maxHeight: "inherit"}}>
+        <img
+            alt="..."
+            className="path"
+            src={require("assets/path_rosa/path4.png").default}
+          />
           <Container className="align-items-center">
             <Row>
               <Col lg="6" md="6">
