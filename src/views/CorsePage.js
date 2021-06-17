@@ -26,6 +26,8 @@ function conferma_corsa(id){
 }
 
 export default function CorsePage() {
+    const [squares1to6, setSquares1to6] = React.useState("");
+    const [squares7and8, setSquares7and8] = React.useState("");
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
@@ -35,7 +37,24 @@ export default function CorsePage() {
       document.documentElement.removeEventListener("mousemove", followCursor);
     };
   },[]);
-  const followCursor = (event) => {}
+  const followCursor = (event) => {
+    let posX = event.clientX - window.innerWidth / 2;
+    let posY = event.clientY - window.innerWidth / 6;
+    setSquares1to6(
+      "perspective(500px) rotateY(" +
+        posX * 0.05 +
+        "deg) rotateX(" +
+        posY * -0.05 +
+        "deg)"
+    );
+    setSquares7and8(
+      "perspective(500px) rotateY(" +
+        posX * 0.02 +
+        "deg) rotateX(" +
+        posY * -0.02 +
+        "deg)"
+    );
+  };
   return(
     <>
     <PersonalNavBar />
@@ -45,6 +64,41 @@ export default function CorsePage() {
                 <Container className="align-items-center">
                         <Row>
                             <Col className="offset-md-3" lg="5" md="6">
+                            <img
+                                alt="..."
+                                className="square square-7_personale"
+                                id="square7"
+                                src={require("assets/veicoli/auto1.png").default}
+                                style={{ transform: squares7and8 }}
+                            />
+                            <img
+                                alt="..."
+                                className="square square-8_personale"
+                                id="square8"
+                                src={require("assets/veicoli/auto2.png").default}
+                                style={{ transform: squares7and8 }}
+                            />
+                            <img
+                                alt="..."
+                                className="square square-4_personale"
+                                id="square4"
+                                src={require("assets/veicoli/moto1.png").default}
+                                style={{ transform: squares1to6 }}
+                            />
+                             <img
+                                alt="..."
+                                className="square square-5_personale"
+                                id="square5"
+                                src={require("assets/veicoli/moto3.png").default}
+                                style={{ transform: squares1to6 }}
+                            />
+                            <img
+                                alt="..."
+                                className="square square-6_personale"
+                                id="square6"
+                                src={require("assets/veicoli/monopattino1.png").default}
+                                style={{ transform: squares1to6 }}
+                            />
                             </Col>
                             <Table>
                                 <thead>
@@ -89,7 +143,14 @@ export default function CorsePage() {
                                     </tr>
                                 </tbody>
                             </Table>
-                        </Row>                                                         
+                        </Row>
+                        <img
+                            alt="..."
+                            className="square square-3_personale"
+                            id="square3"
+                            src={require("assets/veicoli/bici1.png").default}
+                            style={{ transform: squares1to6 }}
+                        />                                                           
                     </Container>                    
                 </div>
             </div>
