@@ -47,27 +47,27 @@ export default function LandingPage() {
           <img
             alt="..."
             className="path2"
-            src={require("assets/img/path2.png").default}
+            src={require("assets/veicoli/auto2.png").default}
           />
           <img
             alt="..."
             className="shapes triangle"
-            src={require("assets/img/triunghiuri.png").default}
+            src={require("assets/veicoli/moto1.png").default}
           />
           <img
             alt="..."
             className="shapes wave"
-            src={require("assets/img/waves.png").default}
+            src={require("assets/veicoli/moto2.png").default}
           />
           <img
             alt="..."
             className="shapes squares"
-            src={require("assets/img/patrat.png").default}
+            src={require("assets/veicoli/bici1.png").default}
           />
           <img
             alt="..."
             className="shapes circle"
-            src={require("assets/img/cercuri.png").default}
+            src={require("assets/veicoli/monopattino1.png").default}
           />
           <div className="content-center">
             <Row className="row-grid justify-content-between align-items-center text-left">
