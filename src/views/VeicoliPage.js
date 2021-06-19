@@ -43,16 +43,16 @@ export default function VeicoliPage() {
     let posY = event.clientY - window.innerWidth / 6;
     setSquares1to6(
       "perspective(500px) rotateY(" +
-        posX * 0.05 +
+        posX * 0.04 +
         "deg) rotateX(" +
-        posY * -0.05 +
+        posY * -0.04 +
         "deg)"
     );
     setSquares7and8(
       "perspective(500px) rotateY(" +
-        posX * 0.02 +
+        posX * 0.05 +
         "deg) rotateX(" +
-        posY * -0.02 +
+        posY * -0.05 +
         "deg)"
     );
   };
