@@ -156,7 +156,7 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-key-25" />
                   Permessi Utenti (admin)
                 </DropdownItem>
-                <DropdownItem tag={Link} to="/ritiro_veicolo">
+                <DropdownItem tag={Link} to="/gestione_prenotazioni">
                   <i className="tim-icons icon-key-25" />
                   Gestione Prenotazioni (admin)
                 </DropdownItem>                
