@@ -148,6 +148,14 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-alert-circle-exc" />
                   Notifica Ritardo
                 </DropdownItem>
+                <DropdownItem tag={Link} to="/consegna_veicoli">
+                  <i className="tim-icons icon-bus-front-12" />
+                  Consegna Veicoli
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/ritiro_veicolo">
+                  <i className="tim-icons icon-bus-front-12" />
+                  Ritira Veicolo
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
