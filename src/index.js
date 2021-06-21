@@ -27,7 +27,10 @@ import PermessiUtentiPage from "views/PermessiUtentiPage.js";
 import CorsePage from "views/CorsePage.js";
 import RecuperoPassword from "views/RecuperoPasswordPage.js";
 import NotificaRitardo from "views/NotificaRitardoPage.js";
-import ContattaciPage from "views/ContattaciPage.js"
+import ContattaciPage from "views/ContattaciPage.js";
+import ConsegnaVeicoliPage from "views/ConsegnaVeicoliPage.js";
+import RitiroVeicoloPage from "views/RitiroVeicoloPage.js";
+
 
 ReactDOM.render(
   <BrowserRouter>
@@ -84,6 +87,14 @@ ReactDOM.render(
       <Route
         path="/contattaci"
         render={(props) => <ContattaciPage {...props} />}
+      />
+      <Route
+        path="/consegna_veicoli"
+        render={(props) => <ConsegnaVeicoliPage {...props} />}
+      />
+      <Route
+        path="/ritiro_veicolo"
+        render={(props) => <RitiroVeicoloPage {...props} />}
       />
       <Redirect from="/" to="/home" />
     </Switch>
