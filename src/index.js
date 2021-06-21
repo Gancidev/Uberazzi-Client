@@ -29,6 +29,7 @@ import NotificaRitardo from "views/NotificaRitardoPage.js";
 import ContattaciPage from "views/ContattaciPage.js";
 import ConsegnaVeicoliPage from "views/ConsegnaVeicoliPage.js";
 import RitiroVeicoloPage from "views/RitiroVeicoloPage.js";
+import GestionePrenotazioniPage from "views/GestionePrenotazioniPage.js";
 
 
 ReactDOM.render(
@@ -93,6 +94,10 @@ ReactDOM.render(
       <Route
         path="/ritiro_veicolo"
         render={(props) => <RitiroVeicoloPage {...props} />}
+      />
+      <Route
+        path="/gestione_prenotazioni"
+        render={(props) => <GestionePrenotazioniPage {...props} />}
       />
       <Redirect from="/" to="/home" />
     </Switch>
