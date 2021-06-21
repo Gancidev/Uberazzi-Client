@@ -118,44 +118,48 @@ export default function IndexNavbar() {
               <DropdownMenu className="dropdown-with-icons">
                 <DropdownItem tag={Link} to="/home">
                   <i className="tim-icons icon-paper" />
-                  Home
+                  Home (tutti)
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/profilo">
                   <i className="tim-icons icon-single-02" />
-                  Profilo
+                  Profilo (tutti)
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/prenotazioni">
                   <i className="tim-icons icon-bullet-list-67" />
-                  Prenotazioni
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/permessi_utenti">
-                  <i className="tim-icons icon-key-25" />
-                  Permessi Utenti
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/veicoli">
-                  <i className="tim-icons icon-settings" />
-                  Gestione Veicoli
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/corse">
-                  <i className="tim-icons icon-bus-front-12" />
-                  Corse
+                  Prenotazioni (tutti)
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/recupero_password">
                   <i className="tim-icons icon-lock-circle" />
-                  Recupero Password
+                  Recupero Password (tutti)
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/notifica_ritardo">
                   <i className="tim-icons icon-alert-circle-exc" />
-                  Notifica Ritardo
+                  Notifica Ritardo (addetto parcheggio, cliente, autista?)
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/consegna_veicoli">
                   <i className="tim-icons icon-bus-front-12" />
-                  Consegna Veicoli
+                  Consegna Veicoli (cliente, addetto parcheggio)
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/ritiro_veicolo">
                   <i className="tim-icons icon-bus-front-12" />
-                  Ritira Veicolo
+                  Ritira Veicolo (cliente, addetto parcheggio)
                 </DropdownItem>
+                <DropdownItem tag={Link} to="/veicoli">
+                  <i className="tim-icons icon-settings" />
+                  Gestione Veicoli (addetto parcheggio)
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/corse">
+                  <i className="tim-icons icon-bus-front-12" />
+                  Corse (autista)
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/permessi_utenti">
+                  <i className="tim-icons icon-key-25" />
+                  Permessi Utenti (admin)
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/ritiro_veicolo">
+                  <i className="tim-icons icon-key-25" />
+                  Gestione Prenotazioni (admin)
+                </DropdownItem>                
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
