@@ -14,7 +14,6 @@ import "assets/css/nucleo-icons.css";
 import "assets/scss/blk-design-system-react.scss?v=1.2.0";
 import "assets/demo/demo.css";
 
-import Index from "views/component.js";
 import LandingPage from "views/LandingPage.js";
 import RegisterPage from "views/RegisterPage.js";
 import LoginPage from "views/LoginPage.js";
@@ -35,7 +34,6 @@ import RitiroVeicoloPage from "views/RitiroVeicoloPage.js";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/components" render={(props) => <Index {...props} />} />
       <Route
         path="/home"
         render={(props) => <LandingPage {...props} />}
