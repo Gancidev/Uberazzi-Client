@@ -21,10 +21,18 @@ import {
   Container,
   Row,
   Col,
+  Button,
+  Modal,
 } from "reactstrap";
+
+function logout(){
+  alert("Logout effettuato con successo.");
+  window.location="/home";
+}
 
 export default function IndexNavbar() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
+  const [miniModal, setMiniModal] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
   React.useEffect(() => {
@@ -159,12 +167,48 @@ export default function IndexNavbar() {
                 <DropdownItem tag={Link} to="/gestione_prenotazioni">
                   <i className="tim-icons icon-key-25" />
                   Gestione Prenotazioni (admin)
+                </DropdownItem>
+                <DropdownItem tag={Link} onClick={() => { setMiniModal(true)}}>
+                  <i className="tim-icons icon-key-25" />
+                  Logout
                 </DropdownItem>                
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
         </Collapse>
       </Container>
+      {/* Start Mini Modal */}
+      <Modal
+              modalClassName="modal-mini modal-primary modal-mini"
+              isOpen={miniModal}
+              toggle={() => setMiniModal(false)}
+            >
+              <div className="modal-header justify-content-center">
+                <button className="close" onClick={() => setMiniModal(false)}>
+                  <i className="tim-icons icon-simple-remove text-white" />
+                </button>
+                <div className="modal-profile">
+                  <i className="tim-icons icon-single-02" />
+                </div>
+              </div>
+              <div className="modal-body">
+                <p>Sicuro di voler effettuare il logout?</p>
+              </div>
+              <div className="modal-footer">
+                <Button className="btn-neutral" color="link" type="button" onClick={() => {setMiniModal(false);}}>
+                  No
+                </Button>
+                <Button
+                  className="btn-neutral"
+                  color="link"
+                  onClick={() => {setMiniModal(false); logout();}}
+                  type="button"
+                >
+                  Si
+                </Button>
+              </div>
+            </Modal>
+            {/* End Mini Modal */}
     </Navbar>
   );
 }
