@@ -35,7 +35,7 @@ import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 import SelectVeicoli from "components/ModificaPrenotazione/SelectVeicolo.js";
 import ConfermaAutista from "components/ModificaPrenotazione/ConfermaAutista.js";
-import ManciaAutista from "components/ModificaPrenotazione/Mancia.js";
+import ManciaAutista from "components/ModificaPrenotazione/ManciaAutista.js";
 
 function check_disponibilita(){
     var partenza = document.getElementById("partenza");
