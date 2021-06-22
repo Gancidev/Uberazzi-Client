@@ -1,9 +1,9 @@
 {
-  "name": "blk-design-system-react",
-  "version": "1.2.0",
-  "description": "React version of BLK Design System by Creative Tim",
+  "name": "uberazzi",
+  "version": "1.1.0",
+  "description": "React version of Uberazzi",
   "main": "index.js",
-  "author": "Creative Tim",
+  "author": "LifeInt",
   "license": "MIT",
   "repository": {
     "type": "git",
