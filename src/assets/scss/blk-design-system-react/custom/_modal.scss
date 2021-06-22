@@ -55,6 +55,9 @@
         &.modal-profile-primary{
             background-color: $primary;
         }
+        &.modal-profile-primario{
+          background-color: $primario;
+      }
 
         &.modal-profile-danger{
             background-color: $danger;
@@ -133,6 +136,9 @@
     &.modal-primary{
         @include modal-colors($primary, $white);
     }
+    &.modal-primario{
+      @include modal-colors($primario, $white);
+  }
 
     &.modal-danger{
         @include modal-colors($danger, $white);

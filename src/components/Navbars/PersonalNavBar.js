@@ -179,7 +179,7 @@ export default function IndexNavbar() {
       </Container>
       {/* Start Mini Modal */}
       <Modal
-              modalClassName="modal-mini modal-primary modal-mini"
+              modalClassName="modal-mini modal-primario modal-mini"
               isOpen={miniModal}
               toggle={() => setMiniModal(false)}
             >
