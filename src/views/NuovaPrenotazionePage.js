@@ -33,9 +33,9 @@ import {
 // core components
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
-import SelectVeicoli from "components/NuovaPrenotazione/select_veicolo.js";
-import ConfermaAutista from "components/NuovaPrenotazione/conferma_autista.js";
-import ManciaAutista from "components/NuovaPrenotazione/mancia.js";
+import SelectVeicoli from "components/NuovaPrenotazione/SelectVeicolo.js";
+import ConfermaAutista from "components/NuovaPrenotazione/ConfermaAutista.js";
+import ManciaAutista from "components/NuovaPrenotazione/Mancia.js";
 
 function check_disponibilita(){
     var partenza = document.getElementById("partenza");
