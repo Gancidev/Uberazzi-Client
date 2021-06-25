@@ -54,7 +54,7 @@ function stampa_prenotazioni(messaggio){
           da = new Intl.DateTimeFormat('it', { day: '2-digit' }).format(date);
           h = new Intl.DateTimeFormat('it', { hour: '2-digit' }).format(date);
           m = new Intl.DateTimeFormat('it', { minute: '2-digit' }).format(date);
-          h4.innerText=messaggio[j-1].IDPrenotazione +" - "+da+"/"+mo[0].toUpperCase()+mo.slice(1)+"/"+ye+" "+h+":"+m;
+          h4.innerText=messaggio[j-1].IDPrenotazione +" - "+da+"/"+mo[0].toUpperCase()+mo.slice(1)+"/"+ye+" "+(h-2)+":"+m;
           div3.appendChild(img);
           div3.appendChild(h4);
           div4=document.createElement("div");
@@ -95,9 +95,15 @@ function stampa_prenotazioni(messaggio){
                         td1 = document.createElement("td");
                         td1.innerHTML="PRIMO CAMPO";
                         td2 = document.createElement("td");
-                        td2.innerHTML="SECONDO CAMPO";
+                        date = new Date(messaggio[j-1].DataOra);
+                        ye = new Intl.DateTimeFormat('it', { year: 'numeric' }).format(date);
+                        mo = new Intl.DateTimeFormat('it', { month: 'long' }).format(date);
+                        da = new Intl.DateTimeFormat('it', { day: '2-digit' }).format(date);
+                        h = new Intl.DateTimeFormat('it', { hour: '2-digit' }).format(date);
+                        m = new Intl.DateTimeFormat('it', { minute: '2-digit' }).format(date);
+                        td2.innerHTML=da+"/"+mo[0].toUpperCase()+mo.slice(1)+"/"+ye+" "+(h-2)+":"+m;
                         td3 = document.createElement("td");
-                        td3.innerHTML="TERZO CAMPO";
+                        td3.innerHTML=messaggio[j-1].Stato;
                       tr2.appendChild(td1);
                       tr2.appendChild(td2);
                       tr2.appendChild(td3);
