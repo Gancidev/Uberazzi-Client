@@ -40,6 +40,21 @@ function stampa(messaggio){
     var da;
     var h;
     var m;
+    if(messaggio["corse"].length===0){
+        tr = document.createElement("tr");
+        th = document.createElement("th");
+        td1 = document.createElement("td");
+        td2 = document.createElement("td");
+        td3 = document.createElement("td");
+        td4 = document.createElement("td");
+        td4.innerHTML="Nessuna Corsa Disponibile";
+        tr.appendChild(th);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        table.appendChild(tr); 
+    }
     for(var i=1;i<messaggio["corse"].length+1;i++){
         tr = document.createElement("tr");
         th = document.createElement("th");
@@ -124,7 +139,7 @@ export default function CorsePage() {
   return(
     <>
     <PersonalNavBar />
-        <div className="wrapper" onload="richiedi_corse()">
+        <div className="wrapper">
             <div className="page-header">
                 <div className="content">
                 <Container className="align-items-center">
