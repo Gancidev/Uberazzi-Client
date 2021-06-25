@@ -24,12 +24,19 @@ function stampa_prenotazioni(messaggio){
   if(flag===true){
     return true;
 }
-  console.log("ESEGUI");
   messaggio = JSON.parse(messaggio);
   console.log(messaggio);
   var container = document.getElementById("lista_prenotazioni");
   var row,div1,div2,div3,img,h4,div4,div5,div6,div7,table,thead,tr,th1,th2,th3,tbody,tr2,td1,td2,td3;
   var lunghezza = messaggio.length;
+  if(lunghezza===0){
+    console.log("ciao");
+    row = document.createElement("div");
+    row.className="row";
+    row.innerHTML="<h4>Nessuna Prenotazione Effettuata.</h4>";
+    container.appendChild(row);
+    return false;
+  }
   var righe = Math.ceil(lunghezza / 3);
   var i,j,date,ye,mo,da,h,m;
   for(i=0;i<righe;i++){
