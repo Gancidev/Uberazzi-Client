@@ -14,7 +14,6 @@ import Footer from "components/Footer/Footer.js";
 
 // reactstrap components
 import {
-    Button,
     Table,
     Container,
     Row,
@@ -22,8 +21,68 @@ import {
   } from "reactstrap";
 
   function consegna(id){
-      alert("Il veicolo: "+ id +" e' stato consegnato.")
+      alert("Il veicolo: "+ id.id[id.id.length-1] +" e' stato consegnato.")
   }
+  var flag;
+  function stampa_veicoli(messaggio){
+    if(flag===true){
+      return true;
+  }
+    messaggio = JSON.parse(messaggio);
+    //console.log(messaggio);
+    var tbody = document.getElementById("lista_veicoli");
+    var tr, th, td1, td2, button, conferma;
+    if(messaggio.length===0){
+        tr = document.createElement("tr");
+        tr.scope="row";
+            th = document.createElement("th");
+            td1 = document.createElement("td");
+            td2 = document.createElement("td");
+            td2.innerHTML="Nessun Veicolo Da Consegnare";
+        tr.appendChild(th);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tbody.appendChild(tr);
+        return false;
+    }
+        tr = document.createElement("tr");
+        tr.scope="row";
+            th = document.createElement("th");
+            th.innerHTML=messaggio[0].Veicolo.Targa;
+            td1 = document.createElement("td");
+            td1.innerHTML=messaggio[0].Veicolo.IDVeicolo;
+            td2 = document.createElement("td");
+            button = document.createElement("button");
+            button.type="button";
+            button.className="btn-simple btn btn-success";
+            button.innerHTML='<i class="tim-icons icon-check-2"/>';
+            button.id ="consegna"+messaggio[0].Veicolo.IDVeicolo;
+            conferma = function(){ consegna(this); }
+            button.addEventListener('click', conferma, false);
+            td2.appendChild(button);
+        tr.appendChild(th);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+    tbody.appendChild(tr);
+
+    flag=true;
+}
+
+var flag1;
+function richiedi_veicoli(){
+  if(flag1===true){
+      return true;
+  }
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200);
+      stampa_veicoli(xmlHttp.responseText);
+  }
+  xmlHttp.open("GET", "http://localhost:3001/api/consegne_veicoli", true); // true for asynchronous 
+  xmlHttp.send(null);
+  flag1=true;
+}
+
 
 export default function ConsegnaVeicoliPage() {
     const [squares1to6, setSquares1to6] = React.useState("");
@@ -56,6 +115,7 @@ export default function ConsegnaVeicoliPage() {
         "deg)"
     );
   };
+  richiedi_veicoli();
     return(
       <>
         <PersonalNavBar />
@@ -104,36 +164,12 @@ export default function ConsegnaVeicoliPage() {
                             <Table>
                                 <thead>
                                     <tr>
-                                    <th>ID</th>
-                                    <th>Veicolo</th>
-                                    <th>Consegnato</th>
+                                    <th>Targa o Identificativo</th>
+                                    <th>Tipologia Veicolo</th>
+                                    <th>Consegna</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                    <th scope="row">1</th>
-                                    <td>Auto</td>
-                                    <td><Button className="btn-simple"
-                                        color="success"
-                                        onClick={() => consegna(1)}
-                                        ><i className="tim-icons icon-check-2"/></Button></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>Moto</td>
-                                    <td><Button className="btn-simple"
-                                        color="success"
-                                        onClick={() => consegna(2)}
-                                        ><i className="tim-icons icon-check-2"/></Button></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>Bici</td>
-                                    <td><Button className="btn-simple"
-                                        color="success"
-                                        onClick={() => consegna(3)}
-                                        ><i className="tim-icons icon-check-2"/></Button></td>
-                                    </tr>
+                                <tbody id="lista_veicoli">
                                 </tbody>
                             </Table>
                         </Row>                             
