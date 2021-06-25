@@ -14,7 +14,6 @@ import Footer from "components/Footer/Footer.js";
 
 // reactstrap components
 import {
-    Button,
     Table,
     Container,
     Row,
@@ -22,9 +21,76 @@ import {
   } from "reactstrap";
 
 function conferma_corsa(id){
-    alert("La Corsa: "+ id +" e' stata accettata.")
+    alert("La Corsa: "+ id.id[id.id.length-1] +" e' stata accettata.");
 }
-
+function stampa(messaggio){
+    messaggio = JSON.parse(messaggio);
+    console.log(messaggio);
+    var table = document.getElementById("corse");
+    var tr;
+    var th;
+    var td1;
+    var td2;
+    var td3;
+    var td4;
+    var button;
+    var conferma;
+    var date;
+    var ye;
+    var mo;
+    var da;
+    var h;
+    var m;
+    for(var i=1;i<messaggio.length+1;i++){
+        tr = document.createElement("tr");
+        th = document.createElement("th");
+        td1 = document.createElement("td");
+        td2 = document.createElement("td");
+        td3 = document.createElement("td");
+        td4 = document.createElement("td");
+        button = document.createElement("button");
+        th.id ="id"+i;
+        th.innerHTML = messaggio[i-1].IDPrenotazione;
+        td1.id ="partenza"+i;
+        td1.innerHTML = messaggio[i-1].Partenza;
+        td2.id ="arrivo"+i;
+        td2.innerHTML = messaggio[i-1].Arrivo;
+        td3.id ="dataeora"+i;
+        date = new Date(messaggio[i-1].DataOra);
+        ye = new Intl.DateTimeFormat('it', { year: 'numeric' }).format(date);
+        mo = new Intl.DateTimeFormat('it', { month: 'long' }).format(date);
+        da = new Intl.DateTimeFormat('it', { day: '2-digit' }).format(date);
+        h = new Intl.DateTimeFormat('it', { hour: '2-digit' }).format(date);
+        m = new Intl.DateTimeFormat('it', { minute: '2-digit' }).format(date);
+        td3.innerHTML = da+" "+mo[0].toUpperCase()+mo.slice(1)+" "+ye+" "+(h-2)+":"+m;
+        tr.appendChild(th);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        button.id ="accetta"+i;
+        button.innerHTML = '<i class="tim-icons icon-check-2"/>';
+        button.className="btn-simple btn btn-success";
+        conferma = function(){ conferma_corsa(this); }
+        button.addEventListener('click', conferma, false);
+        td4.appendChild(button);
+        tr.appendChild(td4);
+        table.appendChild(tr);
+    }
+}
+var flag;
+function richiedi_corse(){
+    if(flag===true){
+        return true;
+    }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+            stampa(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", "http://localhost:3001/api/corse", true); // true for asynchronous 
+    xmlHttp.send(null);
+    flag=true;
+}
 export default function CorsePage() {
     const [squares1to6, setSquares1to6] = React.useState("");
     const [squares7and8, setSquares7and8] = React.useState("");
@@ -55,10 +121,11 @@ export default function CorsePage() {
         "deg)"
     );
   };
+  richiedi_corse();
   return(
     <>
     <PersonalNavBar />
-        <div className="wrapper">
+        <div className="wrapper" onload="richiedi_corse()">
             <div className="page-header">
                 <div className="content">
                 <Container className="align-items-center">
@@ -110,37 +177,7 @@ export default function CorsePage() {
                                     <th>Accetta</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                    <th scope="row">1</th>
-                                    <td>Palermo</td>
-                                    <td>Catania</td>
-                                    <td>07/06/2021 15:30</td>
-                                    <td><Button className="btn-simple"
-                                        color="success"
-                                        onClick={() => conferma_corsa(1)}
-                                        ><i className="tim-icons icon-check-2"/></Button></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>VIa Ernesto Basile 15</td>
-                                    <td>Piazza Scaffa</td>
-                                    <td>07/06/2021 15:30</td>
-                                    <td><Button className="btn-simple"
-                                        color="success"
-                                        onClick={() => conferma_corsa(2)}
-                                        ><i className="tim-icons icon-check-2"/></Button></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>Via Dei Vespri 23</td>
-                                    <td>Viale Lazio 33</td>
-                                    <td>17/03/2021 12:30</td>
-                                    <td><Button className="btn-simple"
-                                        color="success"
-                                        onClick={() => conferma_corsa(3)}
-                                        ><i className="tim-icons icon-check-2"/></Button></td>
-                                    </tr>
+                                <tbody id="corse">
                                 </tbody>
                             </Table>
                         </Row>
