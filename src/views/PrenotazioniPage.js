@@ -25,7 +25,7 @@ function stampa_prenotazioni(messaggio){
     return true;
 }
   messaggio = JSON.parse(messaggio);
-  console.log(messaggio);
+  //console.log(messaggio);
   var container = document.getElementById("lista_prenotazioni");
   var row,div1,div2,div3,img,h4,div4,div5,div6,div7,table,thead,tr,th1,th2,th3,tbody,tr2,td1,td2,td3;
   var lunghezza = messaggio.length;
