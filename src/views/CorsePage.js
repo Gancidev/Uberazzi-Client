@@ -25,7 +25,6 @@ function conferma_corsa(id){
 }
 function stampa(messaggio){
     messaggio = JSON.parse(messaggio);
-    console.log(messaggio);
     var table = document.getElementById("corse");
     var tr;
     var th;
@@ -41,7 +40,7 @@ function stampa(messaggio){
     var da;
     var h;
     var m;
-    for(var i=1;i<messaggio.length+1;i++){
+    for(var i=1;i<messaggio["corse"].length+1;i++){
         tr = document.createElement("tr");
         th = document.createElement("th");
         td1 = document.createElement("td");
@@ -49,14 +48,14 @@ function stampa(messaggio){
         td3 = document.createElement("td");
         td4 = document.createElement("td");
         button = document.createElement("button");
-        th.id ="id"+i;
-        th.innerHTML = messaggio[i-1].IDPrenotazione;
-        td1.id ="partenza"+i;
-        td1.innerHTML = messaggio[i-1].Partenza;
-        td2.id ="arrivo"+i;
-        td2.innerHTML = messaggio[i-1].Arrivo;
-        td3.id ="dataeora"+i;
-        date = new Date(messaggio[i-1].DataOra);
+        th.id ="id"+messaggio["corse"][i-1].IDPrenotazione;
+        th.innerHTML = messaggio["corse"][i-1].IDPrenotazione;
+        td1.id ="partenza"+messaggio["corse"][i-1].IDPrenotazione;
+        td1.innerHTML = messaggio["corse"][i-1].Partenza;
+        td2.id ="arrivo"+messaggio["corse"][i-1].IDPrenotazione;
+        td2.innerHTML = messaggio["corse"][i-1].Arrivo;
+        td3.id ="dataeora"+messaggio["corse"][i-1].IDPrenotazione;
+        date = new Date(messaggio["corse"][i-1].DataOra);
         ye = new Intl.DateTimeFormat('it', { year: 'numeric' }).format(date);
         mo = new Intl.DateTimeFormat('it', { month: 'long' }).format(date);
         da = new Intl.DateTimeFormat('it', { day: '2-digit' }).format(date);
@@ -67,7 +66,7 @@ function stampa(messaggio){
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
-        button.id ="accetta"+i;
+        button.id ="accetta"+messaggio["corse"][i-1].IDPrenotazione;
         button.innerHTML = '<i class="tim-icons icon-check-2"/>';
         button.className="btn-simple btn btn-success";
         conferma = function(){ conferma_corsa(this); }
