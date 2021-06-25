@@ -11,36 +11,120 @@ import React from "react";
 // core components
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
-import SelectPermessi from "components/PermessiUtenti/select_permessi.js";
 
 // reactstrap components
 import {
-    Button,
     Table,
     Container,
     Row,
     Col,
-    Form,
-    Modal,
   } from "reactstrap";
 
-  var id_utente=0;
+  function assegna_permessi(selezione){
+      //console.log(selezione);
+      if(selezione.value==="NONE"){
+          alert("Non puoi cancellare i permessi ad un utente, ma solo assegnarne di altri, anche se la select cambia valore i permessi non verranno modificati.");
+          return false;
+      }
+    alert("Assegno i permessi: "+selezione.value+" All'utente:"+selezione.id[selezione.id.length-1]);
+}
+
+  var flag;
+  function stampa_utenti(messaggio){
+    if(flag===true){
+      return true;
+    }
+    messaggio = JSON.parse(messaggio);
+    //console.log(messaggio);
+    var tbody = document.getElementById("lista_utenti");
+    var tr, th, td1, td2, td3, td4, div, select, option1, option2, option3, option4, option5, conferma;
+    if(messaggio["utenti"].length===0){
+        tr = document.createElement("tr");
+        th = document.createElement("th");
+        td1 = document.createElement("td");
+        td2 = document.createElement("td");
+        td3 = document.createElement("td");
+        td4 = document.createElement("td");
+        tr.appendChild(th);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        td4.innerHTML="Nessun Utente Registrato";
+        tr.appendChild(td4);
+        tbody.appendChild(tr);
+        return false;
+    }
+    for(var i=1;i<messaggio["utenti"].length+1;i++){
+        tr = document.createElement("tr");
+        th = document.createElement("th");
+        td1 = document.createElement("td");
+        td2 = document.createElement("td");
+        td3 = document.createElement("td");
+        td4 = document.createElement("td");
+        div = document.createElement("div");
+        select = document.createElement("select");
+        option1 = document.createElement("option");
+        option2 = document.createElement("option");
+        option3 = document.createElement("option");
+        option4 = document.createElement("option");
+        option5 = document.createElement("option");
+            th.innerHTML=messaggio["utenti"][i-1].IDUtente;
+            tr.appendChild(th);
+            td1.innerHTML=messaggio["utenti"][i-1].Nome;
+            tr.appendChild(td1);
+            td2.innerHTML=messaggio["utenti"][i-1].Cognome;
+            tr.appendChild(td2);
+            td3.innerHTML=messaggio["utenti"][i-1].Email;
+            tr.appendChild(td3);
+                div.className="form-group"+messaggio["utenti"][i-1].IDUtente;
+                    select.name="selezione_permessi"+messaggio["utenti"][i-1].IDUtente;
+                    select.id="selezione_permessi"+messaggio["utenti"][i-1].IDUtente;
+                    select.className="form-control";
+                    select.style="color: rgb(186, 84, 245);";
+                    conferma = function(){ assegna_permessi(this); }
+                    select.addEventListener('change', conferma, false);
+                        option1.value="NONE";
+                        option1.innerHTML="----";
+                        option2.value="1";
+                        option2.innerHTML="Cliente";
+                        option3.value="2";
+                        option3.innerHTML="Autista";
+                        option4.value="3";
+                        option4.innerHTML="Addetto Al Parcheggio";
+                        option5.value="4";
+                        option5.innerHTML="Amministratore";
+                    select.appendChild(option1);
+                    select.appendChild(option2);
+                    select.appendChild(option3);
+                    select.appendChild(option4);
+                    select.appendChild(option5);
+                div.appendChild(select);
+            td4.appendChild(div);
+            tr.appendChild(td4);
+        tbody.appendChild(tr);
+    }
+
+    flag=true;
+}
+
+var flag1;
+function richiedi_utenti(){
+  if(flag1===true){
+      return true;
+  }
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200);
+      stampa_utenti(xmlHttp.responseText);
+  }
+  xmlHttp.open("GET", "http://localhost:3001/api/utenti", true); // true for asynchronous 
+  xmlHttp.send(null);
+  flag1=true;
+}
 
 export default function PermessiUtenti() {
     const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
-  const [formModal, setFormModal] = React.useState(false);
-  function apriForm(id){
-      console.log(id);
-      id_utente = id;
-      setFormModal(true);
-    }
-  function assegna_permessi(){
-      var permessi = document.getElementById("selezione_permessi");
-      alert("Assegno i permessi: "+permessi.value+" All'utente:"+id_utente);
-
-  }
-
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
@@ -68,6 +152,7 @@ export default function PermessiUtenti() {
         "deg)"
     );
   };
+  richiedi_utenti();
     return(
       <>
         <PersonalNavBar />
@@ -123,52 +208,7 @@ export default function PermessiUtenti() {
                                     <th>Modifica Ruolo</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>mark@mdo.it</td>
-                                <td>
-                                    <Button
-                                        className="btn-simple"
-                                        color="primary"
-                                        onClick={() => apriForm(1)}
-                                    >
-                                        <i className="tim-icons icon-settings-gear-63"></i>
-                                    </Button>
-                                </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>jacob@fat.com</td>
-                                <td>
-                                    <Button
-                                        className="btn-simple"
-                                        color="primary"
-                                        onClick={() => apriForm(2)}
-                                    >
-                                        <i className="tim-icons icon-settings-gear-63"></i>
-                                    </Button>
-                                </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>larry@twitter.org</td>
-                                <td>
-                                    <Button
-                                        className="btn-simple"
-                                        color="primary"
-                                        onClick={() => apriForm(3)}
-                                    >
-                                        <i className="tim-icons icon-settings-gear-63"></i>
-                                    </Button>
-                                </td>
-                                </tr>
+                            <tbody id="lista_utenti">
                             </tbody>
                         </Table>
                         </Row>
@@ -179,33 +219,6 @@ export default function PermessiUtenti() {
                             src={require("assets/veicoli/bici1.png").default}
                             style={{ transform: squares1to6 }}
                         /> 
-                        {/* Start Form Modal */}
-                        <Modal
-                            modalClassName="modal-black"
-                            isOpen={formModal}
-                            toggle={() => setFormModal(false)}
-                        >
-                            <div className="modal-header justify-content-center">
-                            <button className="close" onClick={() => setFormModal(false)}>
-                                <i className="tim-icons icon-simple-remove text-white" />
-                            </button>
-                            <div className="text-muted text-center ml-auto mr-auto">
-                                <h3 className="mb-0">Seleziona i permessi per l&#39;utente</h3>
-                            </div>
-                            </div>
-                            <div className="modal-body">
-                            <Form role="form">
-                                <SelectPermessi/>
-                                <div className="text-center">
-                                <Button className="my-4" color="primary" type="button"
-                                onClick={() => assegna_permessi()}>
-                                    Assegna
-                                </Button>
-                                </div>
-                            </Form>
-                            </div>
-                        </Modal>
-                        {/* End Form Modal */}
                     </Container>
                 </div>
             </div>
