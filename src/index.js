@@ -31,6 +31,7 @@ import ConsegnaVeicoliPage from "views/ConsegnaVeicoliPage.js";
 import RitiroVeicoloPage from "views/RitiroVeicoloPage.js";
 import GestionePrenotazioniPage from "views/GestionePrenotazioniPage.js";
 import NuovoVeicolo from "views/NuovoVeicoloPage.js";
+import Test from "views/TestPage.js";
 
 
 ReactDOM.render(
@@ -103,6 +104,10 @@ ReactDOM.render(
       <Route
         path="/nuovo_veicolo"
         render={(props) => <NuovoVeicolo {...props} />}
+      />
+      <Route
+        path="/test"
+        render={(props) => <Test {...props} />}
       />
       <Redirect from="/" to="/home" />
     </Switch>
