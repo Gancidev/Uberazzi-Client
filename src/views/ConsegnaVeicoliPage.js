@@ -45,25 +45,27 @@ import {
         tbody.appendChild(tr);
         return false;
     }
-        tr = document.createElement("tr");
-        tr.scope="row";
-            th = document.createElement("th");
-            th.innerHTML=messaggio[0].Veicolo.Targa;
-            td1 = document.createElement("td");
-            td1.innerHTML=messaggio[0].Veicolo.IDVeicolo;
-            td2 = document.createElement("td");
-            button = document.createElement("button");
-            button.type="button";
-            button.className="btn-simple btn btn-success";
-            button.innerHTML='<i class="tim-icons icon-check-2"/>';
-            button.id ="consegna"+messaggio[0].Veicolo.IDVeicolo;
-            conferma = function(){ consegna(this); }
-            button.addEventListener('click', conferma, false);
-            td2.appendChild(button);
-        tr.appendChild(th);
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-    tbody.appendChild(tr);
+    for(var i=1;i<messaggio.length+1;i++){
+            tr = document.createElement("tr");
+            tr.scope="row";
+                th = document.createElement("th");
+                th.innerHTML=messaggio[i-1].Veicolo.Targa;
+                td1 = document.createElement("td");
+                td1.innerHTML=messaggio[i-1].Veicolo.IDVeicolo;
+                td2 = document.createElement("td");
+                button = document.createElement("button");
+                button.type="button";
+                button.className="btn-simple btn btn-success";
+                button.innerHTML='<i class="tim-icons icon-check-2"/>';
+                button.id ="consegna"+messaggio[i-1].Veicolo.IDVeicolo;
+                conferma = function(){ consegna(this); }
+                button.addEventListener('click', conferma, false);
+                td2.appendChild(button);
+            tr.appendChild(th);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+        tbody.appendChild(tr);
+    }
 
     flag=true;
 }
