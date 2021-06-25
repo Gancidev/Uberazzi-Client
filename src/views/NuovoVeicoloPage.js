@@ -7,10 +7,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 import React from "react";
-import validator from 'validator';
 import classnames from "classnames";
-// react plugin used to create datetimepicker
-import ReactDatetime from "react-datetime";
 // reactstrap components
 import {
   Button,
@@ -27,49 +24,37 @@ import {
   Container,
   Row,
   Col,
-  Modal,
 } from "reactstrap";
 
 // core components
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
-import SelectVeicoli from "components/NuovaPrenotazione/SelectVeicolo.js";
-import ConfermaAutista from "components/NuovaPrenotazione/ConfermaAutista.js";
-import ManciaAutista from "components/NuovaPrenotazione/ManciaAutista.js";
+import SelectParcheggi from "components/NuovoVeicolo/SelectParcheggi.js";
 
-function check_disponibilita(){
-    var partenza = document.getElementById("partenza");
-    var destinazione = document.getElementById("destinazione");
-    var dataora = document.getElementById("dataora");
-    if(partenza.value!=="" && destinazione.value!=="" && dataora.value!==""){
-        var selectVeicoli = document.getElementById("selectVeicoli");
-        selectVeicoli.style.display="block";
+function aggiungi_veicolo(){
+    var nome = document.getElementById("nome");
+    var targa_identificativo = document.getElementById("targa_identificativo");
+    var prezzo = document.getElementById("prezzo");
+    var parcheggio = document.getElementById("parcheggio");
+    if(nome.value!=="" && targa_identificativo.value!=="" && prezzo.value!=="" && parcheggio.value!=="NONE"){
+        alert("Veicolo Aggiunto.");
+        document.form_veicolo.method = "post";
+        document.form_veicolo.action = "add_veicolo.js";
+        document.form_veicolo.submit();
+        return true;
     }
     else{
-        alert("Seleziona prima Partenza, Destinazione, Data e Ora");
+        alert("Fornire tutti i campi prima di procedere.");
+        return false;
     }
 }
 
 export default function NuovoVeicolo() {
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
-  const [partenzaF, setPartenzaF] = React.useState(false);
-  const [destinazioneF, setDestinazioneF] = React.useState(false);
-  const [nome, setNome] = React.useState(false);
-  const [scadenza, setScadenza] = React.useState(false);
-  const [numero, setNumero] = React.useState(false);
-  const [formModal, setFormModal] = React.useState(false);
-
-  const [errorMessage, setErrorMessage] = React.useState('')
-    
-  const validateCreditCard = (value) => {
-    
-    if (validator.isCreditCard(value)) {
-      setErrorMessage('Numero Carta Valida.')
-    } else {
-      setErrorMessage('Numero carta non valido!')
-    }
-  }
+  const [nome, setNomeF] = React.useState(false);
+  const [targa_identificativo, setTargaIdentificativoF] = React.useState(false);
+  const [prezzo, setPrezzoF] = React.useState(false);
   
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
@@ -121,13 +106,13 @@ export default function NuovoVeicolo() {
                   <Card className="card-register" style={{overflow: "inherit"}}>
                     <CardHeader>
                       <br></br>
-                      <CardTitle tag="h4" style={{fontSize: "3em"}} > Nuova Prenotazione</CardTitle>
+                      <CardTitle tag="h4" style={{fontSize: "3em"}} > Nuovo Veicolo</CardTitle>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form" method="post" action="new_.js" id="form_prenotazione">
+                      <Form className="form" name="form_veicolo" method="" action="" id="form_veicolo">
                         <InputGroup
                           className={classnames({
-                            "input-group-focus": partenzaF,
+                            "input-group-focus": nome,
                           })}
                         >
                         <InputGroupAddon addonType="prepend">
@@ -136,17 +121,17 @@ export default function NuovoVeicolo() {
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          id="partenza"
-                          placeholder="Partenza*"
+                          id="nome"
+                          placeholder="Nome*"
                           type="text"
-                          onFocus={(e) => setPartenzaF(true)}
-                          onBlur={(e) => setPartenzaF(false)}
+                          onFocus={(e) => setNomeF(true)}
+                          onBlur={(e) => setNomeF(false)}
                           required
                         />
                         </InputGroup>
                         <InputGroup
                           className={classnames({
-                            "input-group-focus": destinazioneF,
+                            "input-group-focus": targa_identificativo,
                           })}
                         >
                         <InputGroupAddon addonType="prepend">
@@ -155,136 +140,55 @@ export default function NuovoVeicolo() {
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          id="destinazione"
-                          placeholder="Destinazione*"
+                          id="targa_identificativo"
+                          placeholder="Targa o Identificativo*"
                           type="text"
-                          onFocus={(e) => setDestinazioneF(true)}
-                          onBlur={(e) => setDestinazioneF(false)}
+                          onFocus={(e) => setTargaIdentificativoF(true)}
+                          onBlur={(e) => setTargaIdentificativoF(false)}
                           required
                         />
                         </InputGroup>
-                        <div className="datepicker-container" style={{color: "#171941"}}>
-                            <FormGroup>
-                                <ReactDatetime
-                                inputProps={{
-                                    id:"dataora",
-                                    className: "form-control",
-                                    placeholder: "Data e Ora",
-                                }}
-                                />
-                            </FormGroup>
-                            </div>
+                        <InputGroup
+                          className={classnames({
+                            "input-group-focus": prezzo,
+                          })}
+                        >
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="tim-icons icon-square-pin" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input
+                          id="prezzo"
+                          placeholder="Prezzo*"
+                          type="text"
+                          onFocus={(e) => setPrezzoF(true)}
+                          onBlur={(e) => setPrezzoF(false)}
+                          required
+                        />
+                        </InputGroup>
+                        <SelectParcheggi/>
                         <FormGroup check className="text-left">
                             <Button 
                                 className="btn-round" 
                                 color="primary" 
                                 size="lg"
-                                onClick={() => check_disponibilita()}
+                                onClick={() => aggiungi_veicolo()}
                             >
-                                Procedi <i className="tim-icons icon-double-right"/>
+                                Carica <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
-                        <SelectVeicoli/>
-                        <ConfermaAutista/>
-                        <ManciaAutista/>
                         <FormGroup check id="paga" className="text-left" style={{display: "none"}}>
                             <Button
+                                type="button"
                                 className="btn-round" 
                                 color="primary" 
                                 size="lg"
-                                onClick={() => setFormModal(true)}
                             >
                                 Concludi e Paga <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
                       </Form>
-                          {/* Start Form Modal */}
-                          <Modal
-                            modalClassName="modal-black"
-                            isOpen={formModal}
-                            toggle={() => setFormModal(false)}
-                          >
-                            <div className="modal-header justify-content-center">
-                              <button className="close" onClick={() => setFormModal(false)}>
-                                <i className="tim-icons icon-simple-remove text-white" />
-                              </button>
-                              <div className="text-muted text-center ml-auto mr-auto">
-                                <h3 className="mb-0">Inserisci i dati della tua carta</h3>
-                              </div>
-                            </div>
-                            <div className="modal-body">
-                              <Form role="form">
-                                <FormGroup className="mb-3">
-                                  <InputGroup
-                                    className={classnames("input-group-alternative", {
-                                      "input-group-focus": numero,
-                                    })}
-                                  >
-                                    <InputGroupAddon addonType="prepend">
-                                      <InputGroupText>
-                                        <i className="tim-icons icon-credit-card" />
-                                      </InputGroupText>
-                                    </InputGroupAddon>
-                                    <Input
-                                      placeholder="Numero Carta (tutto attaccato)"
-                                      type="text"
-                                      onFocus={(e) => setNumero(true)}
-                                      onBlur={(e) => setNumero(false)}
-                                      onChange={(e) => validateCreditCard(e.target.value)}
-                                    />
-                                    <span style={{
-                                        fontWeight: 'bold',
-                                      }}>{errorMessage}
-                                    </span>
-                                  </InputGroup>
-                                </FormGroup>
-                                <FormGroup>
-                                  <InputGroup
-                                    className={classnames("input-group-alternative", {
-                                      "input-group-focus": nome,
-                                    })}
-                                  >
-                                    <InputGroupAddon addonType="prepend">
-                                      <InputGroupText>
-                                        <i className="tim-icons icon-single-02" />
-                                      </InputGroupText>
-                                    </InputGroupAddon>
-                                    <Input
-                                      placeholder="Nome"
-                                      type="text"
-                                      onFocus={(e) => setNome(true)}
-                                      onBlur={(e) => setNome(false)}
-                                    />
-                                  </InputGroup>
-                                </FormGroup>
-                                <FormGroup>
-                                  <InputGroup
-                                    className={classnames("input-group-alternative", {
-                                      "input-group-focus": scadenza,
-                                    })}
-                                  >
-                                    <InputGroupAddon addonType="prepend">
-                                      <InputGroupText>
-                                        <i className="tim-icons icon-calendar-60" />
-                                      </InputGroupText>
-                                    </InputGroupAddon>
-                                    <Input
-                                      placeholder="Scadenza"
-                                      type="text"
-                                      onFocus={(e) => setScadenza(true)}
-                                      onBlur={(e) => setScadenza(false)}
-                                    />
-                                  </InputGroup>
-                                </FormGroup>
-                                <div className="text-center">
-                                  <Button className="my-4" color="primary" type="button">
-                                    Paga
-                                  </Button>
-                                </div>
-                              </Form>
-                            </div>
-                          </Modal>
-                          {/* End Form Modal */}
                     </CardBody>
                   </Card>
                 </Col>
