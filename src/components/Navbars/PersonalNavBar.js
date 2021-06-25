@@ -168,6 +168,10 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-key-25" />
                   Gestione Prenotazioni (admin)
                 </DropdownItem>
+                <DropdownItem tag={Link} to="/nuovo_veicolo">
+                  <i className="tim-icons icon-bus-front-12" />
+                  Nuovo Veicolo (admin)
+                </DropdownItem>
                 <DropdownItem tag={Link} onClick={() => { setMiniModal(true)}}>
                   <i className="tim-icons icon-key-25" />
                   Logout
