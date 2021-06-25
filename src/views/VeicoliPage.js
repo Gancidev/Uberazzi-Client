@@ -22,8 +22,79 @@ import {
   } from "reactstrap";
 
   function conferma_condizioni(id){
-      alert("Il veicolo: "+ id +" e' in condizioni tali da poter tornare prenotabile.")
+      alert("Il veicolo: "+ id.id[id.id.length-1] +" e' in condizioni tali da poter tornare prenotabile.")
   }
+  
+  var flag;
+  function stampa_condizioni_veicoli(messaggio){
+    if(flag===true){
+      return true;
+  }
+    messaggio = JSON.parse(messaggio);
+    console.log(messaggio);
+    var tbody = document.getElementById("lista_condizioni_veicoli");
+    var tr, th, td1, td2, td3, button, conferma;
+    if(messaggio.length===0){
+        tr = document.createElement("tr");
+        tr.scope="row";
+            th = document.createElement("th");
+            td1 = document.createElement("td");
+            td2 = document.createElement("td");
+            td3 = document.createElement("td");
+            td3.innerHTML="Nessun Veicolo Da Consegnare";
+        tr.appendChild(th);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tbody.appendChild(tr);
+        return false;
+    }
+    for(var i=1;i<messaggio.length+1;i++){
+            tr = document.createElement("tr");
+            tr.scope="row";
+                th = document.createElement("th");
+                th.innerHTML=messaggio[i-1].Targa;
+                td1 = document.createElement("td");
+                td1.innerHTML=messaggio[i-1].IDVeicolo;
+                td2 = document.createElement("td");
+                td2.innerHTML=messaggio[i-1].Condizioni;
+                td3 = document.createElement("td");
+                button = document.createElement("button");
+                button.type="button";
+                button.className="btn-simple btn btn-success";
+                button.innerHTML='<i class="tim-icons icon-check-2"/>';
+                button.id ="consegna"+messaggio[i-1].IDVeicolo;
+                conferma = function(){ conferma_condizioni(this); }
+                button.addEventListener('click', conferma, false);
+                td3.appendChild(button);
+            tr.appendChild(th);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+        tbody.appendChild(tr);
+    }
+    flag=true;
+}
+
+var flag1;
+function richiedi_condizioni_veicoli(){
+  if(flag1===true){
+      return true;
+  }
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200);
+      stampa_condizioni_veicoli(xmlHttp.responseText);
+  }
+  xmlHttp.open("GET", "http://localhost:3001/api/condizioni_veicoli", true); // true for asynchronous 
+  xmlHttp.send(null);
+  flag1=true;
+}
+
+
+
+
+
 
 export default function VeicoliPage() {
     const [squares1to6, setSquares1to6] = React.useState("");
@@ -56,6 +127,7 @@ export default function VeicoliPage() {
         "deg)"
     );
   };
+  richiedi_condizioni_veicoli();
     return(
       <>
         <PersonalNavBar />
@@ -104,40 +176,13 @@ export default function VeicoliPage() {
                             <Table>
                                 <thead>
                                     <tr>
-                                    <th>ID</th>
+                                    <th>Targa o Identificativo</th>
                                     <th>Veicolo</th>
                                     <th>Condizioni</th>
                                     <th>Conferma</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Portiera graffiata</td>
-                                    <td><Button className="btn-simple"
-                                        color="success"
-                                        onClick={() => conferma_condizioni(1)}
-                                        ><i className="tim-icons icon-check-2"/></Button></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Specchietto rotto</td>
-                                    <td><Button className="btn-simple"
-                                        color="success"
-                                        onClick={() => conferma_condizioni(2)}
-                                        ><i className="tim-icons icon-check-2"/></Button></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>Paraurti graffiato</td>
-                                    <td><Button className="btn-simple"
-                                        color="success"
-                                        onClick={() => conferma_condizioni(3)}
-                                        ><i className="tim-icons icon-check-2"/></Button></td>
-                                    </tr>
+                                <tbody id="lista_condizioni_veicoli">
                                 </tbody>
                             </Table>
                         </Row>                             
