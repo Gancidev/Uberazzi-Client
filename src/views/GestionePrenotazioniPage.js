@@ -14,12 +14,91 @@ import Footer from "components/Footer/Footer.js";
 
 // reactstrap components
 import {
-    Button,
     Table,
     Container,
     Row,
     Col,
   } from "reactstrap";
+
+  function modifica_prenotazione(redirect){
+    //console.log(redirect.id[redirect.id.length-1]);
+    window.location.replace("/modifica_prenotazione?id="+redirect.id[redirect.id.length-1]);
+
+  }
+
+  var flag;
+  function stampa_prenotazioni_attive(messaggio){
+    if(flag===true){
+      return true;
+  }
+    messaggio = JSON.parse(messaggio);
+    //console.log(messaggio);
+    var tbody = document.getElementById("lista_prenotazioni_attive");
+    var tr, th, td1, td2, td3, button, conferma, date, ye, mo, da, h, m;
+    if(messaggio.length===0){
+        tr = document.createElement("tr");
+        tr.scope="row";
+            th = document.createElement("th");
+            td1 = document.createElement("td");
+            td2 = document.createElement("td");
+            td3 = document.createElement("td");
+            td3.innerHTML="Nessuna Prenotazione Attiva";
+        tr.appendChild(th);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tbody.appendChild(tr);
+        return false;
+    }
+    for(var i=1;i<messaggio.length+1;i++){
+      tr = document.createElement("tr");
+      tr.scope="row";
+          th = document.createElement("th");
+          th.innerHTML=messaggio[i-1].IDPrenotazione;
+
+          td1 = document.createElement("td");
+          date = new Date(messaggio[i-1].DataOra);
+          ye = new Intl.DateTimeFormat('it', { year: 'numeric' }).format(date);
+          mo = new Intl.DateTimeFormat('it', { month: 'long' }).format(date);
+          da = new Intl.DateTimeFormat('it', { day: '2-digit' }).format(date);
+          h = new Intl.DateTimeFormat('it', { hour: '2-digit' }).format(date);
+          m = new Intl.DateTimeFormat('it', { minute: '2-digit' }).format(date);
+          td1.innerHTML=da+" "+mo[0].toUpperCase()+mo.slice(1)+" "+ye+" "+(h-2)+":"+m;
+
+          td2 = document.createElement("td");
+          td2.innerHTML=messaggio[i-1].Stato;
+          td3 = document.createElement("td");
+          button = document.createElement("button");
+          button.type="button";
+          button.className="btn-simple btn btn-warning";
+          button.innerHTML='<i class="tim-icons icon-settings"/>';
+          button.id ="consegna"+messaggio[i-1].IDPrenotazione;
+          conferma = function(){ modifica_prenotazione(this); }
+          button.addEventListener('click', conferma, false);
+          td3.appendChild(button);
+      tr.appendChild(th);
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+  tbody.appendChild(tr);
+}
+    flag=true;
+}
+
+var flag1;
+function richiedi_prenotazioni_attive(){
+  if(flag1===true){
+      return true;
+  }
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200);
+      stampa_prenotazioni_attive(xmlHttp.responseText);
+  }
+  xmlHttp.open("GET", "http://localhost:3001/api/prenotazioni_attive?IDUtente=1", true); // true for asynchronous 
+  xmlHttp.send(null);
+  flag1=true;
+}
 
 export default function GestionePrenotazioniPage() {
     const [squares1to6, setSquares1to6] = React.useState("");
@@ -52,6 +131,7 @@ export default function GestionePrenotazioniPage() {
         "deg)"
     );
   };
+  richiedi_prenotazioni_attive();
     return(
       <>
         <PersonalNavBar />
@@ -106,28 +186,7 @@ export default function GestionePrenotazioniPage() {
                                     <th>Modifica</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                    <th scope="row">1</th>
-                                    <td>18/06/2021 8:00</td>
-                                    <td>Completata</td>
-                                    <td></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">2</th>
-                                    <td>20/06/2021 11:00</td>
-                                    <td>Completata</td>
-                                    <td></td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">3</th>
-                                    <td>21/06/2021 21:00</td>
-                                    <td>In Corso...</td>
-                                    <td><Button className="btn-simple"
-                                        color="warning"
-                                        href="/modifica_prenotazione?id=3"
-                                        ><i className="tim-icons icon-settings"/></Button></td>
-                                    </tr>
+                                <tbody id="lista_prenotazioni_attive">
                                 </tbody>
                             </Table>
                         </Row>                             
