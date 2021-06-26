@@ -31,32 +31,75 @@ import {
 // core components
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
-import { data } from "jquery";
 
-var flag1;
-function verifica_dati(){
-  if(flag1===true){
+var flag1, flag2;
+function verifica_esistenza_email(){
+  if(flag2===true){
+    flag2=false;
     return true;
   }
-  var email = document.getElementById("email");
+  var email = document.getElementById("Email");
   var url = "http://localhost:3001/api/esistenza_email?Email="+email.value;
   var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function() { 
-      if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+  xmlHttp.onload = function() { 
+    console.log(xmlHttp.response);
+      if (xmlHttp.response === '{\"message\":\"Mail Esistente.\"}'){
         //Utente registrato correttamente.
         alert("E-mail già in uso, si prega di riprovare.");
-        flag1=true;
+        flag1=false;
+        flag2=false;
+        return false;
       }
       else{
         //Utente non registrato mostra errore sulla mail
-        alert("Benvenuto nel paese delle meraviglie.");
-        flag1=true;
+        //alert("E-mail già in uso, si prega di riprovare.");
+        var url = "http://localhost:3001/api/registrazione_utente";
+        fetch(url, {
+            method : "POST",
+            body: new FormData(document.getElementById("form_registrazione")),
+            // -- or --
+            // body : JSON.stringify({
+                // user : document.getElementById('user').value,
+                // ...
+            // })
+        }).then(
+            response => response.text() // .json(), etc.
+            // same as function(response) {return response.text();}
+        ).then(
+            html => console.log(html)
+        );
+        window.location.replace("/login");
+        return true;
       }
   }
   xmlHttp.open("GET", url, true); // true for asynchronous 
-  xmlHttp.setRequestHeader("idutente", "1");
-  xmlHttp.setRequestHeader("x-access-token", "CIAO");
   xmlHttp.send(null);
+  flag2=true;
+}
+
+function verifica_dati_form(){
+  if(flag1===true){
+    flag1=false;
+    return true;
+  }
+  var nome = document.form_registrazione.Nome.value;
+  var cognome = document.form_registrazione.Cognome.value;
+  var email = document.form_registrazione.Email.value;
+  var cartaidentita = document.form_registrazione.CodiceFiscale.value;
+  var datanascita = document.form_registrazione.DataDiNascita.value;
+  var password = document.form_registrazione.password.value;
+  var repassword = document.form_registrazione.repassword.value;
+  var indirizzo = document.form_registrazione.Indirizzo.value;
+  var cap = document.form_registrazione.CAP.value;
+  if(nome==="" || cognome==="" || cartaidentita==="" || datanascita==="" || password==="" || repassword==="" || indirizzo==="" || cap==="" || email===""){
+    alert("Inserisci tutti i dati obbligatori per continuare");
+    return false;
+  }
+  if(password!==repassword){
+    alert("Le Password non corrispondono");
+    return false;
+  }
+  verifica_esistenza_email();
   flag1=true;
 }
 
@@ -110,8 +153,8 @@ export default function RegisterPage() {
                               <Input
                                 placeholder="Nome*"
                                 type="text"
-                                name="nome"
-                                id="nome"
+                                name="Nome"
+                                id="Nome"
                                 onFocus={(e) => setNomeFocus(true)}
                                 onBlur={(e) => setNomeFocus(false)}
                                 required
@@ -132,8 +175,8 @@ export default function RegisterPage() {
                               <Input
                                 placeholder="Cognome*"
                                 type="text"
-                                name="cognome"
-                                id="cognome"
+                                name="Cognome"
+                                id="Cognome"
                                 onFocus={(e) => setCognomeFocus(true)}
                                 onBlur={(e) => setCognomeFocus(false)}
                                 required
@@ -157,10 +200,10 @@ export default function RegisterPage() {
                             <Input
                               placeholder="Email*"
                               type="email"
-                              name="email"
-                              id="email"
+                              name="Email"
+                              id="Email"
                               onFocus={(e) => setEmailFocus(true)}
-                              onBlur={(e) => {setEmailFocus(false); verifica_dati()}}
+                              onBlur={(e) => {setEmailFocus(false)}}
                               required
                             />
                           </InputGroup>
@@ -179,8 +222,8 @@ export default function RegisterPage() {
                           <Input
                             placeholder="Numero Carta D'Identit&agrave;*"
                             type="text"
-                            name="codice_fiscale"
-                            id="codice_fiscale"
+                            name="CodiceFiscale"
+                            id="CodiceFiscale"
                             onFocus={(e) => setCodiceFiscaleFocus(true)}
                             onBlur={(e) => setCodiceFiscaleFocus(false)}
                             required
@@ -203,8 +246,8 @@ export default function RegisterPage() {
                             <Input
                               placeholder="Numero Patente"
                               type="text"
-                              name="patente"
-                              id="patente"
+                              name="NumeroPatente"
+                              id="NumeroPatente"
                               onFocus={(e) => setPatenteFocus(true)}
                               onBlur={(e) => setPatenteFocus(false)}
                             />
@@ -224,8 +267,8 @@ export default function RegisterPage() {
                             <Input
                               placeholder="TipoPatente"
                               type="text"
-                              name="tipopatente"
-                              id="tipopatente"
+                              name="TipoPatente"
+                              id="TipoPatente"
                               onFocus={(e) => setTipoPatenteFocus(true)}
                               onBlur={(e) => setTipoPatenteFocus(false)}
                             />
@@ -240,8 +283,8 @@ export default function RegisterPage() {
                                       inputProps={{
                                           className: "form-control",
                                           placeholder: "Data di Nascita*",
-                                          name: data,
-                                          id: data,
+                                          name: "DataDiNascita",
+                                          id: "DataDiNascita",
                                           required: true
                                       }}
                                       />
@@ -310,8 +353,8 @@ export default function RegisterPage() {
                               <Input
                                 placeholder="Indirizzo*"
                                 type="text"
-                                name="indirizzo"
-                                id="indirizzo"
+                                name="Indirizzo"
+                                id="Indirizzo"
                                 onFocus={(e) => setIndirizzoFocus(true)}
                                 onBlur={(e) => setIndirizzoFocus(false)}
                                 required
@@ -332,8 +375,8 @@ export default function RegisterPage() {
                               <Input
                                 placeholder="CAP*"
                                 type="text"
-                                name="cap"
-                                id="cap"
+                                name="CAP"
+                                id="CAP"
                                 onFocus={(e) => setCapFocus(true)}
                                 onBlur={(e) => setCapFocus(false)}
                                 required
@@ -342,7 +385,7 @@ export default function RegisterPage() {
                             </Col>
                           </Row>
                         <FormGroup check>
-                            <Button className="btn-round" color="primary" size="lg" type="button" onClick={verifica_dati}>
+                            <Button className="btn-round" color="primary" size="lg" type="button" onClick={verifica_dati_form} id="button_reg">
                                 Registrati <i className="tim-icons icon-lock-circle" />
                             </Button>
                         </FormGroup>
