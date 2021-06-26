@@ -92,8 +92,8 @@ function richiedi_prenotazioni_attive(){
   }
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
-      if (xmlHttp.readyState === 4 && xmlHttp.status === 200);
-      stampa_prenotazioni_attive(xmlHttp.responseText);
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+        stampa_prenotazioni_attive(xmlHttp.responseText);
   }
   xmlHttp.open("GET", "http://localhost:3001/api/prenotazioni_attive?IDUtente=1", true); // true for asynchronous
   xmlHttp.setRequestHeader("idutente", "1");

@@ -142,8 +142,8 @@ function richiedi_prenotazioni(){
   }
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
-      if (xmlHttp.readyState === 4 && xmlHttp.status === 200);
-      stampa_prenotazioni(xmlHttp.responseText);
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+        stampa_prenotazioni(xmlHttp.responseText);
   }
   xmlHttp.open("GET", "http://localhost:3001/api/prenotazioni?IDUtente=1", true); // true for asynchronous 
   xmlHttp.setRequestHeader("idutente", "1");

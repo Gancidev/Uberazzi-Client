@@ -77,8 +77,8 @@ function richiedi_veicoli(){
   }
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
-      if (xmlHttp.readyState === 4 && xmlHttp.status === 200);
-      stampa_veicoli(xmlHttp.responseText);
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+        stampa_veicoli(xmlHttp.responseText);
   }
   xmlHttp.open("GET", "http://localhost:3001/api/consegne_veicoli", true); // true for asynchronous 
   xmlHttp.setRequestHeader("idutente", "1");
