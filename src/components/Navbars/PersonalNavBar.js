@@ -27,10 +27,18 @@ import {
 
 function logout(){
   alert("Logout effettuato con successo.");
+  window.localStorage.clear();
   window.location="/home";
 }
 
 export default function IndexNavbar() {
+
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  console.log(utente.Nome);
+
+
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [miniModal, setMiniModal] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
