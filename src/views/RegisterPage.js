@@ -31,6 +31,34 @@ import {
 // core components
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
+import { data } from "jquery";
+
+var flag1;
+function verifica_dati(){
+  if(flag1===true){
+    return true;
+  }
+  var email = document.getElementById("email");
+  var url = "http://localhost:3001/api/esistenza_email?Email="+email.value;
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+        //Utente registrato correttamente.
+        alert("E-mail già in uso, si prega di riprovare.");
+        flag1=true;
+      }
+      else{
+        //Utente non registrato mostra errore sulla mail
+        alert("Benvenuto nel paese delle meraviglie.");
+        flag1=true;
+      }
+  }
+  xmlHttp.open("GET", url, true); // true for asynchronous 
+  xmlHttp.setRequestHeader("idutente", "1");
+  xmlHttp.setRequestHeader("x-access-token", "CIAO");
+  xmlHttp.send(null);
+  flag1=true;
+}
 
 export default function RegisterPage() {
   const [nomeFocus, setNomeFocus] = React.useState(false);
@@ -66,7 +94,7 @@ export default function RegisterPage() {
                       <CardTitle tag="h4" style={{fontSize: "4em"}} > Registrazione</CardTitle>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form" method="post" action="registrazione.js">
+                      <Form className="form" name="form_registrazione" id="form_registrazione">
                         <Row>
                           <Col className="offset-md-1" lg="5" md="6">
                               <InputGroup
@@ -82,6 +110,8 @@ export default function RegisterPage() {
                               <Input
                                 placeholder="Nome*"
                                 type="text"
+                                name="nome"
+                                id="nome"
                                 onFocus={(e) => setNomeFocus(true)}
                                 onBlur={(e) => setNomeFocus(false)}
                                 required
@@ -102,6 +132,8 @@ export default function RegisterPage() {
                               <Input
                                 placeholder="Cognome*"
                                 type="text"
+                                name="cognome"
+                                id="cognome"
                                 onFocus={(e) => setCognomeFocus(true)}
                                 onBlur={(e) => setCognomeFocus(false)}
                                 required
@@ -125,8 +157,10 @@ export default function RegisterPage() {
                             <Input
                               placeholder="Email*"
                               type="email"
+                              name="email"
+                              id="email"
                               onFocus={(e) => setEmailFocus(true)}
-                              onBlur={(e) => setEmailFocus(false)}
+                              onBlur={(e) => {setEmailFocus(false); verifica_dati()}}
                               required
                             />
                           </InputGroup>
@@ -145,6 +179,8 @@ export default function RegisterPage() {
                           <Input
                             placeholder="Numero Carta D'Identit&agrave;*"
                             type="text"
+                            name="codice_fiscale"
+                            id="codice_fiscale"
                             onFocus={(e) => setCodiceFiscaleFocus(true)}
                             onBlur={(e) => setCodiceFiscaleFocus(false)}
                             required
@@ -167,6 +203,8 @@ export default function RegisterPage() {
                             <Input
                               placeholder="Numero Patente"
                               type="text"
+                              name="patente"
+                              id="patente"
                               onFocus={(e) => setPatenteFocus(true)}
                               onBlur={(e) => setPatenteFocus(false)}
                             />
@@ -186,6 +224,8 @@ export default function RegisterPage() {
                             <Input
                               placeholder="TipoPatente"
                               type="text"
+                              name="tipopatente"
+                              id="tipopatente"
                               onFocus={(e) => setTipoPatenteFocus(true)}
                               onBlur={(e) => setTipoPatenteFocus(false)}
                             />
@@ -200,6 +240,8 @@ export default function RegisterPage() {
                                       inputProps={{
                                           className: "form-control",
                                           placeholder: "Data di Nascita*",
+                                          name: data,
+                                          id: data,
                                           required: true
                                       }}
                                       />
@@ -222,6 +264,8 @@ export default function RegisterPage() {
                                 <Input
                                   placeholder="Password*"
                                   type="password"
+                                  name="password"
+                                  id="password"
                                   onFocus={(e) => setPasswordFocus(true)}
                                   onBlur={(e) => setPasswordFocus(false)}
                                   required
@@ -242,6 +286,8 @@ export default function RegisterPage() {
                                   <Input
                                     placeholder="Re-Password*"
                                     type="password"
+                                    name="repassword"
+                                    id="repassword"
                                     onFocus={(e) => setRePasswordFocus(true)}
                                     onBlur={(e) => setRePasswordFocus(false)}
                                     required
@@ -264,6 +310,8 @@ export default function RegisterPage() {
                               <Input
                                 placeholder="Indirizzo*"
                                 type="text"
+                                name="indirizzo"
+                                id="indirizzo"
                                 onFocus={(e) => setIndirizzoFocus(true)}
                                 onBlur={(e) => setIndirizzoFocus(false)}
                                 required
@@ -284,6 +332,8 @@ export default function RegisterPage() {
                               <Input
                                 placeholder="CAP*"
                                 type="text"
+                                name="cap"
+                                id="cap"
                                 onFocus={(e) => setCapFocus(true)}
                                 onBlur={(e) => setCapFocus(false)}
                                 required
@@ -292,7 +342,7 @@ export default function RegisterPage() {
                             </Col>
                           </Row>
                         <FormGroup check>
-                            <Button className="btn-round" color="primary" size="lg" type="submit">
+                            <Button className="btn-round" color="primary" size="lg" type="button" onClick={verifica_dati}>
                                 Registrati <i className="tim-icons icon-lock-circle" />
                             </Button>
                         </FormGroup>
