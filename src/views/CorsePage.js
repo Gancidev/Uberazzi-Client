@@ -102,6 +102,8 @@ function richiedi_corse(){
             stampa(xmlHttp.responseText);
     }
     xmlHttp.open("GET", "http://localhost:3001/api/corse", true); // true for asynchronous 
+    xmlHttp.setRequestHeader("idutente", "1");
+    xmlHttp.setRequestHeader("x-access-token", "CIAO");
     xmlHttp.send(null);
     flag=true;
 }

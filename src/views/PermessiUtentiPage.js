@@ -118,6 +118,8 @@ function richiedi_utenti(){
       stampa_utenti(xmlHttp.responseText);
   }
   xmlHttp.open("GET", "http://localhost:3001/api/utenti", true); // true for asynchronous 
+  xmlHttp.setRequestHeader("idutente", "1");
+  xmlHttp.setRequestHeader("x-access-token", "CIAO");
   xmlHttp.send(null);
   flag1=true;
 }

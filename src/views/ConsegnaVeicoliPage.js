@@ -81,6 +81,8 @@ function richiedi_veicoli(){
       stampa_veicoli(xmlHttp.responseText);
   }
   xmlHttp.open("GET", "http://localhost:3001/api/consegne_veicoli", true); // true for asynchronous 
+  xmlHttp.setRequestHeader("idutente", "1");
+  xmlHttp.setRequestHeader("x-access-token", "CIAO");
   xmlHttp.send(null);
   flag1=true;
 }
