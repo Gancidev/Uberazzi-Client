@@ -30,6 +30,40 @@ import {
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
+var flag1;
+function verifica_login(){
+  let myStorage = window.localStorage;
+
+  if(flag1===true){
+    flag1=false;
+    return true;
+  }
+  var email = document.form_login.Email.value;
+  var password = document.form_login.password.value;
+  if(email==="" || password===""){
+    alert("Inserisci i dati.");
+    return false;
+  }
+  var url = "http://localhost:3001/api/login";
+  fetch(url, {
+      method : "POST",
+      body: new FormData(document.getElementById("form_login")),
+      // -- or --
+      // body : JSON.stringify({
+          // user : document.getElementById('user').value,
+          // ...
+      // })
+  }).then(
+      response => response.text() // .json(), etc.
+      // same as function(response) {return response.text();}
+  ).then(
+      html => myStorage.setItem('Utente', JSON.stringify(html))
+  );
+  console.log(myStorage);
+  window.location.replace("/home");
+  flag1=true;
+}
+
 export default function RegisterPage() {
   const [emailFocus, setEmailFocus] = React.useState(false);
   const [passwordFocus, setPasswordFocus] = React.useState(false);
@@ -56,7 +90,7 @@ export default function RegisterPage() {
                       <CardTitle tag="h4" style={{fontSize: "4em"}}>Login</CardTitle>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form" method="post" action="login.js">
+                      <Form className="form" name="form_login" id="form_login">
                         <InputGroup
                           className={classnames({
                             "input-group-focus": emailFocus,
@@ -70,6 +104,8 @@ export default function RegisterPage() {
                           <Input
                             placeholder="Email"
                             type="email"
+                            id="Email"
+                            name="Email"
                             onFocus={(e) => setEmailFocus(true)}
                             onBlur={(e) => setEmailFocus(false)}
                             required
@@ -88,6 +124,8 @@ export default function RegisterPage() {
                           <Input
                             placeholder="Password"
                             type="text"
+                            id="password"
+                            name="password"
                             onFocus={(e) => setPasswordFocus(true)}
                             onBlur={(e) => setPasswordFocus(false)}
                             required
@@ -100,7 +138,7 @@ export default function RegisterPage() {
                             Password Smarrita?
                           </a>
                           <br></br>
-                            <Button className="btn-round" color="primary" size="lg" type="submit">
+                            <Button className="btn-round" color="primary" size="lg" type="button" onClick={verifica_login}>
                                 Accedi <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
