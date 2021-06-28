@@ -27,9 +27,9 @@ export default function Conferma_autista() {
   };
     return (
         <>
-            <FormGroup check className="mt-3" id="Autista" style={{display: "none"}}>
+            <FormGroup check className="mt-3" id="Autista_box" style={{display: "none"}}>
                 <Label check>
-                <Input defaultChecked type="checkbox" checked={checked} onChange={handleChange}/>
+                <Input defaultChecked type="checkbox" id="Autista" name="Autista" checked={checked} onChange={handleChange}/>
                 <span className="form-check-sign" />
                     Assegnami un Autista!
                 </Label>

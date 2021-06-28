@@ -43,17 +43,201 @@ function verifica_login(){
   }
 }
 
-function check_disponibilita(){
-    var partenza = document.getElementById("partenza");
-    var destinazione = document.getElementById("destinazione");
-    var dataora = document.getElementById("dataora");
-    if(partenza.value!=="" && destinazione.value!=="" && dataora.value!==""){
+
+function check_disponibilita_old(){
+    var partenza = document.getElementById("Partenza");
+    var destinazione = document.getElementById("Arrivo");
+    var dataorapartenza = document.getElementById("DataOra");
+    var dataoraarrivo = document.getElementById("DataOraArrivo");
+    if(partenza.value!=="" && destinazione.value!=="" && dataorapartenza.value!=="" && dataoraarrivo.value!==""){
         var selectVeicoli = document.getElementById("selectVeicoli");
         selectVeicoli.style.display="block";
     }
     else{
         alert("Seleziona prima Partenza, Destinazione, Data e Ora");
     }
+}
+
+
+
+var flag1;
+function check_disponibilita(){
+  if(flag1===true){
+      return true;
+  }
+  var ymd, hm, tipo;
+  var dataorapartenza = document.getElementById("DataOra").value;
+  var dataoraarrivo = document.getElementById("DataOraArrivo").value;
+  dataorapartenza=dataorapartenza.split(" ");
+  ymd = dataorapartenza[0].split("/");
+  hm = dataorapartenza[1].split(":");
+  tipo = dataorapartenza[2];
+  dataorapartenza=ymd[2]+"-"+ymd[0]+"-"+ymd[1];
+  if(tipo==="AM"){
+    dataorapartenza=dataorapartenza+" "+(parseInt(hm[0])+2)+":"+hm[1];
+  }
+  else{
+    dataorapartenza=dataorapartenza+" "+(parseInt(hm[0])+14)+":"+hm[1];
+  }
+  dataoraarrivo=dataoraarrivo.split(" ");
+  ymd = dataoraarrivo[0].split("/");
+  hm = dataoraarrivo[1].split(":");
+  tipo = dataoraarrivo[2];
+  dataoraarrivo=ymd[2]+"-"+ymd[0]+"-"+ymd[1];
+  if(tipo==="AM"){
+    dataoraarrivo=dataoraarrivo+" "+(parseInt(hm[0])+2)+":"+hm[1];
+  }
+  else{
+    dataoraarrivo=dataoraarrivo+" "+(parseInt(hm[0])+14)+":"+hm[1];
+  }
+  console.log(dataorapartenza);
+  console.log(dataoraarrivo);
+
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+          console.log(xmlHttp.responseText);
+      }
+      else if(xmlHttp.status === 500){
+          alert("ERRORE");
+          //window.location.replace("/home");
+      }
+  }
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  xmlHttp.open("GET", "http://localhost:3001/api/veicoli_disponibili?Partenza="+dataorapartenza+"&Arrivo="+dataoraarrivo, true); // true for asynchronous 
+  xmlHttp.setRequestHeader("idutente", utente.id);
+  xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+  xmlHttp.send(null);
+  flag1=true;
+}
+
+function aggiungi_prenotazione(){
+  var ymd, hm, tipo, valore;
+  var dataorapartenza = document.getElementById("DataOra").value;
+  var dataoraarrivo = document.getElementById("DataOraArrivo").value;
+  dataorapartenza=dataorapartenza.split(" ");
+  ymd = dataorapartenza[0].split("/");
+  hm = dataorapartenza[1].split(":");
+  tipo = dataorapartenza[2];
+  dataorapartenza=ymd[2]+"-"+ymd[0]+"-"+ymd[1];
+  if(tipo==="AM"){
+    dataorapartenza=dataorapartenza+"%20"+(parseInt(hm[0])+2)+":"+hm[1];
+  }
+  else{
+    dataorapartenza=dataorapartenza+"%20"+(parseInt(hm[0])+14)+":"+hm[1];
+  }
+  dataoraarrivo=dataoraarrivo.split(" ");
+  ymd = dataoraarrivo[0].split("/");
+  hm = dataoraarrivo[1].split(":");
+  tipo = dataoraarrivo[2];
+  dataoraarrivo=ymd[2]+"-"+ymd[0]+"-"+ymd[1];
+  if(tipo==="AM"){
+    dataoraarrivo=dataoraarrivo+"%20"+(parseInt(hm[0])+2)+":"+hm[1];
+  }
+  else{
+    dataoraarrivo=dataoraarrivo+"%20"+(parseInt(hm[0])+14)+":"+hm[1];
+  }
+  if(document.getElementById("Autista").checked===true){
+    valore=1;
+  }
+  else{
+    valore=0;
+  }
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  var url = "http://localhost:3001/api/nuova_prenotazione?DataOra="+dataorapartenza+"&DataOraArrivo="+dataoraarrivo+"&Autista="+valore;
+  console.log(url);
+  fetch(url, {
+      headers: {
+        'idutente': utente.id,
+        'x-access-token': utente.accessToken
+      },
+      method : "POST",
+      body : new FormData(document.getElementById("form_prenotazione")),
+  }).then(
+      response => response.text()
+  ).then(
+    html => console.log(html)
+  ).then(
+    //window.location.replace("/profilo")
+  );
+}
+
+function aggiorna_prenotazione(id){
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+        alert("Prenotazione Completata");
+        window.location.replace("/prenotazioni");
+      }
+      else if(xmlHttp.status === 403){
+        alert("Non hai i permessi per accedere qui");
+        window.location.replace("/home");
+      }
+  }
+  xmlHttp.open("GET", "http://localhost:3001/api/aggiorna_stato_prenotazione_cliente?IDPrenotazione="+id+"&Stato=Attiva", true); // true for asynchronous
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  xmlHttp.setRequestHeader("idutente", utente.id);
+  xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+  xmlHttp.send(null);
+}
+
+var flag;
+function richiedi_ultime_prenotazioni(){
+    if(flag===true){
+        return true;
+    }
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+          salvaPagaPrenota(xmlHttp.responseText);
+        }
+        else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui");
+            window.location.replace("/home");
+        }
+    }
+    xmlHttp.open("GET", "http://localhost:3001/api/ultime_prenotazioni?IDUtente="+utente.id, true); // true for asynchronous 
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
+    flag=true;
+}
+
+function salvaPagaPrenota(prenotazioni){
+  prenotazioni = JSON.parse(prenotazioni);
+    var mancia = document.getElementById("valore_mancia").value;
+    var importo;
+    if(mancia === "")
+      importo = parseInt(10);
+    else
+      importo = parseInt(10) + parseInt(mancia);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+            alert("Pagamento Confermato, Prenotazione Effettuata");
+            aggiorna_prenotazione(prenotazioni[0].IDPrenotazione);
+        }
+        else if(xmlHttp.status === 500){
+            alert("ERRORE");
+            //window.location.replace("/home");
+        }
+    }
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.open("GET", "http://localhost:3001/api/nuovo_pagamento?IDPrenotazione="+prenotazioni[0].IDPrenotazione+"&Importo="+importo, true); // true for asynchronous 
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
 }
 
 export default function NuovaPrenotazione() {
@@ -131,7 +315,7 @@ export default function NuovaPrenotazione() {
                       <CardTitle tag="h4" style={{fontSize: "3em"}} > Nuova Prenotazione</CardTitle>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form" method="post" action="new_.js" id="form_prenotazione">
+                      <Form className="form" name="form_prenotazione" id="form_prenotazione">
                         <InputGroup
                           className={classnames({
                             "input-group-focus": partenzaF,
@@ -143,7 +327,8 @@ export default function NuovaPrenotazione() {
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          id="partenza"
+                          id="Partenza"
+                          name="Partenza"
                           placeholder="Partenza*"
                           type="text"
                           onFocus={(e) => setPartenzaF(true)}
@@ -162,8 +347,9 @@ export default function NuovaPrenotazione() {
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          id="destinazione"
-                          placeholder="Destinazione*"
+                          id="Arrivo"
+                          name="Arrivo"
+                          placeholder="Arrivo*"
                           type="text"
                           onFocus={(e) => setDestinazioneF(true)}
                           onBlur={(e) => setDestinazioneF(false)}
@@ -174,9 +360,22 @@ export default function NuovaPrenotazione() {
                             <FormGroup>
                                 <ReactDatetime
                                 inputProps={{
-                                    id:"dataora",
+                                    id:"DataOra",
+                                    name:"DataOra",
                                     className: "form-control",
-                                    placeholder: "Data e Ora",
+                                    placeholder: "Data e Ora Inizio Noleggio",
+                                }}
+                                />
+                            </FormGroup>
+                            </div>
+                            <div className="datepicker-container" style={{color: "#171941"}}>
+                            <FormGroup>
+                                <ReactDatetime
+                                inputProps={{
+                                    id:"DataOraArrivo",
+                                    name:"DataOraArrivo",
+                                    className: "form-control",
+                                    placeholder: "Data e Ora Fine Noleggio",
                                 }}
                                 />
                             </FormGroup>
@@ -186,7 +385,7 @@ export default function NuovaPrenotazione() {
                                 className="btn-round" 
                                 color="primary" 
                                 size="lg"
-                                onClick={() => check_disponibilita()}
+                                onClick={() => check_disponibilita_old()}
                             >
                                 Procedi <i className="tim-icons icon-double-right"/>
                             </Button>
@@ -199,7 +398,7 @@ export default function NuovaPrenotazione() {
                                 className="btn-round" 
                                 color="primary" 
                                 size="lg"
-                                onClick={() => setFormModal(true)}
+                                onClick={() => {aggiungi_prenotazione();setFormModal(true)}}
                             >
                                 Concludi e Paga <i className="tim-icons icon-double-right"/>
                             </Button>
@@ -284,7 +483,7 @@ export default function NuovaPrenotazione() {
                                   </InputGroup>
                                 </FormGroup>
                                 <div className="text-center">
-                                  <Button className="my-4" color="primary" type="button">
+                                  <Button className="my-4" color="primary" type="button" onClick={richiedi_ultime_prenotazioni}>
                                     Paga
                                   </Button>
                                 </div>
