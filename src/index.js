@@ -29,6 +29,8 @@ import NotificaRitardo from "views/NotificaRitardoPage.js";
 import ContattaciPage from "views/ContattaciPage.js";
 import ConsegnaVeicoliPage from "views/ConsegnaVeicoliPage.js";
 import RitiroVeicoloPage from "views/RitiroVeicoloPage.js";
+import ConsegnaVeicoliClientePage from "views/ConsegnaVeicoliClientePage.js";
+import RitiroVeicoloClientePage from "views/RitiroVeicoloClientePage.js";
 import GestionePrenotazioniPage from "views/GestionePrenotazioniPage.js";
 import NuovoVeicolo from "views/NuovoVeicoloPage.js";
 
@@ -95,6 +97,14 @@ ReactDOM.render(
       <Route
         path="/ritiro_veicolo"
         render={(props) => <RitiroVeicoloPage {...props} />}
+      />
+      <Route
+        path="/consegna_veicoli_cliente"
+        render={(props) => <ConsegnaVeicoliClientePage {...props} />}
+      />
+      <Route
+        path="/ritiro_veicolo_cliente"
+        render={(props) => <RitiroVeicoloClientePage {...props} />}
       />
       <Route
         path="/gestione_prenotazioni"
