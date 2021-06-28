@@ -27,7 +27,25 @@ import {
   }
 
   function consegna(id){
-      alert("Il veicolo: "+ id.id[id.id.length-1] +" e' stato consegnato.")
+      alert("Il veicolo: "+ id.id[id.id.length-1] +" e' stato consegnato.");
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function() { 
+          if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+            alert("Veicolo Ri-Consegnato Correttamente");
+            window.location.reload();
+          }
+          else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui");
+            window.location.replace("/home");
+          }
+      }
+      xmlHttp.open("GET", "http://localhost:3001/api/consegna_veicolo_Cliente?IDPrenotazione="+id.id[id.id.length-1], true); // true for asynchronous
+      //ACCESSO AI DATI UTENTE POST LOGIN
+      let utente = JSON.parse(window.localStorage.getItem("Utente"));
+      utente = JSON.parse(utente);
+      xmlHttp.setRequestHeader("idutente", utente.id);
+      xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+      xmlHttp.send(null);
   }
   var flag;
   function stampa_veicoli(messaggio){
@@ -35,7 +53,7 @@ import {
       return true;
   }
     messaggio = JSON.parse(messaggio);
-    console.log(messaggio);
+    //console.log(messaggio);
     var tbody = document.getElementById("lista_veicoli");
     var tr, th, td1, td2, button, conferma;
     if(!messaggio.length){
@@ -63,7 +81,7 @@ import {
                 button.type="button";
                 button.className="btn-simple btn btn-success";
                 button.innerHTML='<i class="tim-icons icon-check-2"/>';
-                button.id ="consegna"+messaggio[i-1].Veicolo.IDVeicolo;
+                button.id ="consegna"+messaggio[i-1].IDPrenotazione;
                 conferma = function(){ consegna(this); }
                 button.addEventListener('click', conferma, false);
                 td2.appendChild(button);
