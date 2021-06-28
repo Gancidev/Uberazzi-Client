@@ -30,10 +30,23 @@ import {
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
+function controlla_risultato(html){
+  let myStorage = window.localStorage;
+  myStorage.setItem('Utente', JSON.stringify(html));
+  let utente = JSON.parse(myStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  if(utente.message){
+    alert("Password Sbagliata, si prega di riprovare");
+    window.location.replace("/login");
+  }
+  else{
+    alert("Login Completato.");
+    window.location.replace("/home");
+  }
+}
+
 var flag1;
 function verifica_login(){
-  let myStorage = window.localStorage;
-
   if(flag1===true){
     flag1=false;
     return true;
@@ -48,19 +61,13 @@ function verifica_login(){
   fetch(url, {
       method : "POST",
       body: new FormData(document.getElementById("form_login")),
-      // -- or --
-      // body : JSON.stringify({
-          // user : document.getElementById('user').value,
-          // ...
-      // })
-  }).then(
-      response => response.text() // .json(), etc.
-      // same as function(response) {return response.text();}
-  ).then(
-      html => myStorage.setItem('Utente', JSON.stringify(html))
+  })
+  .then(
+      response => response.text()
+  )
+  .then(
+      html => controlla_risultato(html)
   );
-  console.log(myStorage);
-  window.location.replace("/home");
   flag1=true;
 }
 
@@ -123,7 +130,7 @@ export default function RegisterPage() {
                           </InputGroupAddon>
                           <Input
                             placeholder="Password"
-                            type="text"
+                            type="password"
                             id="password"
                             name="password"
                             onFocus={(e) => setPasswordFocus(true)}
