@@ -208,7 +208,6 @@ export default function RegisterPage() {
                               name="Email"
                               id="Email"
                               onFocus={(e) => setEmailFocus(true)}
-                              onChange={(e) => verifica_esistenza_email(this)}
                               onBlur={(e) => {setEmailFocus(false)}}
                               required
                             />
@@ -344,18 +343,18 @@ export default function RegisterPage() {
                                     required
                                   />
                                   <PasswordChecklist
-				rules={["length","specialChar","number","capital","match"]}
-				minLength={8}
-				value={password}
-				valueAgain={passwordAgain}
-				messages={{
-					length: "La password deve essere di almeno 8 caratteri.",
-					specialChar: "La password deve contenere caratteri speciali.",
-					number: "La password deve avere almeno un numero.",
-					capital: "La password deve avere almeno una lettera maiuscola.",
-					match: "Le password devono coincidere.",
-				}}
-			/>
+                                    rules={["length","specialChar","number","capital","match"]}
+                                    minLength={8}
+                                    value={password}
+                                    valueAgain={passwordAgain}
+                                    messages={{
+                                      length: "La password deve essere di almeno 8 caratteri.",
+                                      specialChar: "La password deve contenere caratteri speciali.",
+                                      number: "La password deve avere almeno un numero.",
+                                      capital: "La password deve avere almeno una lettera maiuscola.",
+                                      match: "Le password devono coincidere.",
+                                    }}
+                                  />
                                 </InputGroup>
                             </Col>
                           </Row>
