@@ -38,6 +38,21 @@ function verifica_login(){
   }
 }
 
+function controlla_risultato(html){
+  let passaggio = JSON.stringify(html);
+  let risultato = JSON.parse(passaggio);
+  risultato = JSON.parse(risultato);
+  console.log(risultato);
+  if(risultato.message==="Veicolo aggiunto"){
+    alert("Veicolo Aggiunto Con Successo");
+    window.location.replace("/nuovo_veicolo");
+  }
+  else{
+    alert("Veicolo Non Aggiunto, errore nella creazione del veicolo.");
+    window.location.replace("/nuovo_veicolo");
+  }
+}
+
 function aggiungi_veicolo(){
     var tipoveicolo = document.getElementById("TipoVeicolo");
     var targa = document.getElementById("Targa");
@@ -59,7 +74,7 @@ function aggiungi_veicolo(){
       }).then(
           response => response.text()
       ).then(
-          window.location.replace("/nuovo_veicolo")
+        html => controlla_risultato(html)
       );
         return true;
     }
