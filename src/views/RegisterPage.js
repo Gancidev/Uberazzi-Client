@@ -117,8 +117,8 @@ export default function RegisterPage() {
   const [repasswordFocus, setRePasswordFocus] = React.useState(false);
   const [indirizzoFocus, setIndirizzoFocus] = React.useState(false);
   const [capFocus, setCapFocus] = React.useState(false);
-  const [password, setPassword] = useState("")
-	const [passwordAgain, setPasswordAgain] = useState("")
+  const [password, setPassword] = React.useState("");
+	const [passwordAgain, setPasswordAgain] = React.useState("");
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     // Specify how to clean up after this effect:
@@ -208,7 +208,7 @@ export default function RegisterPage() {
                               name="Email"
                               id="Email"
                               onFocus={(e) => setEmailFocus(true)}
-                              onChange={(this) => verifica_esistenza_email()}
+                              onChange={(e) => verifica_esistenza_email(this)}
                               onBlur={(e) => {setEmailFocus(false)}}
                               required
                             />
