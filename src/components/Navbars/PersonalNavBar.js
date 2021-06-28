@@ -143,11 +143,19 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-alert-circle-exc" />
                   Notifica Ritardo
                 </DropdownItem>}
-                {window.localStorage.getItem("Utente") && utente.IDPermesso<3  &&<DropdownItem tag={Link} to="/consegna_veicoli">
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===2  &&<DropdownItem tag={Link} to="/consegna_veicoli">
                   <i className="tim-icons icon-bus-front-12" />
                   Consegna Veicoli
                 </DropdownItem>}
-                {window.localStorage.getItem("Utente") && utente.IDPermesso<3  && <DropdownItem tag={Link} to="/ritiro_veicolo">
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===2  && <DropdownItem tag={Link} to="/ritiro_veicolo">
+                  <i className="tim-icons icon-bus-front-12" />
+                  Ritira Veicolo
+                </DropdownItem>}
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===1  &&<DropdownItem tag={Link} to="/consegna_veicoli_cliente">
+                  <i className="tim-icons icon-bus-front-12" />
+                  Consegna Veicoli
+                </DropdownItem>}
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===1  && <DropdownItem tag={Link} to="/ritiro_veicolo_cliente">
                   <i className="tim-icons icon-bus-front-12" />
                   Ritira Veicolo
                 </DropdownItem>}
