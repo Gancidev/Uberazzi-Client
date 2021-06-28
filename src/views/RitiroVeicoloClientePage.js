@@ -27,6 +27,7 @@ import {
   }
 
   function ritira(id){
+    var ids = id.id.split("-");
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() { 
           if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
@@ -38,7 +39,7 @@ import {
             window.location.replace("/home");
           }
       }
-      xmlHttp.open("GET", "http://localhost:3001/api/ritira_veicolo_Cliente?IDPrenotazione="+id.id[id.id.length-1], true); // true for asynchronous
+      xmlHttp.open("GET", "http://localhost:3001/api/ritira_veicolo_Cliente?IDPrenotazione="+ids[1], true); // true for asynchronous
       //ACCESSO AI DATI UTENTE POST LOGIN
       let utente = JSON.parse(window.localStorage.getItem("Utente"));
       utente = JSON.parse(utente);
@@ -82,7 +83,7 @@ import {
                 button.type="button";
                 button.className="btn-simple btn btn-success";
                 button.innerHTML='<i class="tim-icons icon-check-2"/>';
-                button.id ="consegna"+messaggio[i-1].IDPrenotazione;
+                button.id ="consegna-"+messaggio[i-1].IDPrenotazione;
                 conferma = function(){ ritira(this); }
                 button.addEventListener('click', conferma, false);
                 td2.appendChild(button);

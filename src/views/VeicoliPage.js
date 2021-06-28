@@ -27,6 +27,7 @@ import {
   }
 
   function conferma_condizioni(id){
+      var ids = id.id.split("-");
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() { 
           if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
@@ -38,7 +39,7 @@ import {
             window.location.replace("/home");
           }
       }
-      xmlHttp.open("GET", "http://localhost:3001/api/aggiorna_disponibilita_veicolo?IDVeicolo="+id.id[id.id.length-1], true); // true for asynchronous 
+      xmlHttp.open("GET", "http://localhost:3001/api/aggiorna_disponibilita_veicolo?IDVeicolo="+ids[1], true); // true for asynchronous 
       //ACCESSO AI DATI UTENTE POST LOGIN
       let utente = JSON.parse(window.localStorage.getItem("Utente"));
       utente = JSON.parse(utente);
@@ -85,7 +86,7 @@ import {
                 button.type="button";
                 button.className="btn-simple btn btn-success";
                 button.innerHTML='<i class="tim-icons icon-check-2"/>';
-                button.id ="consegna"+messaggio[i-1].IDVeicolo;
+                button.id ="consegna-"+messaggio[i-1].IDVeicolo;
                 conferma = function(){ conferma_condizioni(this); }
                 button.addEventListener('click', conferma, false);
                 td3.appendChild(button);

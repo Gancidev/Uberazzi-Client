@@ -25,10 +25,53 @@ import {
       window.location.replace("/home");
     }
   }
+  function aggiorna_prenotazione(id){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+          alert("Prenotazione Aggiornata");
+          window.location.reload();
+        }
+        else if(xmlHttp.status === 403){
+          alert("Non hai i permessi per accedere qui");
+          window.location.replace("/home");
+        }
+    }
+    xmlHttp.open("GET", "http://localhost:3001/api/aggiorna_stato_prenotazione?IDPrenotazione="+id+"&Stato=Conclusa", true); // true for asynchronous
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
+}
 
   function ritira(id){
-      alert("Il veicolo: "+ id.id[id.id.length-1] +" e' stato ritirato.")
-  }
+    var ids = id.id.split("-");
+    console.log(ids);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+          alert("Veicolo tornato disponibile");
+          aggiorna_prenotazione(ids[1]);
+          //window.location.reload();
+        }
+        else if(xmlHttp.status === 403){
+          alert("Non hai i permessi per accedere qui");
+          window.location.replace("/home");
+        }
+    }
+    xmlHttp.open("GET", "http://localhost:3001/api/ritira_veicolo_AddettoParcheggio?IDVeicolo="+ids[2], true); // true for asynchronous
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
+}
+
+
+
   var flag;
   function stampa_veicoli(messaggio){
     if(flag===true){
@@ -63,7 +106,7 @@ import {
                 button.type="button";
                 button.className="btn-simple btn btn-success";
                 button.innerHTML='<i class="tim-icons icon-check-2"/>';
-                button.id ="consegna"+messaggio[i-1].Veicolo.IDVeicolo;
+                button.id ="consegna-"+messaggio[i-1].IDPrenotazione+"-"+messaggio[i-1].Veicolo.IDVeicolo;
                 conferma = function(){ ritira(this); }
                 button.addEventListener('click', conferma, false);
                 td2.appendChild(button);

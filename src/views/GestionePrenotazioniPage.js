@@ -27,8 +27,8 @@ import {
   }
   
   function modifica_prenotazione(redirect){
-    //console.log(redirect.id[redirect.id.length-1]);
-    window.location.replace("/modifica_prenotazione?id="+redirect.id[redirect.id.length-1]);
+    var ids = redirect.id.split("-");
+    window.location.replace("/modifica_prenotazione?id="+ids[1]);
 
   }
 
@@ -78,7 +78,7 @@ import {
           button.type="button";
           button.className="btn-simple btn btn-warning";
           button.innerHTML='<i class="tim-icons icon-settings"/>';
-          button.id ="consegna"+messaggio[i-1].IDPrenotazione;
+          button.id ="consegna-"+messaggio[i-1].IDPrenotazione;
           conferma = function(){ modifica_prenotazione(this); }
           button.addEventListener('click', conferma, false);
           td3.appendChild(button);

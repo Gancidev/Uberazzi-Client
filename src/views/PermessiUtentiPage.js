@@ -27,6 +27,7 @@ import {
   }
 
   function assegna_permessi(selezione){
+    var ids = selezione.id.split("-");
       //console.log(selezione);
       if(selezione.value==="NONE"){
           alert("Non puoi cancellare i permessi ad un utente, ma solo assegnarne di altri, anche se la select cambia valore i permessi non verranno modificati.");
@@ -44,7 +45,7 @@ import {
             //window.location.replace("/permessi_utenti");
         }
     }
-    xmlHttp.open("GET", "http://localhost:3001/api/aggiorna_permesso?Permesso="+selezione.value+"&IDUtente="+selezione.id[selezione.id.length-1], true); // true for asynchronous 
+    xmlHttp.open("GET", "http://localhost:3001/api/aggiorna_permesso?Permesso="+selezione.value+"&IDUtente="+ids[1], true); // true for asynchronous 
     //ACCESSO AI DATI UTENTE POST LOGIN
     let utente = JSON.parse(window.localStorage.getItem("Utente"));
     utente = JSON.parse(utente);
@@ -102,7 +103,7 @@ import {
             tr.appendChild(td3);
                 div.className="form-group"+messaggio["utenti"][i-1].IDUtente;
                     select.name="selezione_permessi"+messaggio["utenti"][i-1].IDUtente;
-                    select.id="selezione_permessi"+messaggio["utenti"][i-1].IDUtente;
+                    select.id="selezione_permessi-"+messaggio["utenti"][i-1].IDUtente;
                     select.className="form-control";
                     select.style="color: rgb(186, 84, 245);";
                     conferma = function(){ assegna_permessi(this); }

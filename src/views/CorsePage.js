@@ -27,6 +27,7 @@ import {
   }
   
 function conferma_corsa(id){
+    var ids = id.id.split("-");
     //alert("La Corsa: "+ id.id[id.id.length-1] +" e' stata accettata.");
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
@@ -40,7 +41,7 @@ function conferma_corsa(id){
             window.location.replace("/home");
         }
     }
-    xmlHttp.open("GET", "http://localhost:3001/api/conferma_corsa?IDPrenotazione="+id.id[id.id.length-1], true); // true for asynchronous 
+    xmlHttp.open("GET", "http://localhost:3001/api/conferma_corsa?IDPrenotazione="+ids[1], true); // true for asynchronous 
     //ACCESSO AI DATI UTENTE POST LOGIN
     let utente = JSON.parse(window.localStorage.getItem("Utente"));
     utente = JSON.parse(utente);
@@ -108,7 +109,7 @@ function stampa(messaggio){
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
-        button.id ="accetta"+messaggio["corse"][i-1].IDPrenotazione;
+        button.id ="accetta-"+messaggio["corse"][i-1].IDPrenotazione;
         button.innerHTML = '<i class="tim-icons icon-check-2"/>';
         button.className="btn-simple btn btn-success";
         conferma = function(){ conferma_corsa(this); }
