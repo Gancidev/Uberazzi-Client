@@ -42,10 +42,9 @@ function verifica_password(password) {
       'special'  : /[~`!#$%\^&*@+=\-\[\]\\';,/{}|\\":<>\?\.]/,
       'full'    : /^[@#][A-Za-z0-9]{7,}$/
   };
-  return re.capital .test(password) && 
-         re.digit   .test(password) && 
-         re.special  .test(password) && 
-         re.full    .test(password);
+  return re.capital.test(password) && 
+         re.digit.test(password) && 
+         re.full.test(password);
 }
 
 var flag1, flag2;
@@ -108,11 +107,15 @@ function verifica_dati_form(){
   var indirizzo = document.form_registrazione.Indirizzo.value;
   var cap = document.form_registrazione.CAP.value;
   if(nome==="" || cognome==="" || cartaidentita==="" || datanascita==="" || password==="" || repassword==="" || indirizzo==="" || cap==="" || email===""){
-    alert("Inserisci tutti i dati obbligatori per continuare");
+    alert("Inserisci tutti i dati obbligatori per continuare.");
     return false;
   }
   if(password!==repassword){
-    alert("Le Password non corrispondono");
+    alert("Le Password non corrispondono.");
+    return false;
+  }
+  if(!verifica_password(password)){
+    alert("La Password non rispetta le specifiche richieste.");
     return false;
   }
   verifica_esistenza_email();
