@@ -35,6 +35,19 @@ import PasswordChecklist from "react-password-checklist"
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
+function verifica_password(password) {
+  var re = {
+      'capital' : /[A-Z]/,
+      'digit'   : /[0-9]/,
+      'special'  : /[~`!#$%\^&*@+=\-\[\]\\';,/{}|\\":<>\?\.]/,
+      'full'    : /^[@#][A-Za-z0-9]{7,}$/
+  };
+  return re.capital .test(password) && 
+         re.digit   .test(password) && 
+         re.special  .test(password) && 
+         re.full    .test(password);
+}
+
 var flag1, flag2;
 function verifica_esistenza_email(){
   if(flag2===true){
