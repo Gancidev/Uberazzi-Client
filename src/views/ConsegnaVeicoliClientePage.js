@@ -27,7 +27,6 @@ import {
   }
 
   function consegna(id){
-      alert("Il veicolo: "+ id.id[id.id.length-1] +" e' stato consegnato.");
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() { 
           if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
@@ -47,6 +46,8 @@ import {
       xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
       xmlHttp.send(null);
   }
+
+
   var flag;
   function stampa_veicoli(messaggio){
     if(flag===true){
