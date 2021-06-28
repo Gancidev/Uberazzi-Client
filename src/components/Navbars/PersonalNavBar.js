@@ -26,7 +26,6 @@ import {
 } from "reactstrap";
 
 function logout(){
-  alert("Logout effettuato con successo.");
   window.localStorage.clear();
   window.location="/home";
 }

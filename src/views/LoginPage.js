@@ -40,7 +40,6 @@ function controlla_risultato(html){
     window.location.replace("/login");
   }
   else{
-    alert("Login Completato.");
     window.location.replace("/home");
   }
 }
