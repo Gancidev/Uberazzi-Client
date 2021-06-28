@@ -36,7 +36,7 @@ import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
 function verifica_password(password) {
-  var passwordCheck = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~`!#$%\^&*@+=\-\[\]\\';,\/{}|\\\"\:\<\>\?\.])(?=.{8,})");
+  var passwordCheck = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~`!#$%\^&*@+=\-\[\]\\';,\/{}|\\\"\:\<\>\?\.])(?=.{8,})", "");
   return passwordCheck.test(password);
 }
 
