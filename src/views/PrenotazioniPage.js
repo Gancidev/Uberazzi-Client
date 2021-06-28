@@ -19,6 +19,12 @@ import {
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
+function verifica_login(){
+  if(!window.localStorage.getItem("Utente")){
+    window.location.replace("/home");
+  }
+}
+
 var flag;
 function stampa_prenotazioni(messaggio){
   if(flag===true){
@@ -142,18 +148,27 @@ function richiedi_prenotazioni(){
   }
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
-      if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
         stampa_prenotazioni(xmlHttp.responseText);
+      }
+      else if(xmlHttp.status === 500){
+          alert("Non sei loggato.");
+          window.location.replace("/home");
+      }
   }
-  xmlHttp.open("GET", "http://localhost:3001/api/prenotazioni?IDUtente=1", true); // true for asynchronous 
-  xmlHttp.setRequestHeader("idutente", "1");
-  xmlHttp.setRequestHeader("x-access-token", "CIAO");
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  xmlHttp.open("GET", "http://localhost:3001/api/prenotazioni?IDUtente="+utente.id, true); // true for asynchronous 
+  xmlHttp.setRequestHeader("idutente", utente.id);
+  xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
   xmlHttp.send(null);
   flag1=true;
 }
 
 
 export default function ProfilePage() {
+  verifica_login();
   React.useEffect(() => {
     document.body.classList.toggle("profile-page");
     // Specify how to clean up after this effect:
