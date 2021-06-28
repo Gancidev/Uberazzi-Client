@@ -72,7 +72,9 @@ function verifica_dati_form(){
   }).then(
       response => response.text()
   ).then(
-      html => console.log(html)
+    alert("Per vedere attive le modifiche è necessario effettuare nuovamente il login.")
+  ).then(
+    window.location.replace("/profilo")
   );
   flag1=true;
 }
