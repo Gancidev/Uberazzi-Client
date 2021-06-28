@@ -95,7 +95,7 @@ export default function LandingPage() {
                   </Button>
                 </div>
               </Col>
-              <Col lg="4" md="5">
+              {!window.localStorage.getItem("Utente") && <Col lg="4" md="5">
                 <Button
                   className="btn-simple"
                   color="primary"
@@ -111,7 +111,7 @@ export default function LandingPage() {
                 >
                   Registrati <i className="tim-icons icon-lock-circle" />
                 </Button>
-              </Col>
+              </Col>}
             </Row>
           </div>
         </div>
