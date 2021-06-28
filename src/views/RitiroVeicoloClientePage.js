@@ -54,7 +54,7 @@ import {
       return true;
   }
     messaggio = JSON.parse(messaggio);
-    console.log(messaggio);
+    //console.log(messaggio);
     var tbody = document.getElementById("lista_veicoli");
     var tr, th, td1, td2, button, conferma;
     if(messaggio.length===0){
