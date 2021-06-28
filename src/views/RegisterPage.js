@@ -28,7 +28,7 @@ import {
   Col,
 } from "reactstrap";
 
-import PasswordChecklist from "react-password-checklist"
+import PasswordChecklist from "react-password-checklist";
 
 
 // core components
