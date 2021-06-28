@@ -27,15 +27,34 @@ import {
   }
 
   function ritira(id){
-      alert("Il veicolo: "+ id.id[id.id.length-1] +" e' stato ritirato.")
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function() { 
+          if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+            alert("Veicolo Ritirato Correttamente");
+            window.location.reload();
+          }
+          else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui");
+            window.location.replace("/home");
+          }
+      }
+      xmlHttp.open("GET", "http://localhost:3001/api/ritira_veicolo_Cliente?IDPrenotazione="+id.id[id.id.length-1], true); // true for asynchronous
+      //ACCESSO AI DATI UTENTE POST LOGIN
+      let utente = JSON.parse(window.localStorage.getItem("Utente"));
+      utente = JSON.parse(utente);
+      xmlHttp.setRequestHeader("idutente", utente.id);
+      xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+      xmlHttp.send(null);
   }
+
+
   var flag;
   function stampa_veicoli(messaggio){
     if(flag===true){
       return true;
   }
     messaggio = JSON.parse(messaggio);
-    //console.log(messaggio);
+    console.log(messaggio);
     var tbody = document.getElementById("lista_veicoli");
     var tr, th, td1, td2, button, conferma;
     if(messaggio.length===0){
@@ -63,7 +82,7 @@ import {
                 button.type="button";
                 button.className="btn-simple btn btn-success";
                 button.innerHTML='<i class="tim-icons icon-check-2"/>';
-                button.id ="consegna"+messaggio[i-1].Veicolo.IDVeicolo;
+                button.id ="consegna"+messaggio[i-1].IDPrenotazione;
                 conferma = function(){ ritira(this); }
                 button.addEventListener('click', conferma, false);
                 td2.appendChild(button);
