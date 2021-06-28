@@ -114,7 +114,7 @@ export default function IndexNavbar() {
               </Col>
             </Row>
           </div>
-          <Nav navbar>
+          {window.localStorage.getItem("Utente") && <Nav navbar>
             <UncontrolledDropdown nav>
               <DropdownToggle
                 caret
@@ -130,59 +130,58 @@ export default function IndexNavbar() {
               <DropdownMenu className="dropdown-with-icons">
                 <DropdownItem tag={Link} to="/home">
                   <i className="tim-icons icon-paper" />
-                  Home (tutti)
+                  Home
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/profilo">
                   <i className="tim-icons icon-single-02" />
-                  Profilo (tutti)
+                  Profilo
                 </DropdownItem>
-                <DropdownItem tag={Link} to="/prenotazioni">
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===1 &&<DropdownItem tag={Link} to="/prenotazioni">
                   <i className="tim-icons icon-bullet-list-67" />
-                  Prenotazioni (tutti)
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/recupero_password">
-                  <i className="tim-icons icon-lock-circle" />
-                  Recupero Password (tutti)
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/notifica_ritardo">
+                  Prenotazioni
+                </DropdownItem>}
+                {window.localStorage.getItem("Utente") && utente.IDPermesso<4  &&<DropdownItem tag={Link} to="/notifica_ritardo">
                   <i className="tim-icons icon-alert-circle-exc" />
-                  Notifica Ritardo (addetto parcheggio, cliente, autista?)
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/consegna_veicoli">
+                  Notifica Ritardo
+                </DropdownItem>}
+                {window.localStorage.getItem("Utente") && utente.IDPermesso<3  &&<DropdownItem tag={Link} to="/consegna_veicoli">
                   <i className="tim-icons icon-bus-front-12" />
-                  Consegna Veicoli (cliente, addetto parcheggio)
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/ritiro_veicolo">
+                  Consegna Veicoli
+                </DropdownItem>}
+                {window.localStorage.getItem("Utente") && utente.IDPermesso<3  && <DropdownItem tag={Link} to="/ritiro_veicolo">
                   <i className="tim-icons icon-bus-front-12" />
-                  Ritira Veicolo (cliente, addetto parcheggio)
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/veicoli">
+                  Ritira Veicolo
+                </DropdownItem>}
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===2 &&<DropdownItem tag={Link} to="/veicoli">
                   <i className="tim-icons icon-settings" />
-                  Gestione Veicoli (addetto parcheggio)
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/corse">
+                  Gestione Veicoli
+                </DropdownItem>}
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===3 &&<DropdownItem tag={Link} to="/corse">
                   <i className="tim-icons icon-bus-front-12" />
-                  Corse (autista)
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/permessi_utenti">
+                  Corse
+                </DropdownItem>}
+
+                { window.localStorage.getItem("Utente") && utente.IDPermesso===4 && <DropdownItem tag={Link} to="/permessi_utenti">
                   <i className="tim-icons icon-key-25" />
-                  Permessi Utenti (admin)
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/gestione_prenotazioni">
+                  Permessi Utenti
+                </DropdownItem>}
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===4 && <DropdownItem tag={Link} to="/gestione_prenotazioni">
                   <i className="tim-icons icon-key-25" />
-                  Gestione Prenotazioni (admin)
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/nuovo_veicolo">
+                  Gestione Prenotazioni
+                </DropdownItem>}
+
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===4 && <DropdownItem tag={Link} to="/nuovo_veicolo">
                   <i className="tim-icons icon-bus-front-12" />
-                  Nuovo Veicolo (admin)
-                </DropdownItem>
-                <DropdownItem tag={Link} onClick={() => { setMiniModal(true)}}>
+                  Nuovo Veicolo
+                </DropdownItem>}
+
+                {window.localStorage.getItem("Utente") && <DropdownItem tag={Link} onClick={() => { setMiniModal(true)}}>
                   <i className="tim-icons icon-key-25" />
                   Logout
-                </DropdownItem>                
+                </DropdownItem>}                
               </DropdownMenu>
             </UncontrolledDropdown>
-          </Nav>
+          </Nav>}
         </Collapse>
       </Container>
       {/* Start Mini Modal */}
