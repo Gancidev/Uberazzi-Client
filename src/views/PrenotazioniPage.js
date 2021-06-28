@@ -44,7 +44,7 @@ function stampa_prenotazioni(messaggio){
     return false;
   }
   var righe = Math.ceil(lunghezza / 3);
-  var i, j, date, ye, mo, da, h, m, da_now, h_now, datum, date_now;
+  var i, j, date, ye, mo, da, h, m, datum, date_now;
   for(i=0;i<righe;i++){
     row= document.createElement("div");
     row.className="row";
