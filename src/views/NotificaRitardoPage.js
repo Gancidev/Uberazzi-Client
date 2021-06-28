@@ -39,6 +39,7 @@ function verifica_login(){
 export default function NotificaRitardo() {
   verifica_login();
   const [ritardoFocus, setRitardoFocus] = React.useState(false);
+  const [idPrenotazioneFocus, setIDPrenotazioneFocus] = React.useState(false);
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     // Specify how to clean up after this effect:
@@ -64,6 +65,24 @@ export default function NotificaRitardo() {
                     </CardHeader>
                     <CardBody>
                       <Form className="form" method="post" action="login.js">
+                      <InputGroup
+                          className={classnames({
+                            "input-group-focus": idPrenotazioneFocus,
+                          })}
+                        >
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="tim-icons icon-bullet-list-67" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input
+                            placeholder="IDPrenotazione"
+                            type="number"
+                            onFocus={(e) => setIDPrenotazioneFocus(true)}
+                            onBlur={(e) => setIDPrenotazioneFocus(false)}
+                            required
+                          />
+                        </InputGroup>
                         <InputGroup
                           className={classnames({
                             "input-group-focus": ritardoFocus,
