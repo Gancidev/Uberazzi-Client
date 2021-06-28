@@ -159,7 +159,7 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-bus-front-12" />
                   Ritira Veicolo
                 </DropdownItem>}
-                {window.localStorage.getItem("Utente") && utente.IDPermesso===2 &&<DropdownItem tag={Link} to="/veicoli">
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===2 &&<DropdownItem tag={Link} to="/gestione_veicoli">
                   <i className="tim-icons icon-settings" />
                   Gestione Veicoli
                 </DropdownItem>}

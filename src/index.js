@@ -33,6 +33,7 @@ import ConsegnaVeicoliClientePage from "views/ConsegnaVeicoliClientePage.js";
 import RitiroVeicoloClientePage from "views/RitiroVeicoloClientePage.js";
 import GestionePrenotazioniPage from "views/GestionePrenotazioniPage.js";
 import NuovoVeicolo from "views/NuovoVeicoloPage.js";
+import BoundaryTicket from "views/BoundaryTicket.js";
 
 
 ReactDOM.render(
@@ -67,7 +68,7 @@ ReactDOM.render(
         render={(props) => <ModificaPrenotazionePage {...props} />}
       />
       <Route
-        path="/veicoli"
+        path="/gestione_veicoli"
         render={(props) => <VeicoliPage {...props} />}
       />
       <Route
@@ -114,6 +115,11 @@ ReactDOM.render(
         path="/nuovo_veicolo"
         render={(props) => <NuovoVeicolo {...props} />}
       />
+      <Route
+        path="/modifica_condizioni_veicolo"
+        render={(props) => <BoundaryTicket {...props} />}
+      />
+
       <Redirect from="/" to="/home" />
     </Switch>
   </BrowserRouter>,
