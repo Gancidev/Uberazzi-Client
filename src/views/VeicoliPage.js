@@ -62,7 +62,7 @@ import {
                 td1 = document.createElement("td");
                 td1.innerHTML=messaggio[i-1].IDVeicolo;
                 td2 = document.createElement("td");
-                td2.innerHTML=messaggio[i-1].Condizioni;
+                td2.innerHTML='<a href="/modifica_condizioni_veicolo?IDVeicolo='+messaggio[i-1].IDVeicolo+'">'+messaggio[i-1].Condizioni+'</a>';
                 td3 = document.createElement("td");
                 button = document.createElement("button");
                 button.type="button";
@@ -97,7 +97,6 @@ function richiedi_condizioni_veicoli(){
       }
   }
   xmlHttp.open("GET", "http://localhost:3001/api/condizioni_veicoli", true); // true for asynchronous 
-  xmlHttp.setRequestHeader("idutente", "1");
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
