@@ -38,7 +38,14 @@ import Footer from "components/Footer/Footer.js";
 
 let ps = null;
 
+function verifica_login(){
+  if(!window.localStorage.getItem("Utente")){
+    window.location.replace("/home");
+  }
+}
+
 export default function ProfilePage() {
+  verifica_login();
   const [tabs, setTabs] = React.useState(1);
   React.useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {

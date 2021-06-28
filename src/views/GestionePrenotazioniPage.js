@@ -20,6 +20,12 @@ import {
     Col,
   } from "reactstrap";
 
+  function verifica_login(){
+    if(!window.localStorage.getItem("Utente")){
+      window.location.replace("/home");
+    }
+  }
+  
   function modifica_prenotazione(redirect){
     //console.log(redirect.id[redirect.id.length-1]);
     window.location.replace("/modifica_prenotazione?id="+redirect.id[redirect.id.length-1]);
@@ -94,15 +100,23 @@ function richiedi_prenotazioni_attive(){
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
         stampa_prenotazioni_attive(xmlHttp.responseText);
+      else if(xmlHttp.status === 403){
+        alert("Non hai i permessi per accedere qui");
+        window.location.replace("/home");
+      }
   }
-  xmlHttp.open("GET", "http://localhost:3001/api/prenotazioni_attive?IDUtente=1", true); // true for asynchronous
-  xmlHttp.setRequestHeader("idutente", "1");
-  xmlHttp.setRequestHeader("x-access-token", "CIAO");
+  xmlHttp.open("GET", "http://localhost:3001/api/prenotazioni_attive", true); // true for asynchronous
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  xmlHttp.setRequestHeader("idutente", utente.id);
+  xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
   xmlHttp.send(null);
   flag1=true;
 }
 
 export default function GestionePrenotazioniPage() {
+  verifica_login();
     const [squares1to6, setSquares1to6] = React.useState("");
     const [squares7and8, setSquares7and8] = React.useState("");
   

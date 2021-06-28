@@ -31,6 +31,12 @@ import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 import SelectParcheggi from "components/NuovoVeicolo/SelectParcheggi.js";
 
+function verifica_login(){
+  if(!window.localStorage.getItem("Utente")){
+    window.location.replace("/home");
+  }
+}
+
 function aggiungi_veicolo(){
     var nome = document.getElementById("nome");
     var targa_identificativo = document.getElementById("targa_identificativo");
@@ -50,6 +56,7 @@ function aggiungi_veicolo(){
 }
 
 export default function NuovoVeicolo() {
+  verifica_login();
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
   const [nome, setNomeF] = React.useState(false);

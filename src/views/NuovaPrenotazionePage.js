@@ -37,6 +37,12 @@ import SelectVeicoli from "components/NuovaPrenotazione/SelectVeicolo.js";
 import ConfermaAutista from "components/NuovaPrenotazione/ConfermaAutista.js";
 import ManciaAutista from "components/NuovaPrenotazione/ManciaAutista.js";
 
+function verifica_login(){
+  if(!window.localStorage.getItem("Utente")){
+    window.location.replace("/home");
+  }
+}
+
 function check_disponibilita(){
     var partenza = document.getElementById("partenza");
     var destinazione = document.getElementById("destinazione");
@@ -51,6 +57,7 @@ function check_disponibilita(){
 }
 
 export default function NuovaPrenotazione() {
+  verifica_login();
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
   const [partenzaF, setPartenzaF] = React.useState(false);

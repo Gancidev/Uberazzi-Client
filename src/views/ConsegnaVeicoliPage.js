@@ -20,6 +20,12 @@ import {
     Col,
   } from "reactstrap";
 
+  function verifica_login(){
+    if(!window.localStorage.getItem("Utente")){
+      window.location.replace("/home");
+    }
+  }
+
   function consegna(id){
       alert("Il veicolo: "+ id.id[id.id.length-1] +" e' stato consegnato.")
   }
@@ -29,10 +35,10 @@ import {
       return true;
   }
     messaggio = JSON.parse(messaggio);
-    //console.log(messaggio);
+    console.log(messaggio);
     var tbody = document.getElementById("lista_veicoli");
     var tr, th, td1, td2, button, conferma;
-    if(messaggio.length===0){
+    if(!messaggio.length){
         tr = document.createElement("tr");
         tr.scope="row";
             th = document.createElement("th");
@@ -79,16 +85,24 @@ function richiedi_veicoli(){
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
         stampa_veicoli(xmlHttp.responseText);
+      else if(xmlHttp.status === 403){
+          alert("Non hai i permessi per accedere qui");
+          window.location.replace("/home");
+      }
   }
   xmlHttp.open("GET", "http://localhost:3001/api/consegne_veicoli", true); // true for asynchronous 
-  xmlHttp.setRequestHeader("idutente", "1");
-  xmlHttp.setRequestHeader("x-access-token", "CIAO");
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  xmlHttp.setRequestHeader("idutente", utente.id);
+  xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
   xmlHttp.send(null);
   flag1=true;
 }
 
 
 export default function ConsegnaVeicoliPage() {
+  verifica_login();
     const [squares1to6, setSquares1to6] = React.useState("");
     const [squares7and8, setSquares7and8] = React.useState("");
   

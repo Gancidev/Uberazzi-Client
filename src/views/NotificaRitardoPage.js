@@ -30,7 +30,14 @@ import {
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
-export default function RegisterPage() {
+function verifica_login(){
+  if(!window.localStorage.getItem("Utente")){
+    window.location.replace("/home");
+  }
+}
+
+export default function NotificaRitardo() {
+  verifica_login();
   const [ritardoFocus, setRitardoFocus] = React.useState(false);
   React.useEffect(() => {
     document.body.classList.toggle("register-page");

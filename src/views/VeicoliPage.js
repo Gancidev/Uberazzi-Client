@@ -20,6 +20,12 @@ import {
     Col,
   } from "reactstrap";
 
+  function verifica_login(){
+    if(!window.localStorage.getItem("Utente")){
+      window.location.replace("/home");
+    }
+  }
+
   function conferma_condizioni(id){
       alert("Il veicolo: "+ id.id[id.id.length-1] +" e' in condizioni tali da poter tornare prenotabile.")
   }
@@ -82,22 +88,27 @@ function richiedi_condizioni_veicoli(){
   }
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
-      if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
         stampa_condizioni_veicoli(xmlHttp.responseText);
+      }
+      else if(xmlHttp.status === 403){
+        alert("Non hai i permessi per accedere qui");
+        window.location.replace("/home");
+      }
   }
   xmlHttp.open("GET", "http://localhost:3001/api/condizioni_veicoli", true); // true for asynchronous 
   xmlHttp.setRequestHeader("idutente", "1");
-  xmlHttp.setRequestHeader("x-access-token", "CIAO");
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  xmlHttp.setRequestHeader("idutente", utente.id);
+  xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
   xmlHttp.send(null);
   flag1=true;
 }
 
-
-
-
-
-
 export default function VeicoliPage() {
+  verifica_login();
     const [squares1to6, setSquares1to6] = React.useState("");
     const [squares7and8, setSquares7and8] = React.useState("");
   
