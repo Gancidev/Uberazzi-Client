@@ -27,7 +27,24 @@ import {
   }
 
   function conferma_condizioni(id){
-      alert("Il veicolo: "+ id.id[id.id.length-1] +" e' in condizioni tali da poter tornare prenotabile.")
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function() { 
+          if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+            alert("Veicolo reso nuovamente disponibile");
+            window.location.reload();
+          }
+          else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui.");
+            window.location.replace("/home");
+          }
+      }
+      xmlHttp.open("GET", "http://localhost:3001/api/aggiorna_disponibilita_veicolo?IDVeicolo="+id.id[id.id.length-1], true); // true for asynchronous 
+      //ACCESSO AI DATI UTENTE POST LOGIN
+      let utente = JSON.parse(window.localStorage.getItem("Utente"));
+      utente = JSON.parse(utente);
+      xmlHttp.setRequestHeader("idutente", utente.id);
+      xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+      xmlHttp.send(null);
   }
   
   var flag;
@@ -36,7 +53,7 @@ import {
       return true;
   }
     messaggio = JSON.parse(messaggio);
-    console.log(messaggio);
+    //console.log(messaggio);
     var tbody = document.getElementById("lista_condizioni_veicoli");
     var tr, th, td1, td2, td3, button, conferma;
     if(messaggio.length===0){
