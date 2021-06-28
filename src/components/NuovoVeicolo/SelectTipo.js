@@ -14,16 +14,17 @@ import {
   Label,
 } from "reactstrap";
 
-export default function SelectParcheggio() {
+export default function SelectTipo() {
     return (
         <>
-            <FormGroup id="selectParcheggio">
-                <Label for="Parcheggio">Seleziona Parcheggio</Label>
-                <Input type="select" name="Parcheggio" id="Parcheggio" style={{color: "#ba54f5"}}>
+            <FormGroup id="selectTipo">
+                <Label for="TipoVeicolo">Seleziona Tipologia</Label>
+                <Input type="select" name="TipoVeicolo" id="TipoVeicolo" style={{color: "#ba54f5"}}>
                 <option value="NONE">---</option>
-                <option value="1">Via 1</option>
-                <option value="2">Via 2</option>
-                <option value="3">Via 3</option>
+                <option value="auto">Auto</option>
+                <option value="moto">Moto</option>
+                <option value="monopattino">Monopattino</option>
+                <option value="bici">Bici</option>
                 </Input>
             </FormGroup>
         </>
