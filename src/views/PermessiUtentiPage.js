@@ -20,13 +20,37 @@ import {
     Col,
   } from "reactstrap";
 
+  function verifica_login(){
+    if(!window.localStorage.getItem("Utente")){
+      window.location.replace("/home");
+    }
+  }
+
   function assegna_permessi(selezione){
       //console.log(selezione);
       if(selezione.value==="NONE"){
           alert("Non puoi cancellare i permessi ad un utente, ma solo assegnarne di altri, anche se la select cambia valore i permessi non verranno modificati.");
           return false;
       }
-    alert("Assegno i permessi: "+selezione.value+" All'utente:"+selezione.id[selezione.id.length-1]);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+            alert("Permessi Aggiornati Correttamente.");
+            //console.log(xmlHttp.responseText);
+            //window.location.reload();
+        }
+        else if(xmlHttp.status === 500){
+            alert("Permessi Non Aggiornati Correttamente.");
+            //window.location.replace("/permessi_utenti");
+        }
+    }
+    xmlHttp.open("GET", "http://localhost:3001/api/aggiorna_permesso?Permesso="+selezione.value+"&IDUtente="+selezione.id[selezione.id.length-1], true); // true for asynchronous 
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
 }
 
   var flag;
@@ -88,9 +112,9 @@ import {
                         option2.value="1";
                         option2.innerHTML="Cliente";
                         option3.value="2";
-                        option3.innerHTML="Autista";
+                        option3.innerHTML="Addetto Al Parcheggio";
                         option4.value="3";
-                        option4.innerHTML="Addetto Al Parcheggio";
+                        option4.innerHTML="Autista";
                         option5.value="4";
                         option5.innerHTML="Amministratore";
                     select.appendChild(option1);
@@ -116,15 +140,23 @@ function richiedi_utenti(){
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
         stampa_utenti(xmlHttp.responseText);
+    else if(xmlHttp.status === 403){
+        alert("Non hai i permessi per accedere qui");
+        window.location.replace("/home");
+    }
   }
   xmlHttp.open("GET", "http://localhost:3001/api/utenti", true); // true for asynchronous 
-  xmlHttp.setRequestHeader("idutente", "1");
-  xmlHttp.setRequestHeader("x-access-token", "CIAO");
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  xmlHttp.setRequestHeader("idutente", utente.id);
+  xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
   xmlHttp.send(null);
   flag1=true;
 }
 
 export default function PermessiUtenti() {
+    verifica_login();
     const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
   React.useEffect(() => {
