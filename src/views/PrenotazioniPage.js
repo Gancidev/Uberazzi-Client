@@ -33,7 +33,7 @@ function stampa_prenotazioni(messaggio){
   messaggio = JSON.parse(messaggio);
   //console.log(messaggio);
   var container = document.getElementById("lista_prenotazioni");
-  var row,div1,div2,div3,img,h4,div4,div5,div6,div7,table,thead,tr,th1,th2,th3,tbody,tr2,td1,td2,td3;
+  var row,div1,div2,div3,img,h4,div4,div5,div6,div7,table,thead,tr,th1,th2,th3,tbody,tr2,td1,td2,td3,button;
   var lunghezza = messaggio.length;
   if(lunghezza===0){
     console.log("ciao");
@@ -44,7 +44,7 @@ function stampa_prenotazioni(messaggio){
     return false;
   }
   var righe = Math.ceil(lunghezza / 3);
-  var i,j,date,ye,mo,da,h,m;
+  var i, j, date, ye, mo, da, h, m, da_now, h_now, datum, date_now;
   for(i=0;i<righe;i++){
     row= document.createElement("div");
     row.className="row";
@@ -110,10 +110,10 @@ function stampa_prenotazioni(messaggio){
                         td2 = document.createElement("td");
                         date = new Date(messaggio[j-1].DataOra);
                         ye = new Intl.DateTimeFormat('it', { year: 'numeric' }).format(date);
-                        mo = new Intl.DateTimeFormat('it', { month: 'long' }).format(date);
-                        da = new Intl.DateTimeFormat('it', { day: '2-digit' }).format(date);
-                        h = new Intl.DateTimeFormat('it', { hour: '2-digit' }).format(date);
-                        m = new Intl.DateTimeFormat('it', { minute: '2-digit' }).format(date);
+                        mo = new Intl.DateTimeFormat('it', { month: 'numeric' }).format(date);
+                        da = new Intl.DateTimeFormat('it', { day: 'numeric' }).format(date);
+                        h = new Intl.DateTimeFormat('it', { hour: 'numeric' }).format(date);
+                        m = new Intl.DateTimeFormat('it', { minute: 'numeric' }).format(date);
                         td2.innerHTML=da+"/"+mo[0].toUpperCase()+mo.slice(1)+"/"+ye+" "+(h-2)+":"+m;
                         td3 = document.createElement("td");
                         td3.innerHTML=messaggio[j-1].Stato;
@@ -127,6 +127,16 @@ function stampa_prenotazioni(messaggio){
                     table.appendChild(tbody);
                   /*END table Tabella*/
                 div7.appendChild(table);
+                datum = new Date(Date.UTC(ye,mo,da,h+2,m,0));
+                date = datum.getTime()/1000;
+                datum = new Date(Date.now());
+                date_now = datum.getTime()/1000;
+                if ((date - date_now)>3200380){
+                  button = document.createElement("button");
+                  button.className="btn-simple btn btn-primary";
+                  button.innerHTML='Modifica <i class="tim-icons icon-settings"></i>';
+                  div7.appendChild(button);
+                }
               div6.appendChild(div7);
             div5.appendChild(div6);
           div4.appendChild(div5);
