@@ -36,6 +36,34 @@ function verifica_login(){
   }
 }
 
+var flag1;
+function notifica_ritardo(){
+  if(flag1===true){
+      return true;
+  }
+  var ritardo = document.getElementById("ritardo").value;
+  var id_prenotazione = document.getElementById("id_prenotazione").value;
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+        alert("Notifica inviata");
+        window.location.replace("/home");
+      }
+      else if(xmlHttp.status === 403){
+          alert("Non hai i permessi per accedere qui");
+          window.location.replace("/home");
+      }
+  }
+  xmlHttp.open("GET", "http://localhost:3001/api/notifica_ritardo?IDPrenotazione="+id_prenotazione+"&note="+ritardo, true); // true for asynchronous 
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  xmlHttp.setRequestHeader("idutente", utente.id);
+  xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+  xmlHttp.send(null);
+  flag1=true;
+}
+
 export default function NotificaRitardo() {
   verifica_login();
   const [ritardoFocus, setRitardoFocus] = React.useState(false);
@@ -64,7 +92,7 @@ export default function NotificaRitardo() {
                       <CardTitle tag="h4" style={{fontSize: "3em"}}>Notifica Ritardo</CardTitle>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form" method="post" action="login.js">
+                      <Form className="form">
                       <InputGroup
                           className={classnames({
                             "input-group-focus": idPrenotazioneFocus,
@@ -78,6 +106,8 @@ export default function NotificaRitardo() {
                           <Input
                             placeholder="IDPrenotazione"
                             type="number"
+                            name="id_prenotazione"
+                            id="id_prenotazione"
                             onFocus={(e) => setIDPrenotazioneFocus(true)}
                             onBlur={(e) => setIDPrenotazioneFocus(false)}
                             required
@@ -96,6 +126,8 @@ export default function NotificaRitardo() {
                           <Input
                             placeholder="Tempo Stimato (in minuti)"
                             type="number"
+                            name="ritardo"
+                            id="ritardo"
                             onFocus={(e) => setRitardoFocus(true)}
                             onBlur={(e) => setRitardoFocus(false)}
                             min="5"
@@ -104,7 +136,7 @@ export default function NotificaRitardo() {
                           />
                         </InputGroup>
                         <FormGroup check>
-                            <Button className="btn-round" color="primary" size="lg" type="submit">
+                            <Button className="btn-round" color="primary" size="lg" type="button" onClick={notifica_ritardo}>
                                 Invia <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
