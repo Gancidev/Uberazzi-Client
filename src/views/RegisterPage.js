@@ -36,15 +36,8 @@ import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
 function verifica_password(password) {
-  var re = {
-      'capital' : /[A-Z]/,
-      'digit'   : /[0-9]/,
-      'special'  : /[~`!#$%\^&*@+=\-\[\]\\';,/{}|\\":<>\?\.]/,
-      'full'    : /^[@#][A-Za-z0-9]{7,}$/
-  };
-  return re.capital.test(password) && 
-         re.digit.test(password) && 
-         re.full.test(password);
+  var passwordCheck = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~`!#$%\^&*@+=\-\[\]\\';,\/{}|\\\"\:\<\>\?\.])(?=.{8,})");
+  return passwordCheck.test(password);
 }
 
 var flag1, flag2;
@@ -114,7 +107,7 @@ function verifica_dati_form(){
     alert("Le Password non corrispondono.");
     return false;
   }
-  if(!verifica_password(password)){
+  if(verifica_password(password)){
     alert("La Password non rispetta le specifiche richieste.");
     return false;
   }
