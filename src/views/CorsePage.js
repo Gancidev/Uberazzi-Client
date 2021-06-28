@@ -20,11 +20,37 @@ import {
     Col,
   } from "reactstrap";
 
+  function verifica_login(){
+    if(!window.localStorage.getItem("Utente")){
+      window.location.replace("/home");
+    }
+  }
+  
 function conferma_corsa(id){
-    alert("La Corsa: "+ id.id[id.id.length-1] +" e' stata accettata.");
+    //alert("La Corsa: "+ id.id[id.id.length-1] +" e' stata accettata.");
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+            alert("Corsa Accettata Correttamente.");
+            //console.log(xmlHttp.responseText);
+            window.location.reload();
+        }
+        else if(xmlHttp.status === 500){
+            alert("Corsa Non Accettata Correttamente.");
+            window.location.replace("/home");
+        }
+    }
+    xmlHttp.open("GET", "http://localhost:3001/api/conferma_corsa?IDPrenotazione="+id.id[id.id.length-1], true); // true for asynchronous 
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
 }
 function stampa(messaggio){
     messaggio = JSON.parse(messaggio);
+    //console.log(messaggio);
     var table = document.getElementById("corse");
     var tr;
     var th;
@@ -53,7 +79,8 @@ function stampa(messaggio){
         tr.appendChild(td2);
         tr.appendChild(td3);
         tr.appendChild(td4);
-        table.appendChild(tr); 
+        table.appendChild(tr);
+        return false;
     }
     for(var i=1;i<messaggio["corse"].length+1;i++){
         tr = document.createElement("tr");
@@ -100,14 +127,22 @@ function richiedi_corse(){
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
             stampa(xmlHttp.responseText);
+        else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui");
+            window.location.replace("/home");
+        }
     }
     xmlHttp.open("GET", "http://localhost:3001/api/corse", true); // true for asynchronous 
-    xmlHttp.setRequestHeader("idutente", "1");
-    xmlHttp.setRequestHeader("x-access-token", "CIAO");
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
     xmlHttp.send(null);
     flag=true;
 }
 export default function CorsePage() {
+    verifica_login();
     const [squares1to6, setSquares1to6] = React.useState("");
     const [squares7and8, setSquares7and8] = React.useState("");
   React.useEffect(() => {
