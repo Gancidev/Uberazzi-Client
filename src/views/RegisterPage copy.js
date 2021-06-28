@@ -117,8 +117,6 @@ export default function RegisterPage() {
   const [repasswordFocus, setRePasswordFocus] = React.useState(false);
   const [indirizzoFocus, setIndirizzoFocus] = React.useState(false);
   const [capFocus, setCapFocus] = React.useState(false);
-  const [password, setPassword] = useState("")
-	const [passwordAgain, setPasswordAgain] = useState("")
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     // Specify how to clean up after this effect:
@@ -315,7 +313,6 @@ export default function RegisterPage() {
                                   type="password"
                                   name="password"
                                   id="password"
-                                  onChange={e => setPassword(e.target.value)}
                                   onFocus={(e) => setPasswordFocus(true)}
                                   onBlur={(e) => setPasswordFocus(false)}
                                   required
@@ -338,24 +335,10 @@ export default function RegisterPage() {
                                     type="password"
                                     name="repassword"
                                     id="repassword"
-                                    onChange={e => setPasswordAgain(e.target.value)}
                                     onFocus={(e) => setRePasswordFocus(true)}
                                     onBlur={(e) => setRePasswordFocus(false)}
                                     required
                                   />
-                                  <PasswordChecklist
-				rules={["length","specialChar","number","capital","match"]}
-				minLength={8}
-				value={password}
-				valueAgain={passwordAgain}
-				messages={{
-					length: "La password deve essere di almeno 8 caratteri.",
-					specialChar: "La password deve contenere caratteri speciali.",
-					number: "La password deve avere almeno un numero.",
-					capital: "La password deve avere almeno una lettera maiuscola.",
-					match: "Le password devono coincidere.",
-				}}
-			/>
                                 </InputGroup>
                             </Col>
                           </Row>
