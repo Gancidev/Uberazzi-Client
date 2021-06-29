@@ -35,15 +35,15 @@ import PasswordChecklist from "react-password-checklist";
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
-/*
+
 function verifica_password(password) {
-  var paswd=  /^(?=.*[0-9])(?=.*[\!\#\$\%\@])(?=.*[~`\^\+=-\[\]\\';,/{}\|":<>\?\.])[a-zA-Z0-9]{8,}$/;
+  var paswd= /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/ ;
   if(password.match(paswd)){
     return true;
   }
   return false;
 }
-*/
+
 function verifica_email(email) {
   var emailre = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
  if (email.match(emailre)){
@@ -106,7 +106,7 @@ function verifica_dati_form(){
   var nome = document.form_registrazione.Nome.value;
   var cognome = document.form_registrazione.Cognome.value;
   var email = document.form_registrazione.Email.value;
-  var cartaidentita = document.form_registrazione.CodiceFiscale.value;
+  var cartaidentita = document.form_registrazione.CartaIdentita.value;
   var datanascita = document.form_registrazione.DataDiNascita.value;
   var password = document.form_registrazione.password.value;
   var repassword = document.form_registrazione.repassword.value;
@@ -120,12 +120,12 @@ function verifica_dati_form(){
     alert("Le Password non corrispondono.");
     return false;
   }
-/*
+
   if(!verifica_password(password)){
     alert("La Password non rispetta le specifiche richieste.");
     return false;
   }
-*/
+
   if(!verifica_email(email)){
     alert("La email inserita non ha un formato valido.");
     return false;
