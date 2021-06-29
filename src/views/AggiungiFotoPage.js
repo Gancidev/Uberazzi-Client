@@ -42,14 +42,13 @@ function aggiungi_foto(){
   if(flag1===true){
       return true;
   }
-  var file = document.getElementById("immagine");
   var idveicolo = document.getElementById("IDVeicolo");
-  console.log(file);
-  console.log(idveicolo);
+  //console.log(file);
+  //console.log(idveicolo);
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
-  var url = "http://91.199.223.61:3001/api/upload?IDVeicolo="+utente.id;
+  var url = "http://91.199.223.61:3001/api/upload?IDVeicolo="+idveicolo.value;
   fetch(url, {
       headers: {
         'idutente': utente.id,
