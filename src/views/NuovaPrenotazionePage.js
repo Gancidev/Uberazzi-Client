@@ -90,9 +90,6 @@ function check_disponibilita(){
   else{
     dataoraarrivo=dataoraarrivo+" "+(parseInt(hm[0])+14)+":"+hm[1];
   }
-  console.log(dataorapartenza);
-  console.log(dataoraarrivo);
-
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
@@ -100,7 +97,7 @@ function check_disponibilita(){
       }
       else if(xmlHttp.status === 500){
           alert("ERRORE");
-          //window.location.replace("/home");
+          window.location.replace("/prenotazioni");
       }
   }
   //ACCESSO AI DATI UTENTE POST LOGIN
@@ -149,7 +146,6 @@ function aggiungi_prenotazione(){
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
   var url = "http://localhost:3001/api/nuova_prenotazione?DataOra="+dataorapartenza+"&DataOraArrivo="+dataoraarrivo+"&Autista="+valore;
-  console.log(url);
   fetch(url, {
       headers: {
         'idutente': utente.id,
@@ -159,10 +155,6 @@ function aggiungi_prenotazione(){
       body : new FormData(document.getElementById("form_prenotazione")),
   }).then(
       response => response.text()
-  ).then(
-    html => console.log(html)
-  ).then(
-    //window.location.replace("/profilo")
   );
 }
 
