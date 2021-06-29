@@ -42,6 +42,24 @@ function verifica_login(){
   }
 }
 
+function inserisci_dati(){
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  var email = document.form_modifica_dati_utente.Email;
+  var cartaidentita = document.form_modifica_dati_utente.CartaIdentita;
+  var indirizzo = document.form_modifica_dati_utente.Indirizzo;
+  var cap = document.form_modifica_dati_utente.CAP;
+  var numeropatente = document.form_modifica_dati_utente.NumeroPatente;
+  var tipopatente = document.form_modifica_dati_utente.TipoPatente;
+  email.value=utente.email;
+  cartaidentita.value=utente.CartaIdentita;
+  indirizzo.value=utente.Indirizzo;
+  cap.value=utente.CAP;
+  numeropatente.value=utente.NumeroPatente;
+  tipopatente.value=utente.TipoPatente;
+}
+
 var flag1;
 function verifica_dati_form(){
   if(flag1===true){
@@ -280,6 +298,7 @@ export default function ProfilePage() {
                           })}
                           onClick={(e) => {
                             e.preventDefault();
+                            inserisci_dati();
                             setTabs(2);
                           }}
                           href="#pablo"
@@ -334,7 +353,6 @@ export default function ProfilePage() {
                                 <FormGroup>
                                 <Input
                                     placeholder="Carta D&#39;Identit&agrave;"
-                                    value={utente.CartaIdentita}
                                     name="CartaIdentita"
                                     id="CartaIdentita"
                                     type="text"
@@ -350,7 +368,6 @@ export default function ProfilePage() {
                                     placeholder="Indirizzo"
                                     name="Indirizzo"
                                     id="Indirizzo"
-                                    value={utente.Indirizzo}
                                     type="text"
                                 />
                                 </FormGroup>
@@ -364,7 +381,6 @@ export default function ProfilePage() {
                                     placeholder="CAP"
                                     name="CAP"
                                     id="CAP"
-                                    value={utente.CAP}
                                     type="text"
                                 />
                                 </FormGroup>
@@ -378,7 +394,6 @@ export default function ProfilePage() {
                                     placeholder="Email"
                                     name="Email"
                                     id="Email"
-                                    value={utente.email}
                                     type="email"
                                 />
                                 </FormGroup>
@@ -389,7 +404,7 @@ export default function ProfilePage() {
                             </Label>
                             <Col sm="8">
                                 <FormGroup>
-                                <Input placeholder="Numero Patente" name="NumeroPatente" id="NumeroPatente" value={utente.NumeroPatente} type="text" />
+                                <Input placeholder="Numero Patente" name="NumeroPatente" id="NumeroPatente" type="text" />
                                 </FormGroup>
                             </Col>
                             </Row>
@@ -398,7 +413,7 @@ export default function ProfilePage() {
                             </Label>
                             <Col sm="8">
                                 <FormGroup>
-                                <Input placeholder="Tipo Patente" name="TipoPatente" id="TipoPatente" value={utente.TipoPatente} type="text" />
+                                <Input placeholder="Tipo Patente" name="TipoPatente" id="TipoPatente" type="text" />
                                 </FormGroup>
                             </Col>
                             </Row>
