@@ -186,7 +186,7 @@ export default function ModificaPrenotazione() {
                   <Card className="card-register" style={{overflow: "inherit"}}>
                     <CardHeader>
                       <br></br>
-                      <CardTitle tag="h4" style={{fontSize: "3em"}} > Nuova Prenotazione</CardTitle>
+                      <CardTitle tag="h4" style={{fontSize: "3em"}} > Modifica Prenotazione</CardTitle>
                     </CardHeader>
                     <CardBody>
                       <Form className="form" name="form_modifica_prenotazione" id="form_modifica_prenotazione">
