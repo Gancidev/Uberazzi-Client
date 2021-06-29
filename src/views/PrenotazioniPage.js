@@ -44,7 +44,7 @@ function stampa_prenotazioni(messaggio){
     return false;
   }
   var righe = Math.ceil(lunghezza / 3);
-  var i, j, date, ye, mo, da, h, m, datum, date_now;
+  var i, j, date, ye, mo, da, h, m, datum, date_now, a;
   for(i=0;i<righe;i++){
     row= document.createElement("div");
     row.className="row";
@@ -131,12 +131,15 @@ function stampa_prenotazioni(messaggio){
                 date = datum.getTime()/1000;
                 datum = new Date(Date.now());
                 date_now = datum.getTime()/1000;
-                if ((date - date_now)>3200380){
-                  button = document.createElement("button");
-                  button.className="btn-simple btn btn-primary";
-                  button.innerHTML='Modifica <i class="tim-icons icon-settings"></i>';
-                  div7.appendChild(button);
-                }
+                //if ((date - date_now)>3200380){
+                    a = document.createElement("a");
+                    a.href="/modifica_prenotazione?IDPrenotazione="+messaggio[j-1].IDPrenotazione;
+                      button = document.createElement("button");
+                      button.className="btn-simple btn btn-primary";
+                      button.innerHTML='Modifica <i class="tim-icons icon-settings"></i>';
+                    a.appendChild(button);
+                  div7.appendChild(a);
+                //}
               div6.appendChild(div7);
             div5.appendChild(div6);
           div4.appendChild(div5);
