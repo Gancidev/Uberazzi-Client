@@ -14,7 +14,6 @@ import PerfectScrollbar from "perfect-scrollbar";
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   Label,
   FormGroup,
@@ -91,6 +90,15 @@ function stampa_ultime_prenotazioni(messaggio){
   var h;
   var m;
   if(messaggio.length===0){
+    tr = document.createElement("tr");
+        td1 = document.createElement("td");
+        td2 = document.createElement("td");
+        td2.innerHTML = "Nessuna Prenotazione";
+        td3 = document.createElement("td");
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+    tbody.appendChild(tr);
       return false;
   }
   for(var i=1;i<messaggio.length+1;i++){
@@ -196,13 +204,6 @@ export default function ProfilePage() {
               </Col>
               <Col className="ml-auto mr-auto" lg="6" md="6">
                 <Card className="card-coin card-plain">
-                  <CardHeader>
-                    <img
-                      alt="..."
-                      className="img-center img-fluid rounded-circle"
-                      src={require("assets/img/mike.jpg").default}
-                    />
-                  </CardHeader>
                   <CardBody>
                     <Nav
                       className="nav-tabs-primary justify-content-center"
@@ -251,6 +252,13 @@ export default function ProfilePage() {
                             </tr>
                           </thead>
                           <tbody id="lista_ultime_prenotazioni">
+                          {window.localStorage.getItem("Utente") && utente.IDPermesso!==1 && 
+                              <tr>
+                                <th className="header"></th>
+                                <th className="header">Utente Non Abilitato Per Le Prenotazioni</th>
+                                <th className="header"></th>
+                              </tr>
+                          }
                           </tbody>
                         </Table>
                       </TabPane>
