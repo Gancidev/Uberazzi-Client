@@ -63,7 +63,7 @@ function aggiungi_veicolo(){
       //ACCESSO AI DATI UTENTE POST LOGIN
       let utente = JSON.parse(window.localStorage.getItem("Utente"));
       utente = JSON.parse(utente);
-      var url = "http://localhost:3001/api/nuovo_veicolo";
+      var url = "http://91.199.223.61:3001/api/nuovo_veicolo";
       fetch(url, {
         headers: {
           'idutente': utente.id,

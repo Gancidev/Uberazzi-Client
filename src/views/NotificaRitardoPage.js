@@ -54,7 +54,7 @@ function notifica_ritardo(){
           window.location.replace("/home");
       }
   }
-  xmlHttp.open("GET", "http://localhost:3001/api/notifica_ritardo?IDPrenotazione="+id_prenotazione+"&note="+ritardo, true); // true for asynchronous 
+  xmlHttp.open("GET", "http://91.199.223.61:3001/api/notifica_ritardo?IDPrenotazione="+id_prenotazione+"&note="+ritardo, true); // true for asynchronous 
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);

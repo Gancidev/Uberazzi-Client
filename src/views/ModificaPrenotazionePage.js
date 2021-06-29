@@ -97,7 +97,7 @@ function aggiungi_prenotazione(){
   var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
     var id_prenotazione = urlParams.get('IDPrenotazione');
-  var url = "http://localhost:3001/api/aggiorna_prenotazione?DataOra="+dataorapartenza+"&DataOraArrivo="+dataoraarrivo+"&Autista="+valore+"&IDPrenotazione="+id_prenotazione;
+  var url = "http://91.199.223.61:3001/api/aggiorna_prenotazione?DataOra="+dataorapartenza+"&DataOraArrivo="+dataoraarrivo+"&Autista="+valore+"&IDPrenotazione="+id_prenotazione;
   fetch(url, {
       headers: {
         'idutente': utente.id,
@@ -148,7 +148,7 @@ function richiedi_dettaglio_prenotazione(){
             window.location.replace("/home");
         }
     }
-    xmlHttp.open("GET", "http://localhost:3001/api/dettagli_prenotazione?IDPrenotazione="+id_prenotazione, true); // true for asynchronous
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/dettagli_prenotazione?IDPrenotazione="+id_prenotazione, true); // true for asynchronous
     //ACCESSO AI DATI UTENTE POST LOGIN
     let utente = JSON.parse(window.localStorage.getItem("Utente"));
     utente = JSON.parse(utente);
