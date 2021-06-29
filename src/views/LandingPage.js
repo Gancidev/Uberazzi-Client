@@ -7,6 +7,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 import React from "react";
+import { Link } from "react-router-dom";
 // react plugin used to create charts
 // reactstrap components
 import {
@@ -99,7 +100,7 @@ export default function LandingPage() {
                 <Button
                   className="btn-simple"
                   color="primary"
-                  href="/login"
+                  tag={Link} to="/login"
                 >
                   Accedi <i className="tim-icons icon-double-right"/>
                 </Button>
@@ -107,7 +108,7 @@ export default function LandingPage() {
                 <Button
                   className="btn-simple bottone_premuto"
                   color="danger"
-                  href="/registrazione"
+                  tag={Link} to="/registrazione"
                 >
                   Registrati <i className="tim-icons icon-lock-circle" />
                 </Button>
