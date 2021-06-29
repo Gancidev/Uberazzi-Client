@@ -15,21 +15,29 @@ import {
   Label,
 } from "reactstrap";
 
-export default function Conferma_autista() {
-    const [checked, setChecked] = React.useState(false);
-    const handleChange = (event) => {
-    setChecked(event.target.checked);
+function cambiamento(){
+    var check=document.getElementById("Autista");
     var mancia = document.getElementById("Mancia");
-    if(event.target.checked===false)
+    var paga;
+    if(check.checked===false){
         mancia.style.display="none";
-    else
+        paga = document.getElementById("paga");
+        paga.style.display="block";
+    }
+    else{
         mancia.style.display="block";
-  };
+        paga = document.getElementById("paga");
+        paga.style.display="none";
+    }
+}
+
+export default function Conferma_autista() {
+    
     return (
         <>
-            <FormGroup check className="mt-3" id="Autista">
+            <FormGroup check className="mt-3" id="Autista_box">
                 <Label check>
-                <Input defaultChecked type="checkbox" checked={checked} onChange={handleChange}/>
+                <Input defaultChecked type="checkbox" id="Autista" name="Autista" onChange={cambiamento}/>
                 <span className="form-check-sign" />
                     Assegnami un Autista!
                 </Label>

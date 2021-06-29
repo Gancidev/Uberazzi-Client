@@ -43,30 +43,114 @@ function verifica_login(){
   }
 }
 
-function check_disponibilita(){
-    var partenza = document.getElementById("partenza");
-    var destinazione = document.getElementById("destinazione");
-    var dataora = document.getElementById("dataora");
-    if(partenza.value!=="" && destinazione.value!=="" && dataora.value!==""){
-        var selectVeicoli = document.getElementById("selectVeicoli");
-        selectVeicoli.style.display="block";
+function check_disponibilita(){}
+
+function aggiungi_prenotazione(){
+  var ymd, hm, tipo, valore;
+  var dataorapartenza = document.getElementById("DataOra").value;
+  var dataoraarrivo = document.getElementById("DataOraArrivo").value;
+  dataorapartenza=dataorapartenza.split(" ");
+  ymd = dataorapartenza[0].split("/");
+  hm = dataorapartenza[1].split(":");
+  tipo = dataorapartenza[2];
+  dataorapartenza=ymd[2]+"-"+ymd[0]+"-"+ymd[1];
+  if(tipo==="AM"){
+    dataorapartenza=dataorapartenza+"%20"+(parseInt(hm[0])+2)+":"+hm[1];
+  }
+  else{
+    dataorapartenza=dataorapartenza+"%20"+(parseInt(hm[0])+14)+":"+hm[1];
+  }
+  dataoraarrivo=dataoraarrivo.split(" ");
+  ymd = dataoraarrivo[0].split("/");
+  hm = dataoraarrivo[1].split(":");
+  tipo = dataoraarrivo[2];
+  dataoraarrivo=ymd[2]+"-"+ymd[0]+"-"+ymd[1];
+  if(tipo==="AM"){
+    dataoraarrivo=dataoraarrivo+"%20"+(parseInt(hm[0])+2)+":"+hm[1];
+  }
+  else{
+    dataoraarrivo=dataoraarrivo+"%20"+(parseInt(hm[0])+14)+":"+hm[1];
+  }
+  if(document.getElementById("Autista").checked===true && document.getElementById("Autista").style.display==="block"){
+    valore=1;
+  }
+  else{
+    valore=0;
+  }
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var id_prenotazione = urlParams.get('IDPrenotazione');
+  var url = "http://localhost:3001/api/aggiorna_prenotazione?DataOra="+dataorapartenza+"&DataOraArrivo="+dataoraarrivo+"&Autista="+valore+"&IDPrenotazione="+id_prenotazione;
+  fetch(url, {
+      headers: {
+        'idutente': utente.id,
+        'x-access-token': utente.accessToken
+      },
+      method : "POST",
+      body : new FormData(document.getElementById("form_modifica_prenotazione")),
+  }).then(
+      response => response.text()
+  ).then(
+    window.location.reload()
+  );
+}
+
+function stampa_dettaglio(messaggio){
+  messaggio = JSON.parse(messaggio);
+  console.log(messaggio);
+  var partenza = document.getElementById("Partenza");
+  partenza.value=messaggio.Partenza;
+  var arrivo = document.getElementById("Arrivo");
+  arrivo.value=messaggio.Arrivo;
+  var autista = document.getElementById("Autista");
+  if(messaggio.Autista===true)
+    autista.checked=true;
+  else
+    autista.checked=false;
+  var veicolo = document.getElementById("IDVeicolo");
+  veicolo.value=messaggio.IDVeicolo;
+}
+
+var flag;
+function richiedi_dettaglio_prenotazione(){
+    if(flag===true){
+        return true;
     }
-    else{
-        alert("Seleziona prima Partenza, Destinazione, Data e Ora");
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var id_prenotazione = urlParams.get('IDPrenotazione');
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+          stampa_dettaglio(xmlHttp.responseText);
+        }
+        else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui");
+            window.location.replace("/home");
+        }
     }
+    xmlHttp.open("GET", "http://localhost:3001/api/dettagli_prenotazione?IDPrenotazione="+id_prenotazione, true); // true for asynchronous
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
+    flag=true;
 }
 
 export default function ModificaPrenotazione() {
   verifica_login();
+  const [partenzaF, setPartenzaF] = React.useState(false);
+  const [destinazioneF, setDestinazioneF] = React.useState(false);
   const [nome, setNome] = React.useState(false);
   const [scadenza, setScadenza] = React.useState(false);
   const [numero, setNumero] = React.useState(false);
   const [formModal, setFormModal] = React.useState(false);
-  const [squares1to6, setSquares1to6] = React.useState("");
-  const [squares7and8, setSquares7and8] = React.useState("");
-  const [partenzaF, setPartenzaF] = React.useState(false);
-  const [destinazioneF, setDestinazioneF] = React.useState(false);
-  
+
   const [errorMessage, setErrorMessage] = React.useState('')
     
   const validateCreditCard = (value) => {
@@ -77,7 +161,7 @@ export default function ModificaPrenotazione() {
       setErrorMessage('Numero carta non valido!')
     }
   }
-
+  
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", followCursor);
@@ -87,24 +171,8 @@ export default function ModificaPrenotazione() {
       document.documentElement.removeEventListener("mousemove", followCursor);
     };
   },[]);
-  const followCursor = (event) => {
-    let posX = event.clientX - window.innerWidth / 2;
-    let posY = event.clientY - window.innerWidth / 6;
-    setSquares1to6(
-      "perspective(500px) rotateY(" +
-        posX * 0.05 +
-        "deg) rotateX(" +
-        posY * -0.05 +
-        "deg)"
-    );
-    setSquares7and8(
-      "perspective(500px) rotateY(" +
-        posX * 0.02 +
-        "deg) rotateX(" +
-        posY * -0.02 +
-        "deg)"
-    );
-  };
+  const followCursor = (event) => {};
+  richiedi_dettaglio_prenotazione();
   return (
     <>
       <PersonalNavBar />
@@ -115,23 +183,13 @@ export default function ModificaPrenotazione() {
             <Container>
               <Row>
                 <Col className="offset-md-3" lg="5" md="6">
-                  <div
-                    className="square square-7"
-                    id="square7"
-                    style={{ transform: squares7and8 }}
-                  />
-                  <div
-                    className="square square-8"
-                    id="square8"
-                    style={{ transform: squares7and8 }}
-                  />
                   <Card className="card-register" style={{overflow: "inherit"}}>
                     <CardHeader>
                       <br></br>
-                      <CardTitle tag="h4" style={{fontSize: "3em"}} > Modifica Prenotazione</CardTitle>
+                      <CardTitle tag="h4" style={{fontSize: "3em"}} > Nuova Prenotazione</CardTitle>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form" method="post" action="new_.js" id="form_prenotazione">
+                      <Form className="form" name="form_modifica_prenotazione" id="form_modifica_prenotazione">
                         <InputGroup
                           className={classnames({
                             "input-group-focus": partenzaF,
@@ -143,7 +201,8 @@ export default function ModificaPrenotazione() {
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          id="partenza"
+                          id="Partenza"
+                          name="Partenza"
                           placeholder="Partenza*"
                           type="text"
                           onFocus={(e) => setPartenzaF(true)}
@@ -162,8 +221,9 @@ export default function ModificaPrenotazione() {
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          id="destinazione"
-                          placeholder="Destinazione*"
+                          id="Arrivo"
+                          name="Arrivo"
+                          placeholder="Arrivo*"
                           type="text"
                           onFocus={(e) => setDestinazioneF(true)}
                           onBlur={(e) => setDestinazioneF(false)}
@@ -174,9 +234,22 @@ export default function ModificaPrenotazione() {
                             <FormGroup>
                                 <ReactDatetime
                                 inputProps={{
-                                    id:"dataora",
+                                    id:"DataOra",
+                                    name:"DataOra",
                                     className: "form-control",
-                                    placeholder: "Data e Ora",
+                                    placeholder: "Data e Ora Inizio Noleggio",
+                                }}
+                                />
+                            </FormGroup>
+                            </div>
+                            <div className="datepicker-container" style={{color: "#171941"}}>
+                            <FormGroup>
+                                <ReactDatetime
+                                inputProps={{
+                                    id:"DataOraArrivo",
+                                    name:"DataOraArrivo",
+                                    className: "form-control",
+                                    placeholder: "Data e Ora Fine Noleggio",
                                 }}
                                 />
                             </FormGroup>
@@ -188,7 +261,7 @@ export default function ModificaPrenotazione() {
                                 size="lg"
                                 onClick={() => check_disponibilita()}
                             >
-                                Controlla la nuova disponibilità <i className="tim-icons icon-double-right"/>
+                                Procedi <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
                         <SelectVeicoli/>
@@ -199,14 +272,14 @@ export default function ModificaPrenotazione() {
                                 className="btn-round" 
                                 color="primary" 
                                 size="lg"
-                                onClick={() => setFormModal(true)}
+                                onClick={() => {setFormModal(true)}}
                             >
                                 Concludi e Paga <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
                       </Form>
-                      {/* Start Form Modal */}
-                      <Modal
+                          {/* Start Form Modal */}
+                          <Modal
                             modalClassName="modal-black"
                             isOpen={formModal}
                             toggle={() => setFormModal(false)}
@@ -284,7 +357,7 @@ export default function ModificaPrenotazione() {
                                   </InputGroup>
                                 </FormGroup>
                                 <div className="text-center">
-                                  <Button className="my-4" color="primary" type="button">
+                                  <Button className="my-4" color="primary" type="button" onClick={aggiungi_prenotazione}>
                                     Paga
                                   </Button>
                                 </div>
@@ -297,36 +370,6 @@ export default function ModificaPrenotazione() {
                 </Col>
               </Row>
               <div className="register-bg" />
-              <div
-                className="square square-1"
-                id="square1"
-                style={{ transform: squares1to6 }}
-              />
-              <div
-                className="square square-2"
-                id="square2"
-                style={{ transform: squares1to6 }}
-              />
-              <div
-                className="square square-3"
-                id="square3"
-                style={{ transform: squares1to6 }}
-              />
-              <div
-                className="square square-4"
-                id="square4"
-                style={{ transform: squares1to6 }}
-              />
-              <div
-                className="square square-5"
-                id="square5"
-                style={{ transform: squares1to6 }}
-              />
-              <div
-                className="square square-6"
-                id="square6"
-                style={{ transform: squares1to6 }}
-              />
             </Container>
           </div>
         </div>
