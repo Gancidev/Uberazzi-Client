@@ -169,7 +169,6 @@ function aggiorna_prenotazione(id, importo, veicolo){
         let utente = JSON.parse(window.localStorage.getItem("Utente"));
         utente = JSON.parse(utente);
         window.location.replace("/Pagamento?numero="+id+"&nome="+utente.Nome+"%20"+utente.Cognome+"&email="+utente.email+"&prezzo="+importo+"&veicolo="+veicolo);
-        //window.location.replace("/fattura?");
       }
       else if(xmlHttp.status === 403){
         alert("Non hai i permessi per accedere qui");
