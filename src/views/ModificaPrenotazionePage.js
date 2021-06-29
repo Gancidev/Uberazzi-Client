@@ -45,6 +45,13 @@ function verifica_login(){
 
 function check_disponibilita(){}
 
+function fattura(id_prenotazione, importo, veicolo){
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  window.location.replace("/Pagamento?numero="+id_prenotazione+"&nome="+utente.Nome+"%20"+utente.Cognome+"&email="+utente.email+"&prezzo="+importo+"&veicolo="+veicolo);
+}
+
 function aggiungi_prenotazione(){
   var ymd, hm, tipo, valore;
   var dataorapartenza = document.getElementById("DataOra").value;
@@ -77,6 +84,13 @@ function aggiungi_prenotazione(){
   else{
     valore=0;
   }
+  var mancia = document.getElementById("valore_mancia").value;
+  var importo;
+  if(mancia === "")
+    importo = parseInt(10);
+  else
+    importo = parseInt(10) + parseInt(mancia);
+    var id_veicolo = document.getElementById("IDVeicolo").value;
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
@@ -94,7 +108,9 @@ function aggiungi_prenotazione(){
   }).then(
       response => response.text()
   ).then(
-    window.location.reload()
+    alert("Modifiche Confermate.")
+  ).then(
+    fattura(id_prenotazione, importo, id_veicolo)
   );
 }
 
