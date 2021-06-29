@@ -28,7 +28,7 @@ import {
   
   function modifica_prenotazione(redirect){
     var ids = redirect.id.split("-");
-    window.location.replace("/modifica_prenotazione?id="+ids[1]);
+    window.location.replace("/modifica_prenotazione?IDPrenotazione="+ids[1]);
 
   }
 
