@@ -120,14 +120,12 @@ function verifica_dati_form(){
     alert("Le Password non corrispondono.");
     return false;
   }
-
-  if(!verifica_password(password)){
-    alert("La Password non rispetta le specifiche richieste.");
-    return false;
-  }
-
   if(!verifica_email(email)){
     alert("La email inserita non ha un formato valido.");
+    return false;
+  }
+  if(!verifica_password(password)){
+    alert("La Password non rispetta le specifiche richieste.");
     return false;
   }
   verifica_esistenza_email();
@@ -376,10 +374,10 @@ export default function RegisterPage() {
                                     value={password}
                                     valueAgain={passwordAgain}
                                     messages={{
-                                      length: "La password deve essere di almeno 8 caratteri.",
-                                      specialChar: "La password deve contenere caratteri speciali.",
-                                      number: "La password deve avere almeno un numero.",
-                                      capital: "La password deve avere almeno una lettera maiuscola.",
+                                      length: "Almeno 8 caratteri.",
+                                      specialChar: "Almeno un carattere speciale (! @ # $ % ^ & *).",
+                                      number: "Almeno un numero.",
+                                      capital: "Almeno una lettera maiuscola.",
                                       match: "Le password devono coincidere.",
                                     }}
                                   />
