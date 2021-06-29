@@ -59,7 +59,7 @@ function verifica_esistenza_email(){
     return true;
   }
   var email = document.getElementById("Email");
-  var url = "http://localhost:3001/api/esistenza_email?Email="+email.value;
+  var url = "http://91.199.223.61:3001/api/esistenza_email?Email="+email.value;
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onload = function() { 
     console.log(xmlHttp.response);
@@ -74,7 +74,7 @@ function verifica_esistenza_email(){
       else{
         //Utente non registrato mostra errore sulla mail
         //alert("E-mail già in uso, si prega di riprovare.");
-        var url = "http://localhost:3001/api/registrazione_utente";
+        var url = "http://91.199.223.61:3001/api/registrazione_utente";
         fetch(url, {
             method : "POST",
             body: new FormData(document.getElementById("form_registrazione")),

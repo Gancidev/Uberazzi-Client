@@ -37,7 +37,7 @@ import {
           window.location.replace("/home");
         }
     }
-    xmlHttp.open("GET", "http://localhost:3001/api/aggiorna_stato_prenotazione?IDPrenotazione="+id+"&Stato=Conclusa", true); // true for asynchronous
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/aggiorna_stato_prenotazione?IDPrenotazione="+id+"&Stato=Conclusa", true); // true for asynchronous
     //ACCESSO AI DATI UTENTE POST LOGIN
     let utente = JSON.parse(window.localStorage.getItem("Utente"));
     utente = JSON.parse(utente);
@@ -61,7 +61,7 @@ import {
           window.location.replace("/home");
         }
     }
-    xmlHttp.open("GET", "http://localhost:3001/api/ritira_veicolo_AddettoParcheggio?IDVeicolo="+ids[2], true); // true for asynchronous
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/ritira_veicolo_AddettoParcheggio?IDVeicolo="+ids[2], true); // true for asynchronous
     //ACCESSO AI DATI UTENTE POST LOGIN
     let utente = JSON.parse(window.localStorage.getItem("Utente"));
     utente = JSON.parse(utente);
@@ -132,7 +132,7 @@ function richiedi_veicoli(){
         window.location.replace("/home");
       }
   }
-  xmlHttp.open("GET", "http://localhost:3001/api/veicoli_ritirabili", true); // true for asynchronous
+  xmlHttp.open("GET", "http://91.199.223.61:3001/api/veicoli_ritirabili", true); // true for asynchronous
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);

@@ -45,7 +45,7 @@ import {
             //window.location.replace("/permessi_utenti");
         }
     }
-    xmlHttp.open("GET", "http://localhost:3001/api/aggiorna_permesso?Permesso="+selezione.value+"&IDUtente="+ids[1], true); // true for asynchronous 
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/aggiorna_permesso?Permesso="+selezione.value+"&IDUtente="+ids[1], true); // true for asynchronous 
     //ACCESSO AI DATI UTENTE POST LOGIN
     let utente = JSON.parse(window.localStorage.getItem("Utente"));
     utente = JSON.parse(utente);
@@ -154,7 +154,7 @@ function richiedi_utenti(){
         window.location.replace("/home");
     }
   }
-  xmlHttp.open("GET", "http://localhost:3001/api/utenti", true); // true for asynchronous 
+  xmlHttp.open("GET", "http://91.199.223.61:3001/api/utenti", true); // true for asynchronous 
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);

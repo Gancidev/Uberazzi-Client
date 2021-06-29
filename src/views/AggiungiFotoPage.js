@@ -49,7 +49,7 @@ function aggiungi_foto(){
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
-  var url = "http://localhost:3001/api/upload?IDVeicolo="+utente.id;
+  var url = "http://91.199.223.61:3001/api/upload?IDVeicolo="+utente.id;
   fetch(url, {
       headers: {
         'idutente': utente.id,
