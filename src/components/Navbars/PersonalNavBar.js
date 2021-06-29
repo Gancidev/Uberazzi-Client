@@ -176,10 +176,13 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-key-25" />
                   Gestione Prenotazioni
                 </DropdownItem>}
-
                 {window.localStorage.getItem("Utente") && utente.IDPermesso===4 && <DropdownItem tag={Link} to="/nuovo_veicolo">
                   <i className="tim-icons icon-bus-front-12" />
                   Nuovo Veicolo
+                </DropdownItem>}
+                {window.localStorage.getItem("Utente") && utente.IDPermesso===4 && <DropdownItem tag={Link} to="/aggiungi_foto">
+                  <i className="tim-icons icon-bus-front-12" />
+                  Aggiungi Foto
                 </DropdownItem>}
 
                 {window.localStorage.getItem("Utente") && <DropdownItem tag={Link} onClick={() => { setMiniModal(true)}}>
