@@ -59,7 +59,7 @@ function check_disponibilita_old(){
 }
 
 
-
+/*
 var flag1;
 function check_disponibilita(){
   if(flag1===true){
@@ -109,6 +109,7 @@ function check_disponibilita(){
   xmlHttp.send(null);
   flag1=true;
 }
+*/
 
 function aggiungi_prenotazione(){
   var ymd, hm, tipo, valore;
@@ -157,6 +158,7 @@ function aggiungi_prenotazione(){
       response => response.text()
   );
 }
+
 
 function aggiorna_prenotazione(id, importo, veicolo){
   var xmlHttp = new XMLHttpRequest();
