@@ -158,12 +158,16 @@ function aggiungi_prenotazione(){
   );
 }
 
-function aggiorna_prenotazione(id){
+function aggiorna_prenotazione(id, importo, veicolo){
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
         alert("Prenotazione Completata");
-        window.location.replace("/prenotazioni");
+        //ACCESSO AI DATI UTENTE POST LOGIN
+        let utente = JSON.parse(window.localStorage.getItem("Utente"));
+        utente = JSON.parse(utente);
+        window.location.replace("/Pagamento?numero="+id+"&nome="+utente.Nome+"%20"+utente.Cognome+"&email="+utente.email+"&prezzo="+importo+"&veicolo="+veicolo);
+        //window.location.replace("/fattura?");
       }
       else if(xmlHttp.status === 403){
         alert("Non hai i permessi per accedere qui");
@@ -206,6 +210,7 @@ function richiedi_ultime_prenotazioni(){
 
 function salvaPagaPrenota(prenotazioni){
   prenotazioni = JSON.parse(prenotazioni);
+  //console.log(prenotazioni);
     var mancia = document.getElementById("valore_mancia").value;
     var importo;
     if(mancia === "")
@@ -216,7 +221,7 @@ function salvaPagaPrenota(prenotazioni){
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
             alert("Pagamento Confermato, Prenotazione Effettuata");
-            aggiorna_prenotazione(prenotazioni[0].IDPrenotazione);
+            aggiorna_prenotazione(prenotazioni[0].IDPrenotazione, importo, prenotazioni[0].Veicolo.TipoVeicolo);
         }
         else if(xmlHttp.status === 500){
             alert("ERRORE");
