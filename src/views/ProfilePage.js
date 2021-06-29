@@ -78,6 +78,55 @@ function verifica_dati_form(){
   flag1=true;
 }
 
+function stampa_notifiche(messaggio){
+  messaggio = JSON.parse(messaggio);
+  //console.log(messaggio);
+  var tbody = document.getElementById("lista_notifiche");
+  var tr, td1, td2;
+  if(messaggio.length===0){
+    return false;
+  }
+  for(var i=1;i<messaggio.length+1;i++){
+    if(messaggio[i-1].NotificheRitardos.length===0){
+      continue;
+    }
+      tr = document.createElement("tr");
+        td1 = document.createElement("td");
+        td1.innerHTML=messaggio[i-1].NotificheRitardos[0].IDNotifica;
+        td2 = document.createElement("td");
+        td2.innerHTML=messaggio[i-1].NotificheRitardos[0].Note+" minuti di ritardo previsti per la prenotazione "+messaggio[i-1].IDPrenotazione;
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+    tbody.appendChild(tr);
+  }
+}
+
+
+var flag3;
+function ultime_notifiche(){
+  if(flag3===true){
+    return true;
+  }
+  var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onload = function() { 
+        if (xmlHttp.status === 200){
+          stampa_notifiche(xmlHttp.responseText);
+        }
+        else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui");
+            window.location.replace("/home");
+        }
+    }
+    xmlHttp.open("GET", "http://localhost:3001/api/ultime_notifiche", true); // true for asynchronous
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
+    flag3=true;
+}
+
 function stampa_ultime_prenotazioni(messaggio){
   messaggio = JSON.parse(messaggio);
   //console.log(messaggio);
@@ -148,6 +197,7 @@ function richiedi_ultime_prenotazioni(){
 
 export default function ProfilePage() {
   richiedi_ultime_prenotazioni();
+  ultime_notifiche();
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
@@ -235,6 +285,20 @@ export default function ProfilePage() {
                           href="#pablo"
                         >
                           Mod. Info
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={classnames({
+                            active: tabs === 3,
+                          })}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setTabs(3);
+                          }}
+                          href="#pablo"
+                        >
+                          Notifiche
                         </NavLink>
                       </NavItem>
                     </Nav>
@@ -347,6 +411,24 @@ export default function ProfilePage() {
                           <i className="tim-icons icon-send" />
                         </Button>
                         </Form>
+                      </TabPane>
+                      <TabPane tabId="tab3">
+                        <Table className="tablesorter" responsive>
+                          <thead className="text-primary">
+                            <tr>
+                              <th className="header">ID</th>
+                              <th className="header">Note</th>
+                            </tr>
+                          </thead>
+                          <tbody id="lista_notifiche">
+                          {window.localStorage.getItem("Utente") && utente.IDPermesso===4 && 
+                              <tr>
+                                <th className="header"></th>
+                                <th className="header">Utente Non Abilitato Per Le Prenotazioni</th>
+                              </tr>
+                          }
+                          </tbody>
+                        </Table>
                       </TabPane>
                     </TabContent>
                   </CardBody>
