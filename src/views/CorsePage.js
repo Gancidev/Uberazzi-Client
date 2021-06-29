@@ -41,7 +41,7 @@ function conferma_corsa(id){
             window.location.replace("/home");
         }
     }
-    xmlHttp.open("GET", "http://localhost:3001/api/conferma_corsa?IDPrenotazione="+ids[1], true); // true for asynchronous 
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/conferma_corsa?IDPrenotazione="+ids[1], true); // true for asynchronous 
     //ACCESSO AI DATI UTENTE POST LOGIN
     let utente = JSON.parse(window.localStorage.getItem("Utente"));
     utente = JSON.parse(utente);
@@ -133,7 +133,7 @@ function richiedi_corse(){
             window.location.replace("/home");
         }
     }
-    xmlHttp.open("GET", "http://localhost:3001/api/corse", true); // true for asynchronous 
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/corse", true); // true for asynchronous 
     //ACCESSO AI DATI UTENTE POST LOGIN
     let utente = JSON.parse(window.localStorage.getItem("Utente"));
     utente = JSON.parse(utente);
