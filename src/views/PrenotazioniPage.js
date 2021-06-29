@@ -107,7 +107,7 @@ function stampa_prenotazioni(messaggio){
                       /*START tr tabella*/
                       tr2 = document.createElement("tr");
                         td1 = document.createElement("td");
-                        td1.innerHTML="PRIMO CAMPO";
+                        td1.innerHTML=messaggio[j-1].Veicolo.TipoVeicolo.toUpperCase();
                         td2 = document.createElement("td");
                         date = new Date(messaggio[j-1].DataOra);
                         ye = new Intl.DateTimeFormat('it', { year: 'numeric' }).format(date);
