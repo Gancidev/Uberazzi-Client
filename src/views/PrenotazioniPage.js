@@ -25,6 +25,34 @@ function verifica_login(){
   }
 }
 
+function imposta_immagine(IDPrenotazione, IDVeicolo){
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() { 
+      if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+        var messaggio = JSON.parse(xmlHttp.responseText);
+        //console.log(messaggio);
+        if(messaggio.length===0){
+          return false;
+        }
+        else{
+          var img = document.getElementById("prenotazione-"+IDPrenotazione+"-veicolo-"+IDVeicolo);
+          img.src=messaggio[0].Path;
+        }
+      }
+      else if(xmlHttp.status === 500){
+          alert("Non sei loggato.");
+          window.location.replace("/home");
+      }
+  }
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  xmlHttp.open("GET", "http://localhost:3001/api/immagine?IDVeicolo="+IDVeicolo, true); // true for asynchronous 
+  xmlHttp.setRequestHeader("idutente", utente.id);
+  xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+  xmlHttp.send(null);
+}
+
 var flag;
 function stampa_prenotazioni(messaggio){
   if(flag===true){
@@ -57,9 +85,10 @@ function stampa_prenotazioni(messaggio){
           div3=document.createElement("div");
           div3.className="card-header";
           img = document.createElement("img");
-          img.alt="...";
+          img.id="prenotazione-"+messaggio[j-1].IDPrenotazione+"-veicolo-"+messaggio[j-1].Veicolo.IDVeicolo;
+          img.alt="Veicolo Assegnato Senza Immagine";
           img.className="img-center img-fluid rounded shadow";
-          img.src="/static/media/mike.fe979cd1.jpg";
+          //img.src="/static/media/mike.fe979cd1.jpg";
           h4 = document.createElement("h4");
           h4.className="title";
           date = new Date(messaggio[j-1].createdAt);
@@ -107,7 +136,7 @@ function stampa_prenotazioni(messaggio){
                       /*START tr tabella*/
                       tr2 = document.createElement("tr");
                         td1 = document.createElement("td");
-                        td1.innerHTML="PRIMO CAMPO";
+                        td1.innerHTML=messaggio[j-1].Veicolo.TipoVeicolo.toUpperCase();
                         td2 = document.createElement("td");
                         date = new Date(messaggio[j-1].DataOra);
                         ye = new Intl.DateTimeFormat('it', { year: 'numeric' }).format(date);
@@ -148,6 +177,7 @@ function stampa_prenotazioni(messaggio){
         div2.appendChild(div4);
       div1.appendChild(div2);
       row.appendChild(div1);
+      imposta_immagine(messaggio[j-1].IDPrenotazione, messaggio[j-1].Veicolo.IDVeicolo);
       if(j===lunghezza)
         break;
     }
