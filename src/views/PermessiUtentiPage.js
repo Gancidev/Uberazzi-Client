@@ -60,7 +60,7 @@ import {
       return true;
     }
     messaggio = JSON.parse(messaggio);
-    //console.log(messaggio);
+    console.log(messaggio);
     var tbody = document.getElementById("lista_utenti");
     var tr, th, td1, td2, td3, td4, div, select, option1, option2, option3, option4, option5, conferma;
     if(messaggio["utenti"].length===0){
@@ -112,12 +112,20 @@ import {
                         option1.innerHTML="----";
                         option2.value="1";
                         option2.innerHTML="Cliente";
+                        if(messaggio["utenti"][i-1].IDPermesso===1)
+                          option2.selected=true;
                         option3.value="2";
                         option3.innerHTML="Addetto Al Parcheggio";
+                        if(messaggio["utenti"][i-1].IDPermesso===2)
+                          option3.selected=true;
                         option4.value="3";
                         option4.innerHTML="Autista";
+                        if(messaggio["utenti"][i-1].IDPermesso===3)
+                          option4.selected=true;
                         option5.value="4";
                         option5.innerHTML="Amministratore";
+                        if(messaggio["utenti"][i-1].IDPermesso===4)
+                          option5.selected=true;
                     select.appendChild(option1);
                     select.appendChild(option2);
                     select.appendChild(option3);
