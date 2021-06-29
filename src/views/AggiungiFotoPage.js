@@ -60,6 +60,8 @@ function aggiungi_foto(){
   }).then(
       response => response.text()
   ).then(
+    alert("Foto Aggiunta.")
+  ).then(
     window.location.reload()
   );
   flag1=true;
