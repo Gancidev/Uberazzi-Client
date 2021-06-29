@@ -100,7 +100,7 @@ export default function LandingPage() {
                 <Button
                   className="btn-simple"
                   color="primary"
-                  tag={Link} to="/login"
+                  href="/login"
                 >
                   Accedi <i className="tim-icons icon-double-right"/>
                 </Button>
@@ -108,7 +108,7 @@ export default function LandingPage() {
                 <Button
                   className="btn-simple bottone_premuto"
                   color="danger"
-                  tag={Link} to="/registrazione"
+                  href="/registrazione"
                 >
                   Registrati <i className="tim-icons icon-lock-circle" />
                 </Button>
