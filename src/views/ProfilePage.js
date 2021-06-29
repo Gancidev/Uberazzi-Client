@@ -78,7 +78,7 @@ function verifica_dati_form(){
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
-  var url = "http://localhost:3001/api/aggiorna_utente?IDUtente="+utente.id;
+  var url = "http://91.199.223.61:3001/api/aggiorna_utente?IDUtente="+utente.id;
   fetch(url, {
       headers: {
         'idutente': utente.id,
@@ -135,7 +135,7 @@ function ultime_notifiche(){
             window.location.replace("/home");
         }
     }
-    xmlHttp.open("GET", "http://localhost:3001/api/ultime_notifiche", true); // true for asynchronous
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/ultime_notifiche", true); // true for asynchronous
     //ACCESSO AI DATI UTENTE POST LOGIN
     let utente = JSON.parse(window.localStorage.getItem("Utente"));
     utente = JSON.parse(utente);
@@ -206,7 +206,7 @@ function richiedi_ultime_prenotazioni(){
             window.location.replace("/home");
         }
     }
-    xmlHttp.open("GET", "http://localhost:3001/api/ultime_prenotazioni?IDUtente="+utente.id, true); // true for asynchronous 
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/ultime_prenotazioni?IDUtente="+utente.id, true); // true for asynchronous 
     xmlHttp.setRequestHeader("idutente", utente.id);
     xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
     xmlHttp.send(null);

@@ -47,7 +47,7 @@ function imposta_immagine(IDPrenotazione, IDVeicolo){
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
-  xmlHttp.open("GET", "http://localhost:3001/api/immagine?IDVeicolo="+IDVeicolo, true); // true for asynchronous 
+  xmlHttp.open("GET", "http://91.199.223.61:3001/api/immagine?IDVeicolo="+IDVeicolo, true); // true for asynchronous 
   xmlHttp.setRequestHeader("idutente", utente.id);
   xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
   xmlHttp.send(null);
@@ -203,7 +203,7 @@ function richiedi_prenotazioni(){
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
-  xmlHttp.open("GET", "http://localhost:3001/api/prenotazioni?IDUtente="+utente.id, true); // true for asynchronous 
+  xmlHttp.open("GET", "http://91.199.223.61:3001/api/prenotazioni?IDUtente="+utente.id, true); // true for asynchronous 
   xmlHttp.setRequestHeader("idutente", utente.id);
   xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
   xmlHttp.send(null);
