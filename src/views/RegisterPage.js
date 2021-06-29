@@ -43,6 +43,15 @@ function verifica_password(password) {
   return false;
 }
 
+function verifica_email(email) 
+{
+  var emailre = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+ if (email.match(emailre)){
+    return true;
+  }
+  return false;
+}
+
 var flag1, flag2;
 function verifica_esistenza_email(){
   if(flag2===true){
@@ -112,6 +121,10 @@ function verifica_dati_form(){
   }
   if(verifica_password(password)){
     alert("La Password non rispetta le specifiche richieste.");
+    return false;
+  }
+  if(verifica_email(email)){
+    alert("La email inserita non ha un formato valido.");
     return false;
   }
   verifica_esistenza_email();
