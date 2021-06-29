@@ -7,7 +7,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 import React from "react";
-import { Link } from "react-router-dom";
 // react plugin used to create charts
 // reactstrap components
 import {
