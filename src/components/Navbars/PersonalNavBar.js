@@ -183,8 +183,7 @@ export default function IndexNavbar() {
                   <i className="tim-icons icon-camera-18" />
                   Aggiungi Foto
                 </DropdownItem>}
-
-                {window.localStorage.getItem("Utente") && <DropdownItem onClick={() => { setMiniModal(true)}}>
+                {window.localStorage.getItem("Utente") && <DropdownItem href="#" onClick={() => { setMiniModal(true)}}>
                   <i className="tim-icons icon-key-25" />
                   Logout
                 </DropdownItem>}                
