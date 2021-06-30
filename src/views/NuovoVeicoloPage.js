@@ -56,10 +56,11 @@ function controlla_risultato(html){
 function aggiungi_veicolo(){
     var tipoveicolo = document.getElementById("TipoVeicolo");
     var targa = document.getElementById("Targa");
+    var nome = document.getElementById("Nome");
     var prezzo = document.getElementById("Prezzo");
     var parcheggio = document.getElementById("Parcheggio");
     var numeroposti = document.getElementById("NumeroPosti");
-    if(tipoveicolo.value!=="NONE" && targa.value!=="" && numeroposti.value!=="" && parcheggio.value!=="NONE" && prezzo.value!==""){
+    if(tipoveicolo.value!=="NONE" && targa.value!=="" && numeroposti.value!=="" && parcheggio.value!=="NONE" && prezzo.value!==""&& nome.value!==""){
       //ACCESSO AI DATI UTENTE POST LOGIN
       let utente = JSON.parse(window.localStorage.getItem("Utente"));
       utente = JSON.parse(utente);
@@ -91,6 +92,7 @@ export default function NuovoVeicolo() {
   const [numeroposti, setNumeroPostiF] = React.useState(false);
   const [targa_identificativo, setTargaIdentificativoF] = React.useState(false);
   const [prezzo, setPrezzoF] = React.useState(false);
+  const [nome, setNomeF] = React.useState(false);
   
   React.useEffect(() => {
     document.body.classList.toggle("register-page");
@@ -169,6 +171,26 @@ export default function NuovoVeicolo() {
                         </InputGroup>
                         <InputGroup
                           className={classnames({
+                            "input-group-focus": nome,
+                          })}
+                        >
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="tim-icons icon-square-pin" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input
+                          id="Nome"
+                          name="Nome"
+                          placeholder="Nome*"
+                          type="text"
+                          onFocus={(e) => setNomeF(true)}
+                          onBlur={(e) => setNomeF(false)}
+                          required
+                        />
+                        </InputGroup>
+                        <InputGroup
+                          className={classnames({
                             "input-group-focus": numeroposti,
                           })}
                         >
@@ -183,6 +205,7 @@ export default function NuovoVeicolo() {
                           placeholder="Numero Posti*"
                           type="number"
                           min="1"
+                          max="7"
                           onFocus={(e) => setNumeroPostiF(true)}
                           onBlur={(e) => setNumeroPostiF(false)}
                           required
