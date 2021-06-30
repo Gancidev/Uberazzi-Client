@@ -14,7 +14,7 @@ import "assets/css/nucleo-icons.css";
 import "assets/scss/blk-design-system-react.scss?v=1.2.0";
 import "assets/demo/demo.css";
 
-import LandingPage from "views/LandingPage.js";
+import Home from "views/Home.js";
 import BoundaryRegistrazione from "views/BoundaryRegistrazione.js";
 import BoundaryLogin from "views/BoundaryLogin.js";
 import ProfilePage from "views/ProfilePage.js";
@@ -42,7 +42,7 @@ ReactDOM.render(
     <Switch>
       <Route
         path="/home"
-        render={(props) => <LandingPage {...props} />}
+        render={(props) => <Home {...props} />}
       />
       <Route
         path="/registrazione"
