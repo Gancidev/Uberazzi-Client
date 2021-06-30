@@ -43,6 +43,11 @@ function aggiungi_foto(){
       return true;
   }
   var idveicolo = document.getElementById("IDVeicolo");
+  var file = document.getElementById("immagine");
+  if(idveicolo.value==="NONE" || file.value===""){
+    alert("Devi prima selezionare un veicolo o inserire una foto");
+    return false;
+  }
   //console.log(file);
   //console.log(idveicolo);
   //ACCESSO AI DATI UTENTE POST LOGIN
@@ -93,7 +98,7 @@ export default function AggiungiFoto() {
                       <CardTitle tag="h4" style={{fontSize: "3em"}}>Aggiungi Foto</CardTitle>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form" name="form_immagine" id="form_immagine" enctype="multipart/form-data">
+                      <Form className="form" name="form_immagine" id="form_immagine" encType="multipart/form-data">
                         <SelectVeicoli/>
                         <InputGroup
                           className={classnames({
@@ -116,7 +121,7 @@ export default function AggiungiFoto() {
                           />
                         </InputGroup>
                         <FormGroup check>
-                            <Button className="btn-round" color="primary" size="lg" type="button" onClick={aggiungi_foto}>
+                            <Button className="btn-round" color="primary" size="lg" type="button" id="invia" name="invia" onClick={aggiungi_foto}>
                                 Invia <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
