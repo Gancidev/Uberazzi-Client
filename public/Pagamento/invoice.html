@@ -179,11 +179,11 @@
 					<td>Totale: <a id="Prezzo3"></td>
 				</tr>
 			</table>
-			<center>
-				<a href="/prenotazioni"><button>Torna Indietro</button></a>
-				<button onclick="generatePDF()">Scarica</button>
-			</center>
 		</div>
+		<center>
+			<a href="/prenotazioni"><button>Torna Indietro</button></a>
+			<button onclick="generatePDF()">Scarica</button>
+		</center>
         <script>
             const urlSearchParams = new URLSearchParams(window.location.search);
             const params = Object.fromEntries(urlSearchParams.entries());
