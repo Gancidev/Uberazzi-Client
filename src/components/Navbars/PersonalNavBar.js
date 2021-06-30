@@ -180,7 +180,7 @@ export default function IndexNavbar() {
                   Nuovo Veicolo
                 </DropdownItem>}
                 {window.localStorage.getItem("Utente") && utente.IDPermesso===4 && <DropdownItem href="/aggiungi_foto">
-                  <i className="tim-icons icon-bus-front-12" />
+                  <i className="tim-icons icon-camera-18" />
                   Aggiungi Foto
                 </DropdownItem>}
 
