@@ -37,6 +37,7 @@ import SelectVeicoli from "components/NuovaPrenotazione/SelectVeicolo.js";
 import ConfermaAutista from "components/NuovaPrenotazione/ConfermaAutista.js";
 import ManciaAutista from "components/NuovaPrenotazione/ManciaAutista.js";
 
+// eslint-disable-next-line no-extend-native
 Array.prototype.contains = function(v) {
   for (var i = 0; i < this.length; i++) {
     if (this[i] === v) return true;

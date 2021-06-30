@@ -46,7 +46,7 @@ import {
     xmlHttp.send(null);
 }
 
-  function ritconfermaRitiroira(id){
+  function confermaRitiro(id){
     var ids = id.id.split("-");
     console.log(ids);
     var xmlHttp = new XMLHttpRequest();
