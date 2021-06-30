@@ -46,7 +46,7 @@ function controlla_risultato(html){
 }
 
 var flag1;
-function verifica_login(){
+function confermaLogin(){
   if(flag1===true){
     flag1=false;
     return true;
@@ -145,7 +145,7 @@ export default function RegisterPage() {
                             Password Smarrita?
                           </a>
                           <br></br>
-                            <Button className="btn-round" color="primary" size="lg" type="button" onClick={verifica_login}>
+                            <Button className="btn-round" color="primary" size="lg" type="button" onClick={confermaLogin}>
                                 Accedi <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
