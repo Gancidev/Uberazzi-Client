@@ -44,12 +44,48 @@ function verifica_login(){
 }
 
 function check_disponibilita(){}
-
+function redirect_fattura(id_prenotazione, importo, veicolo){
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  window.location.replace("/Pagamento?numero="+id_prenotazione+"&nome="+utente.Nome+"%20"+utente.Cognome+"&email="+utente.email+"&prezzo="+importo+"&veicolo="+veicolo[0].TipoVeicolo);
+}
 function fattura(id_prenotazione, importo, veicolo){
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
-  window.location.replace("/Pagamento?numero="+id_prenotazione+"&nome="+utente.Nome+"%20"+utente.Cognome+"&email="+utente.email+"&prezzo="+importo+"&veicolo="+veicolo);
+  var url = "http://91.199.223.61:3001/api/info_veicolo?IDVeicolo="+veicolo;
+  fetch(url, {
+      headers: {
+        'idutente': utente.id,
+        'x-access-token': utente.accessToken
+      },
+      method : "GET",
+  }).then(
+      response => response.text()
+  ).then(
+    html => redirect_fattura(id_prenotazione, importo, JSON.parse(html))
+    );
+}
+
+function aggiorna_pagamento(id_prenotazione, importo, id_veicolo){
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
+  var url = "http://91.199.223.61:3001/api/aggiorna_pagamento?IDPrenotazione="+id_prenotazione+"&Importo="+importo;
+  fetch(url, {
+      headers: {
+        'idutente': utente.id,
+        'x-access-token': utente.accessToken
+      },
+      method : "GET",
+  }).then(
+      response => response.text()
+  ).then(
+    alert("Pagamento Aggiornato.")
+  ).then(
+    fattura(id_prenotazione, importo, id_veicolo)
+  );
 }
 
 function aggiungi_prenotazione(){
@@ -78,7 +114,7 @@ function aggiungi_prenotazione(){
   else{
     dataoraarrivo=dataoraarrivo+"%20"+(parseInt(hm[0])+14)+":"+hm[1];
   }
-  if(document.getElementById("Autista").checked===true && document.getElementById("Autista").style.display==="block"){
+  if(document.getElementById("Autista").checked===true && document.getElementById("Autista_box").style.display==="block"){
     valore=1;
   }
   else{
@@ -110,13 +146,13 @@ function aggiungi_prenotazione(){
   ).then(
     alert("Modifiche Confermate.")
   ).then(
-    fattura(id_prenotazione, importo, id_veicolo)
+    aggiorna_pagamento(id_prenotazione, importo, id_veicolo)
   );
 }
 
 function stampa_dettaglio(messaggio){
   messaggio = JSON.parse(messaggio);
-  console.log(messaggio);
+  //console.log(messaggio);
   var partenza = document.getElementById("Partenza");
   partenza.value=messaggio.Partenza;
   var arrivo = document.getElementById("Arrivo");
@@ -124,8 +160,13 @@ function stampa_dettaglio(messaggio){
   var autista = document.getElementById("Autista");
   if(messaggio.Autista===true)
     autista.checked=true;
-  else
+  else{
+    var mancia = document.getElementById("Mancia");
+    var box_autista = document.getElementById("Autista_box");
     autista.checked=false;
+    box_autista.style.display="none";
+    mancia.style.display="none";
+  }
   var veicolo = document.getElementById("IDVeicolo");
   veicolo.value=messaggio.IDVeicolo;
 }
