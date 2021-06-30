@@ -15,22 +15,22 @@ import "assets/scss/blk-design-system-react.scss?v=1.2.0";
 import "assets/demo/demo.css";
 
 import LandingPage from "views/LandingPage.js";
-import RegisterPage from "views/RegisterPage.js";
-import LoginPage from "views/LoginPage.js";
+import BoundaryRegistrazione from "views/BoundaryRegistrazione.js";
+import BoundaryLogin from "views/BoundaryLogin.js";
 import ProfilePage from "views/ProfilePage.js";
 import PrenotazioniPage from "views/PrenotazioniPage.js";
-import NuovaPrenotazionePage from "views/NuovaPrenotazionePage.js";
-import ModificaPrenotazionePage from "views/ModificaPrenotazionePage.js";
-import VeicoliPage from "views/VeicoliPage.js";
-import PermessiUtentiPage from "views/PermessiUtentiPage.js";
-import CorsePage from "views/CorsePage.js";
-import RecuperoPassword from "views/RecuperoPasswordPage.js";
-import NotificaRitardo from "views/NotificaRitardoPage.js";
+import BoundaryPrenota from "views/BoundaryPrenota.js";
+import BoundaryModificaPrenota from "views/BoundaryModificaPrenota.js";
+import BoundaryListaVeicoli from "views/BoundaryListaVeicoli.js";
+import BoundaryAdmin from "views/BoundaryAdmin.js";
+import BoundaryAccettaCorsa from "views/BoundaryAccettaCorsa.js";
+import BoundaryRecPassword from "views/BoundaryRecPassword.js";
+import BoundaryNotRitardo from "views/BoundaryNotRitardo.js";
 import ContattaciPage from "views/ContattaciPage.js";
-import ConsegnaVeicoliPage from "views/ConsegnaVeicoliPage.js";
-import RitiroVeicoloPage from "views/RitiroVeicoloPage.js";
-import ConsegnaVeicoliClientePage from "views/ConsegnaVeicoliClientePage.js";
-import RitiroVeicoloClientePage from "views/RitiroVeicoloClientePage.js";
+import BoundaryConAddettoVeicolo from "views/BoundaryConAddettoVeicolo.js";
+import BoundaryRitAddettoVeicolo from "views/BoundaryRitAddettoVeicolo.js";
+import BoundaryConVeicolo from "views/BoundaryConVeicolo.js";
+import BoundaryRitVeicolo from "views/BoundaryRitVeicolo.js";
 import GestionePrenotazioniPage from "views/GestionePrenotazioniPage.js";
 import NuovoVeicolo from "views/NuovoVeicoloPage.js";
 import BoundaryTicket from "views/BoundaryTicket.js";
@@ -46,11 +46,11 @@ ReactDOM.render(
       />
       <Route
         path="/registrazione"
-        render={(props) => <RegisterPage {...props} />}
+        render={(props) => <BoundaryRegistrazione {...props} />}
       />
       <Route
         path="/login"
-        render={(props) => <LoginPage {...props} />}
+        render={(props) => <BoundaryLogin {...props} />}
       />
       <Route
         path="/profilo"
@@ -62,31 +62,31 @@ ReactDOM.render(
       />
       <Route
         path="/nuova_prenotazione"
-        render={(props) => <NuovaPrenotazionePage {...props} />}
+        render={(props) => <BoundaryPrenota {...props} />}
       />
       <Route
         path="/modifica_prenotazione"
-        render={(props) => <ModificaPrenotazionePage {...props} />}
+        render={(props) => <BoundaryModificaPrenota {...props} />}
       />
       <Route
         path="/gestione_veicoli"
-        render={(props) => <VeicoliPage {...props} />}
+        render={(props) => <BoundaryListaVeicoli {...props} />}
       />
       <Route
         path="/permessi_utenti"
-        render={(props) => <PermessiUtentiPage {...props} />}
+        render={(props) => <BoundaryAdmin {...props} />}
       />
       <Route
         path="/corse"
-        render={(props) => <CorsePage {...props} />}
+        render={(props) => <BoundaryAccettaCorsa {...props} />}
       />
       <Route
         path="/recupero_password"
-        render={(props) => <RecuperoPassword {...props} />}
+        render={(props) => <BoundaryRecPassword {...props} />}
       />
       <Route
         path="/notifica_ritardo"
-        render={(props) => <NotificaRitardo {...props} />}
+        render={(props) => <BoundaryNotRitardo {...props} />}
       />
       <Route
         path="/contattaci"
@@ -94,19 +94,19 @@ ReactDOM.render(
       />
       <Route
         path="/consegna_veicoli"
-        render={(props) => <ConsegnaVeicoliPage {...props} />}
+        render={(props) => <BoundaryConAddettoVeicolo {...props} />}
       />
       <Route
         path="/ritiro_veicolo"
-        render={(props) => <RitiroVeicoloPage {...props} />}
+        render={(props) => <BoundaryRitAddettoVeicolo {...props} />}
       />
       <Route
         path="/consegna_veicoli_cliente"
-        render={(props) => <ConsegnaVeicoliClientePage {...props} />}
+        render={(props) => <BoundaryConVeicolo {...props} />}
       />
       <Route
         path="/ritiro_veicolo_cliente"
-        render={(props) => <RitiroVeicoloClientePage {...props} />}
+        render={(props) => <BoundaryRitVeicolo {...props} />}
       />
       <Route
         path="/gestione_prenotazioni"
