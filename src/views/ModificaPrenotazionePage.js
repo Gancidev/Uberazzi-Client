@@ -212,7 +212,7 @@ function check_campi(){
   var dataorapartenza = document.getElementById("DataOra").value;
   var dataoraarrivo = document.getElementById("DataOraArrivo").value;
   if(dataorapartenza>dataoraarrivo){
-    alert("Non puoi arrivare prima di partire, IMBECILLE");
+    alert("Non puoi arrivare prima di partire.");
     return false;
   }
   if(dataorapartenza!=="" && dataoraarrivo!==""){return true;}

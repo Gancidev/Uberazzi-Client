@@ -50,6 +50,10 @@ function check_disponibilita_old(){
     var dataorapartenza = document.getElementById("DataOra");
     var dataoraarrivo = document.getElementById("DataOraArrivo");
     if(partenza.value!=="" && destinazione.value!=="" && dataorapartenza.value!=="" && dataoraarrivo.value!==""){
+        if(dataorapartenza.value>dataoraarrivo.value){
+          alert("Non puoi arrivare prima di partire.");
+          return false;
+        }
         var selectVeicoli = document.getElementById("selectVeicoli");
         selectVeicoli.style.display="block";
     }
