@@ -116,3 +116,9 @@ $asset-base-path: '../../../../assets' !default;
 // React Differences
 
 @import "blk-design-system-react/react/react-differences";
+
+@media screen and (max-width: 430px){
+    .colonna_superflua{
+        display: none;
+    }
+}
