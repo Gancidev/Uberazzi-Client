@@ -37,6 +37,7 @@ function controlla_risultato(html){
   utente = JSON.parse(utente);
   if(utente.message){
     alert("Password Sbagliata, si prega di riprovare");
+    myStorage.clear();
     window.location.replace("/login");
   }
   else{
