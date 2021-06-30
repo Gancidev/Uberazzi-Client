@@ -43,7 +43,16 @@ function verifica_login(){
   }
 }
 
-function check_disponibilita(){}
+function check_disponibilita(valore){
+  if(valore===true){
+    var bottone = document.getElementById("bottone_disponibilita");
+    bottone.style.display="none";
+    var paga;
+    paga = document.getElementById("paga");
+    paga.style.display="block";
+  }  
+}
+
 function redirect_fattura(id_prenotazione, importo, veicolo){
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
@@ -199,6 +208,17 @@ function richiedi_dettaglio_prenotazione(){
     flag=true;
 }
 
+function check_campi(){
+  var dataorapartenza = document.getElementById("DataOra").value;
+  var dataoraarrivo = document.getElementById("DataOraArrivo").value;
+  if(dataorapartenza>dataoraarrivo){
+    alert("Non puoi arrivare prima di partire, IMBECILLE");
+    return false;
+  }
+  if(dataorapartenza!=="" && dataoraarrivo!==""){return true;}
+  else{alert("Compila tutti i campi prima di procedere.");return false};
+}
+
 export default function ModificaPrenotazione() {
   verifica_login();
   const [partenzaF, setPartenzaF] = React.useState(false);
@@ -311,19 +331,21 @@ export default function ModificaPrenotazione() {
                                 />
                             </FormGroup>
                             </div>
-                        <FormGroup check className="text-left">
-                            <Button 
-                                className="btn-round" 
-                                color="primary" 
-                                size="lg"
-                                onClick={() => check_disponibilita()}
-                            >
-                                Procedi <i className="tim-icons icon-double-right"/>
-                            </Button>
-                        </FormGroup>
+                        <br></br>
                         <SelectVeicoli/>
                         <ConfermaAutista/>
                         <ManciaAutista/>
+                        <FormGroup check className="text-center">
+                            <Button 
+                                className="btn-round" 
+                                color="primary" 
+                                size="sm"
+                                id="bottone_disponibilita"
+                                onClick={() => check_disponibilita(check_campi())}
+                            >
+                                Controlla Disponibilit&agrave; <i className="tim-icons icon-double-right"/>
+                            </Button>
+                        </FormGroup>
                         <FormGroup check id="paga" className="text-left" style={{display: "none"}}>
                             <Button
                                 className="btn-round" 
