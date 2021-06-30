@@ -28,7 +28,7 @@ export default function Footer() {
               <p>&copy;LifeInt 2021</p>
             </Col>
             <Col lg="6" md="6">
-              <Nav Style="float: inherit;">
+              <Nav style={{float: "inherit"}}>
                 <NavItem>
                   <NavLink href="/contattaci">
                     Contattaci
