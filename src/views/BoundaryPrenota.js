@@ -168,11 +168,12 @@ function aggiorna_prenotazione(id, importo, veicolo){
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+        console.log(xmlHttp.responseText);
         alert("Prenotazione Completata");
         //ACCESSO AI DATI UTENTE POST LOGIN
         let utente = JSON.parse(window.localStorage.getItem("Utente"));
         utente = JSON.parse(utente);
-        window.location.replace("/Pagamento?numero="+id+"&nome="+utente.Nome+"%20"+utente.Cognome+"&email="+utente.email+"&prezzo="+importo+"&veicolo="+veicolo);
+        window.location.replace("/Pagamento?numero="+id+"&nome="+utente.Nome+"%20"+utente.Cognome+"&email="+utente.email+"&prezzo="+importo+"&veicolo="+veicolo.replace(" ", "%20"));
       }
       else if(xmlHttp.status === 403){
         alert("Non hai i permessi per accedere qui");
@@ -226,7 +227,7 @@ function salvaPagaPrenota(prenotazioni){
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
             alert("Pagamento Confermato, Prenotazione Effettuata");
-            aggiorna_prenotazione(prenotazioni[0].IDPrenotazione, importo, prenotazioni[0].Veicolo.TipoVeicolo);
+            aggiorna_prenotazione(prenotazioni[0].IDPrenotazione, importo, prenotazioni[0].Veicolo.Nome+"-"+prenotazioni[0].Veicolo.TipoVeicolo);
         }
         else if(xmlHttp.status === 500){
             alert("ERRORE");

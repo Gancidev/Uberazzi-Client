@@ -57,7 +57,7 @@ function redirect_fattura(id_prenotazione, importo, veicolo){
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
-  window.location.replace("/Pagamento?numero="+id_prenotazione+"&nome="+utente.Nome+"%20"+utente.Cognome+"&email="+utente.email+"&prezzo="+importo+"&veicolo="+veicolo[0].TipoVeicolo);
+  window.location.replace("/Pagamento?numero="+id_prenotazione+"&nome="+utente.Nome+"%20"+utente.Cognome+"&email="+utente.email+"&prezzo="+importo+"&veicolo="+veicolo[0].Nome.replace(" ", "%20")+"-"+veicolo[0].TipoVeicolo);
 }
 function fattura(id_prenotazione, importo, veicolo){
   //ACCESSO AI DATI UTENTE POST LOGIN
