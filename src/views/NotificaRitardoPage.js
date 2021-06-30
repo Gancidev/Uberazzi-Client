@@ -41,8 +41,21 @@ function notifica_ritardo(){
   if(flag1===true){
       return true;
   }
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
   var ritardo = document.getElementById("ritardo").value;
   var id_prenotazione = document.getElementById("id_prenotazione").value;
+  var ruolo;
+  if(utente.IDPermesso===1){
+    ruolo="Cliente";
+  }
+  else if(utente.IDPermesso===3){
+    ruolo="Autista";
+  }
+  else{
+    ruolo="Addetto al Parcheggio";
+  }
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
@@ -54,10 +67,7 @@ function notifica_ritardo(){
           window.location.replace("/home");
       }
   }
-  xmlHttp.open("GET", "http://91.199.223.61:3001/api/notifica_ritardo?IDPrenotazione="+id_prenotazione+"&note="+ritardo, true); // true for asynchronous 
-  //ACCESSO AI DATI UTENTE POST LOGIN
-  let utente = JSON.parse(window.localStorage.getItem("Utente"));
-  utente = JSON.parse(utente);
+  xmlHttp.open("GET", "http://91.199.223.61:3001/api/notifica_ritardo?IDPrenotazione="+id_prenotazione+"&note="+ritardo+"&Ruolo="+ruolo, true); // true for asynchronous 
   xmlHttp.setRequestHeader("idutente", utente.id);
   xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
   xmlHttp.send(null);

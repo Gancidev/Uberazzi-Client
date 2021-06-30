@@ -105,14 +105,16 @@ function stampa_notifiche(messaggio){
     if(messaggio[i-1].NotificheRitardos.length===0){
       continue;
     }
-      tr = document.createElement("tr");
-        td1 = document.createElement("td");
-        td1.innerHTML=messaggio[i-1].NotificheRitardos[0].IDNotifica;
-        td2 = document.createElement("td");
-        td2.innerHTML=messaggio[i-1].NotificheRitardos[0].Note+" minuti di ritardo previsti per la prenotazione "+messaggio[i-1].IDPrenotazione;
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-    tbody.appendChild(tr);
+    for(var j=1;j<messaggio[i-1].NotificheRitardos.length+1;j++){
+        tr = document.createElement("tr");
+          td1 = document.createElement("td");
+          td1.innerHTML=messaggio[i-1].NotificheRitardos[j-1].IDNotifica;
+          td2 = document.createElement("td");
+          td2.innerHTML=messaggio[i-1].NotificheRitardos[j-1].RuoloUtente+" comunica: "+messaggio[i-1].NotificheRitardos[j-1].Note+" minuti di ritardo previsti per la prenotazione "+messaggio[i-1].IDPrenotazione;
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+      tbody.appendChild(tr);
+    }
   }
 }
 var flag3;
@@ -130,18 +132,35 @@ function ultime_notifiche(){
             window.location.replace("/home");
         }
     }
-    xmlHttp.open("GET", "http://91.199.223.61:3001/api/ultime_notifiche", true); // true for asynchronous
     //ACCESSO AI DATI UTENTE POST LOGIN
     let utente = JSON.parse(window.localStorage.getItem("Utente"));
     utente = JSON.parse(utente);
-    xmlHttp.setRequestHeader("idutente", utente.id);
-    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
-    xmlHttp.send(null);
+    if(utente.IDPermesso===1){
+      xmlHttp.open("GET", "http://91.199.223.61:3001/api/ultime_notifiche", true); // true for asynchronous
+      xmlHttp.setRequestHeader("idutente", utente.id);
+      xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+      xmlHttp.send(null);
+    }
+    else if(utente.IDPermesso===3){
+      xmlHttp.open("GET", "http://91.199.223.61:3001/api/ultime_notifiche_autista", true); // true for asynchronous
+      xmlHttp.setRequestHeader("idutente", utente.id);
+      xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+      xmlHttp.send(null);
+    }
+    else{
+      xmlHttp.open("GET", "http://91.199.223.61:3001/api/ultime_notifiche_addettoParcheggio", true); // true for asynchronous
+      xmlHttp.setRequestHeader("idutente", utente.id);
+      xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+      xmlHttp.send(null);
+    }
     flag3=true;
 }
 function stampa_ultime_prenotazioni(messaggio){
   messaggio = JSON.parse(messaggio);
   //console.log(messaggio);
+  //ACCESSO AI DATI UTENTE POST LOGIN
+  let utente = JSON.parse(window.localStorage.getItem("Utente"));
+  utente = JSON.parse(utente);
   var tbody = document.getElementById("lista_ultime_prenotazioni");
   var tr, td1, td2, td3;
   var date;
@@ -150,7 +169,7 @@ function stampa_ultime_prenotazioni(messaggio){
   var da;
   var h;
   var m;
-  if(messaggio.length===0){
+  if(messaggio.length===0 && utente.IDPermesso===1){
     tr = document.createElement("tr");
         td1 = document.createElement("td");
         td2 = document.createElement("td");
@@ -210,7 +229,7 @@ export default function ProfilePage() {
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
-  if(window.localStorage.getItem("Utente") && utente.IDPermesso===1){
+  if(window.localStorage.getItem("Utente") && utente.IDPermesso<4){
     richiedi_ultime_prenotazioni();
     ultime_notifiche();
   }
