@@ -41,7 +41,6 @@ function verifica_login(){
     window.location.replace("/home");
   }
 }
-
 function inserisci_dati(){
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
@@ -59,7 +58,6 @@ function inserisci_dati(){
   numeropatente.value=utente.NumeroPatente;
   tipopatente.value=utente.TipoPatente;
 }
-
 var flag1;
 function verifica_dati_form(){
   if(flag1===true){
@@ -95,7 +93,6 @@ function verifica_dati_form(){
   );
   flag1=true;
 }
-
 function stampa_notifiche(messaggio){
   messaggio = JSON.parse(messaggio);
   //console.log(messaggio);
@@ -118,8 +115,6 @@ function stampa_notifiche(messaggio){
     tbody.appendChild(tr);
   }
 }
-
-
 var flag3;
 function ultime_notifiche(){
   if(flag3===true){
@@ -144,7 +139,6 @@ function ultime_notifiche(){
     xmlHttp.send(null);
     flag3=true;
 }
-
 function stampa_ultime_prenotazioni(messaggio){
   messaggio = JSON.parse(messaggio);
   //console.log(messaggio);
@@ -188,7 +182,6 @@ function stampa_ultime_prenotazioni(messaggio){
     tbody.appendChild(tr);
   }
 }
-
 var flag;
 function richiedi_ultime_prenotazioni(){
     if(flag===true){
@@ -214,11 +207,13 @@ function richiedi_ultime_prenotazioni(){
 }
 
 export default function ProfilePage() {
-  richiedi_ultime_prenotazioni();
-  ultime_notifiche();
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
+  if(window.localStorage.getItem("Utente") && utente.IDPermesso===1){
+    richiedi_ultime_prenotazioni();
+    ultime_notifiche();
+  }
   var date = new Date(utente.DataDiNascita);
   var ye = new Intl.DateTimeFormat('it', { year: 'numeric' }).format(date);
   var mo = new Intl.DateTimeFormat('it', { month: 'long' }).format(date);
