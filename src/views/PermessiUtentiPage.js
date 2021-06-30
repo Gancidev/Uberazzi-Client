@@ -100,6 +100,7 @@ import {
             td2.innerHTML=messaggio["utenti"][i-1].Cognome;
             tr.appendChild(td2);
             td3.innerHTML=messaggio["utenti"][i-1].Email;
+            td3.className="colonna_superflua";
             tr.appendChild(td3);
                 div.className="form-group"+messaggio["utenti"][i-1].IDUtente;
                     select.name="selezione_permessi"+messaggio["utenti"][i-1].IDUtente;
@@ -136,7 +137,6 @@ import {
             tr.appendChild(td4);
         tbody.appendChild(tr);
     }
-
     flag=true;
 }
 
@@ -204,7 +204,7 @@ export default function PermessiUtenti() {
                 <div className="content">
                     <Container className="align-items-center">
                     <Row>
-                        <Col className="offset-md-3" lg="5" md="6">
+                        <Col className="offset-md-4" lg="5" md="6">
                             <img
                                     alt="..."
                                     className="square square-7_personale"
@@ -241,27 +241,27 @@ export default function PermessiUtenti() {
                                     style={{ transform: squares1to6 }}
                                 />
                         </Col>
-                        <Table striped variant="dark">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nome</th>
-                                    <th>Cognome</th>
-                                    <th>Email</th>
-                                    <th>Modifica Ruolo</th>
-                                </tr>
-                            </thead>
-                            <tbody id="lista_utenti">
-                            </tbody>
-                        </Table>
-                        </Row>
-                        <img
-                            alt="..."
-                            className="square square-3_personale"
-                            id="square3"
-                            src={require("assets/veicoli/bici1.png").default}
-                            style={{ transform: squares1to6 }}
-                        /> 
+                          <Table>
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Nome</th>
+                                      <th>Cognome</th>
+                                      <th className="colonna_superflua">Email</th>
+                                      <th>Modifica Ruolo</th>
+                                  </tr>
+                              </thead>
+                              <tbody id="lista_utenti">
+                              </tbody>
+                          </Table>
+                      </Row>
+                      <img
+                          alt="..."
+                          className="square square-3_personale"
+                          id="square3"
+                          src={require("assets/veicoli/bici1.png").default}
+                          style={{ transform: squares1to6 }}
+                      /> 
                     </Container>
                 </div>
             </div>
