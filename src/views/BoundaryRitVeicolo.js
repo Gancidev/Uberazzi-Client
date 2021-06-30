@@ -26,7 +26,7 @@ import {
     }
   }
 
-  function ritira(id){
+  function confermaRitiro(id){
     var ids = id.id.split("-");
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() { 
@@ -84,7 +84,7 @@ import {
                 button.className="btn-simple btn btn-success";
                 button.innerHTML='<i class="tim-icons icon-check-2"/>';
                 button.id ="consegna-"+messaggio[i-1].IDPrenotazione;
-                conferma = function(){ ritira(this); }
+                conferma = function(){ confermaRitiro(this); }
                 button.addEventListener('click', conferma, false);
                 td2.appendChild(button);
             tr.appendChild(th);

@@ -49,7 +49,7 @@ import {
   }
   
   var flag;
-  function stampa_condizioni_veicoli(messaggio){
+  function listaVeicoliECondizioni(messaggio){
     if(flag===true){
       return true;
   }
@@ -107,7 +107,7 @@ function richiedi_condizioni_veicoli(){
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
-        stampa_condizioni_veicoli(xmlHttp.responseText);
+        listaVeicoliECondizioni(xmlHttp.responseText);
       }
       else if(xmlHttp.status === 403){
         alert("Non hai i permessi per accedere qui");
