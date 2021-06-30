@@ -43,7 +43,7 @@ function verifica_login(){
   }
 }
 
-function check_disponibilita(valore){
+function mostraDisponibilitaEPrezzo(valore){
   if(valore===true){
     var bottone = document.getElementById("bottone_disponibilita");
     bottone.style.display="none";
@@ -341,7 +341,7 @@ export default function ModificaPrenotazione() {
                                 color="primary" 
                                 size="sm"
                                 id="bottone_disponibilita"
-                                onClick={() => check_disponibilita(check_campi())}
+                                onClick={() => mostraDisponibilitaEPrezzo(check_campi())}
                             >
                                 Controlla Disponibilit&agrave; <i className="tim-icons icon-double-right"/>
                             </Button>

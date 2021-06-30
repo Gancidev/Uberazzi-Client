@@ -33,7 +33,7 @@ import {
   }
 
   var flag;
-  function stampa_prenotazioni_attive(messaggio){
+  function mostraPrenotazione(messaggio){
     if(flag===true){
       return true;
   }
@@ -99,7 +99,7 @@ function richiedi_prenotazioni_attive(){
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-        stampa_prenotazioni_attive(xmlHttp.responseText);
+        mostraPrenotazione(xmlHttp.responseText);
       else if(xmlHttp.status === 403){
         alert("Non hai i permessi per accedere qui");
         window.location.replace("/home");

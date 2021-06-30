@@ -26,7 +26,7 @@ import {
     }
   }
 
-  function assegna_permessi(selezione){
+  function confermaModifica(selezione){
     var ids = selezione.id.split("-");
       //console.log(selezione);
       if(selezione.value==="NONE"){
@@ -55,7 +55,7 @@ import {
 }
 
   var flag;
-  function stampa_utenti(messaggio){
+  function mostraUtenti(messaggio){
     if(flag===true){
       return true;
     }
@@ -107,7 +107,7 @@ import {
                     select.id="selezione_permessi-"+messaggio["utenti"][i-1].IDUtente;
                     select.className="form-control";
                     select.style="color: rgb(186, 84, 245);";
-                    conferma = function(){ assegna_permessi(this); }
+                    conferma = function(){ confermaModifica(this); }
                     select.addEventListener('change', conferma, false);
                         option1.value="NONE";
                         option1.innerHTML="----";
@@ -141,14 +141,14 @@ import {
 }
 
 var flag1;
-function richiedi_utenti(){
+function richiediListaUtenti(){
   if(flag1===true){
       return true;
   }
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-        stampa_utenti(xmlHttp.responseText);
+        mostraUtenti(xmlHttp.responseText);
     else if(xmlHttp.status === 403){
         alert("Non hai i permessi per accedere qui");
         window.location.replace("/home");
@@ -164,7 +164,7 @@ function richiedi_utenti(){
   flag1=true;
 }
 
-export default function PermessiUtenti() {
+export default function MostraPermessi() {
     verifica_login();
     const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
@@ -195,7 +195,7 @@ export default function PermessiUtenti() {
         "deg)"
     );
   };
-  richiedi_utenti();
+  richiediListaUtenti();
     return(
       <>
         <PersonalNavBar />

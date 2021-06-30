@@ -26,7 +26,7 @@ import {
     }
   }
   
-function conferma_corsa(id){
+function mostraConfermaCorsa(id){
     var ids = id.id.split("-");
     //alert("La Corsa: "+ id.id[id.id.length-1] +" e' stata accettata.");
     var xmlHttp = new XMLHttpRequest();
@@ -49,7 +49,7 @@ function conferma_corsa(id){
     xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
     xmlHttp.send(null);
 }
-function stampa(messaggio){
+function mostraCorse(messaggio){
     messaggio = JSON.parse(messaggio);
     //console.log(messaggio);
     var table = document.getElementById("corse");
@@ -112,7 +112,7 @@ function stampa(messaggio){
         button.id ="accetta-"+messaggio["corse"][i-1].IDPrenotazione;
         button.innerHTML = '<i class="tim-icons icon-check-2"/>';
         button.className="btn-simple btn btn-success";
-        conferma = function(){ conferma_corsa(this); }
+        conferma = function(){ mostraConfermaCorsa(this); }
         button.addEventListener('click', conferma, false);
         td4.appendChild(button);
         tr.appendChild(td4);
@@ -127,7 +127,7 @@ function richiedi_corse(){
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-            stampa(xmlHttp.responseText);
+        mostraCorse(xmlHttp.responseText);
         else if(xmlHttp.status === 403){
             alert("Non hai i permessi per accedere qui");
             window.location.replace("/home");

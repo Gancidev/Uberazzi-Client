@@ -26,7 +26,7 @@ import {
     }
   }
 
-  function consegna(id){
+  function confermaConsegna(id){
     var ids = id.id.split("-");
       var xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function() { 
@@ -50,7 +50,7 @@ import {
 
 
   var flag;
-  function stampa_veicoli(messaggio){
+  function listaVeicoli(messaggio){
     if(flag===true){
       return true;
   }
@@ -84,7 +84,7 @@ import {
                 button.className="btn-simple btn btn-success";
                 button.innerHTML='<i class="tim-icons icon-check-2"/>';
                 button.id ="consegna-"+messaggio[i-1].IDPrenotazione;
-                conferma = function(){ consegna(this); }
+                conferma = function(){ confermaConsegna(this); }
                 button.addEventListener('click', conferma, false);
                 td2.appendChild(button);
             tr.appendChild(th);
@@ -104,7 +104,7 @@ function richiedi_veicoli(){
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-        stampa_veicoli(xmlHttp.responseText);
+        listaVeicoli(xmlHttp.responseText);
       else if(xmlHttp.status === 403){
           alert("Non hai i permessi per accedere qui");
           window.location.replace("/home");
