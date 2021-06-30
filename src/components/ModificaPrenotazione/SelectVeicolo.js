@@ -19,7 +19,7 @@ function show_option_autista(){
     var autista = document.getElementById("Autista_box");
     var mancia = document.getElementById("Mancia");
     var paga = document.getElementById("paga");
-    if(selezione.value==="1"){
+    if(selezione.options[selezione.selectedIndex].innerHTML.split(":")[0]==="Auto" || selezione.options[selezione.selectedIndex].innerHTML.split(":")[0]==="auto"){
         autista.style.display="block";
         paga.style.display="block";
     }
@@ -41,10 +41,6 @@ export default function select_veicolo() {
                 <Label for="IDVeicolo">Seleziona Veicolo</Label>
                 <Input type="select" name="IDVeicolo" id="IDVeicolo" style={{color: "#ba54f5"}} onChange={() => show_option_autista()}>
                 <option value="NONE">---</option>
-                <option value="1">Auto</option>
-                <option value="2">Moto</option>
-                <option value="3">Bici</option>
-                <option value="4">Monopattino</option>
                 </Input>
             </FormGroup>
         </>

@@ -21,9 +21,10 @@ export default function SelectParcheggio() {
                 <Label for="Parcheggio">Seleziona Parcheggio</Label>
                 <Input type="select" name="Parcheggio" id="Parcheggio" style={{color: "#ba54f5"}}>
                 <option value="NONE">---</option>
-                <option value="1">Via 1</option>
-                <option value="2">Via 2</option>
-                <option value="3">Via 3</option>
+                <option value="1">Parcheggio 1</option>
+                <option value="2">Parcheggio 2</option>
+                <option value="3">Parcheggio 3</option>
+                <option value="4">Parcheggio 4</option>
                 </Input>
             </FormGroup>
         </>

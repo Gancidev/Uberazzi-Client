@@ -37,35 +37,76 @@ import SelectVeicoli from "components/NuovaPrenotazione/SelectVeicolo.js";
 import ConfermaAutista from "components/NuovaPrenotazione/ConfermaAutista.js";
 import ManciaAutista from "components/NuovaPrenotazione/ManciaAutista.js";
 
+Array.prototype.contains = function(v) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] === v) return true;
+  }
+  return false;
+};
+
 function verifica_login(){
   if(!window.localStorage.getItem("Utente")){
     window.location.replace("/home");
   }
 }
-
-
-function check_disponibilita_old(){
-    var partenza = document.getElementById("Partenza");
-    var destinazione = document.getElementById("Arrivo");
-    var dataorapartenza = document.getElementById("DataOra");
-    var dataoraarrivo = document.getElementById("DataOraArrivo");
-    if(partenza.value!=="" && destinazione.value!=="" && dataorapartenza.value!=="" && dataoraarrivo.value!==""){
-        if(dataorapartenza.value>dataoraarrivo.value){
-          alert("Non puoi arrivare prima di partire.");
-          return false;
-        }
-        var selectVeicoli = document.getElementById("selectVeicoli");
-        selectVeicoli.style.display="block";
+function stampa_veicoli(veicoli_occupati, veicoli){
+  var select, option, sezione_select;
+  select = document.getElementById("IDVeicolo");
+  sezione_select = document.getElementById("selectVeicoli");
+  var veicoli_o = [];
+  for (var i = 0; i < veicoli_occupati.length; i++) {
+    if (!veicoli_o.contains(veicoli_occupati[i].IDVeicolo)) {
+      veicoli_o.push(veicoli_occupati[i].IDVeicolo);
+    }
+  }
+  console.log(veicoli_o);
+  var check=false;
+  for(var j=1;j<veicoli.length+1;j++){
+    for(var k=1;k<veicoli_o.length+1;k++){
+      if(veicoli[j-1].IDVeicolo===veicoli_o[k-1]){
+        check=true;
+        break;
+      }
+    }
+    if(check===true){
+      check=false;
     }
     else{
-        alert("Seleziona prima Partenza, Destinazione, Data e Ora");
+      option = document.createElement("option");
+      option.value=veicoli[j-1].IDVeicolo;
+      option.innerHTML=veicoli[j-1].TipoVeicolo+":"+veicoli[j-1].Nome+"-"+veicoli[j-1].Targa+"  Prezzo:"+veicoli[j-1].Prezzo+"€";
+      select.appendChild(option);
     }
+  }
+  sezione_select.style.display="block";
+}
+var flag5;
+function richiedi_lista_veicoli(veicoli_occupati){
+    if(flag5===true){
+        return true;
+    }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onload = function() { 
+        if (xmlHttp.status === 200){
+          stampa_veicoli(veicoli_occupati, JSON.parse(xmlHttp.responseText));
+        }
+        else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui");
+            window.location.replace("/home");
+        }
+    }
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/lista_veicoli", true); // true for asynchronous
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
+    flag5=true;
 }
 
-
-/*
 var flag1;
-function check_disponibilita(){
+function mostraDisponibilitaEPrezzo(){
   if(flag1===true){
       return true;
   }
@@ -97,7 +138,7 @@ function check_disponibilita(){
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
-          console.log(xmlHttp.responseText);
+          richiedi_lista_veicoli(JSON.parse(xmlHttp.responseText));
       }
       else if(xmlHttp.status === 500){
           alert("ERRORE");
@@ -107,14 +148,12 @@ function check_disponibilita(){
   //ACCESSO AI DATI UTENTE POST LOGIN
   let utente = JSON.parse(window.localStorage.getItem("Utente"));
   utente = JSON.parse(utente);
-  xmlHttp.open("GET", "http://localhost:3001/api/veicoli_disponibili?Partenza="+dataorapartenza+"&Arrivo="+dataoraarrivo, true); // true for asynchronous 
+  xmlHttp.open("GET", "http://91.199.223.61:3001/api/veicoli_disponibili?Partenza="+dataorapartenza+"&Arrivo="+dataoraarrivo, true); // true for asynchronous 
   xmlHttp.setRequestHeader("idutente", utente.id);
   xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
   xmlHttp.send(null);
   flag1=true;
 }
-*/
-
 function aggiungi_prenotazione(){
   var ymd, hm, tipo, valore;
   var dataorapartenza = document.getElementById("DataOra").value;
@@ -220,9 +259,9 @@ function salvaPagaPrenota(prenotazioni){
     var mancia = document.getElementById("valore_mancia").value;
     var importo;
     if(mancia === "")
-      importo = parseInt(10);
+      importo = parseInt(prenotazioni[0].Veicolo.Prezzo);
     else
-      importo = parseInt(10) + parseInt(mancia);
+      importo = parseInt(prenotazioni[0].Veicolo.Prezzo) + parseInt(mancia);
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
@@ -388,7 +427,7 @@ export default function NuovaPrenotazione() {
                                 className="btn-round" 
                                 color="primary" 
                                 size="lg"
-                                onClick={() => check_disponibilita_old()}
+                                onClick={() => mostraDisponibilitaEPrezzo()}
                             >
                                 Procedi <i className="tim-icons icon-double-right"/>
                             </Button>

@@ -43,14 +43,167 @@ function verifica_login(){
   }
 }
 
-function mostraDisponibilitaEPrezzo(valore){
-  if(valore===true){
-    var bottone = document.getElementById("bottone_disponibilita");
-    bottone.style.display="none";
-    var paga;
-    paga = document.getElementById("paga");
-    paga.style.display="block";
-  }  
+function prezzo_veicolo(id_veicolo, dataoraarrivo, dataorapartenza, valore){
+  var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+          let importo;
+          let nuovo_importo = parseInt(JSON.parse(xmlHttp.responseText).Prezzo);
+          let vecchio_importo = parseInt(document.getElementById("input_importo").value);
+          if(nuovo_importo > vecchio_importo){
+            importo=nuovo_importo;
+          }
+          else{
+            importo=vecchio_importo;
+          }
+          var mancia = document.getElementById("valore_mancia").value;
+          if(mancia !== "")
+            importo = parseInt(importo) + parseInt(mancia);
+          //ACCESSO AI DATI UTENTE POST LOGIN
+          let utente = JSON.parse(window.localStorage.getItem("Utente"));
+          utente = JSON.parse(utente);
+          var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            var id_prenotazione = urlParams.get('IDPrenotazione');
+          var url = "http://91.199.223.61:3001/api/aggiorna_prenotazione?DataOra="+dataorapartenza+"&DataOraArrivo="+dataoraarrivo+"&Autista="+valore+"&IDPrenotazione="+id_prenotazione;
+          fetch(url, {
+              headers: {
+                'idutente': utente.id,
+                'x-access-token': utente.accessToken
+              },
+              method : "POST",
+              body : new FormData(document.getElementById("form_modifica_prenotazione")),
+          }).then(
+              response => response.text()
+          ).then(
+            alert("Modifiche Confermate.")
+          ).then(
+            aggiorna_pagamento(id_prenotazione, importo, id_veicolo)
+          );
+        }
+        else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui");
+            window.location.replace("/home");
+        }
+    }
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/prezzo_veicolo?IDVeicolo="+id_veicolo, true); // true for asynchronous
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
+}
+
+function stampa_veicoli(veicoli_occupati, veicoli){
+  var bottone_disponibilita = document.getElementById("bottone_disponibilita");
+  bottone_disponibilita.style.display="none";
+  var select, option, sezione_select;
+  select = document.getElementById("IDVeicolo");
+  sezione_select = document.getElementById("selectVeicoli");
+  var veicoli_o = [];
+  for (var i = 0; i < veicoli_occupati.length; i++) {
+    if (!veicoli_o.contains(veicoli_occupati[i].IDVeicolo)) {
+      veicoli_o.push(veicoli_occupati[i].IDVeicolo);
+    }
+  }
+  console.log(veicoli_o);
+  var check=false;
+  for(var j=1;j<veicoli.length+1;j++){
+    for(var k=1;k<veicoli_o.length+1;k++){
+      if(veicoli[j-1].IDVeicolo===veicoli_o[k-1]){
+        check=true;
+        break;
+      }
+    }
+    if(check===true){
+      check=false;
+    }
+    else{
+      option = document.createElement("option");
+      option.value=veicoli[j-1].IDVeicolo;
+      option.innerHTML=veicoli[j-1].TipoVeicolo+":"+veicoli[j-1].Nome+"-"+veicoli[j-1].Targa+"  Prezzo:"+veicoli[j-1].Prezzo+"€";
+      select.appendChild(option);
+    }
+  }
+  sezione_select.style.display="block";
+}
+
+var flag5;
+function richiedi_lista_veicoli(veicoli_occupati){
+    if(flag5===true){
+        return true;
+    }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onload = function() { 
+        if (xmlHttp.status === 200){
+          stampa_veicoli(veicoli_occupati, JSON.parse(xmlHttp.responseText));
+        }
+        else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui");
+            window.location.replace("/home");
+        }
+    }
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/lista_veicoli", true); // true for asynchronous
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
+    flag5=true;
+}
+
+var flag1;
+function mostraDisponibilitaEPrezzo(controllo){
+  if(flag1===true){
+      return true;
+  }
+  if(controllo===true){
+    var ymd, hm, tipo;
+    var dataorapartenza = document.getElementById("DataOra").value;
+    var dataoraarrivo = document.getElementById("DataOraArrivo").value;
+    dataorapartenza=dataorapartenza.split(" ");
+    ymd = dataorapartenza[0].split("/");
+    hm = dataorapartenza[1].split(":");
+    tipo = dataorapartenza[2];
+    dataorapartenza=ymd[2]+"-"+ymd[0]+"-"+ymd[1];
+    if(tipo==="AM"){
+      dataorapartenza=dataorapartenza+" "+(parseInt(hm[0])+2)+":"+hm[1];
+    }
+    else{
+      dataorapartenza=dataorapartenza+" "+(parseInt(hm[0])+14)+":"+hm[1];
+    }
+    dataoraarrivo=dataoraarrivo.split(" ");
+    ymd = dataoraarrivo[0].split("/");
+    hm = dataoraarrivo[1].split(":");
+    tipo = dataoraarrivo[2];
+    dataoraarrivo=ymd[2]+"-"+ymd[0]+"-"+ymd[1];
+    if(tipo==="AM"){
+      dataoraarrivo=dataoraarrivo+" "+(parseInt(hm[0])+2)+":"+hm[1];
+    }
+    else{
+      dataoraarrivo=dataoraarrivo+" "+(parseInt(hm[0])+14)+":"+hm[1];
+    }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+            richiedi_lista_veicoli(JSON.parse(xmlHttp.responseText));
+        }
+        else if(xmlHttp.status === 500){
+            alert("ERRORE");
+            window.location.replace("/prenotazioni");
+        }
+    }
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/veicoli_disponibili?Partenza="+dataorapartenza+"&Arrivo="+dataoraarrivo, true); // true for asynchronous 
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
+    flag1=true;
+  }
 }
 
 function redirect_fattura(id_prenotazione, importo, veicolo){
@@ -129,39 +282,14 @@ function aggiungi_prenotazione(){
   else{
     valore=0;
   }
-  var mancia = document.getElementById("valore_mancia").value;
-  var importo;
-  if(mancia === "")
-    importo = parseInt(10);
-  else
-    importo = parseInt(10) + parseInt(mancia);
-    var id_veicolo = document.getElementById("IDVeicolo").value;
-  //ACCESSO AI DATI UTENTE POST LOGIN
-  let utente = JSON.parse(window.localStorage.getItem("Utente"));
-  utente = JSON.parse(utente);
-  var queryString = window.location.search;
-    var urlParams = new URLSearchParams(queryString);
-    var id_prenotazione = urlParams.get('IDPrenotazione');
-  var url = "http://91.199.223.61:3001/api/aggiorna_prenotazione?DataOra="+dataorapartenza+"&DataOraArrivo="+dataoraarrivo+"&Autista="+valore+"&IDPrenotazione="+id_prenotazione;
-  fetch(url, {
-      headers: {
-        'idutente': utente.id,
-        'x-access-token': utente.accessToken
-      },
-      method : "POST",
-      body : new FormData(document.getElementById("form_modifica_prenotazione")),
-  }).then(
-      response => response.text()
-  ).then(
-    alert("Modifiche Confermate.")
-  ).then(
-    aggiorna_pagamento(id_prenotazione, importo, id_veicolo)
-  );
+
+  var id_veicolo = document.getElementById("IDVeicolo").value;
+  prezzo_veicolo(id_veicolo,dataoraarrivo,dataorapartenza,valore);
 }
 
 function stampa_dettaglio(messaggio){
   messaggio = JSON.parse(messaggio);
-  //console.log(messaggio);
+  console.log(messaggio);
   var partenza = document.getElementById("Partenza");
   partenza.value=messaggio.Partenza;
   var arrivo = document.getElementById("Arrivo");
@@ -178,6 +306,26 @@ function stampa_dettaglio(messaggio){
   }
   var veicolo = document.getElementById("IDVeicolo");
   veicolo.value=messaggio.IDVeicolo;
+
+  var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200){
+          var input_importo = document.getElementById("input_importo");
+          input_importo.value=parseInt(JSON.parse(xmlHttp.responseText).Importo)
+        }
+        else if(xmlHttp.status === 403){
+            alert("Non hai i permessi per accedere qui");
+            window.location.replace("/home");
+        }
+    }
+    xmlHttp.open("GET", "http://91.199.223.61:3001/api/dettagli_prenotazione_pagamento?IDPrenotazione="+messaggio.IDPrenotazione, true); // true for asynchronous
+    //ACCESSO AI DATI UTENTE POST LOGIN
+    let utente = JSON.parse(window.localStorage.getItem("Utente"));
+    utente = JSON.parse(utente);
+    xmlHttp.setRequestHeader("idutente", utente.id);
+    xmlHttp.setRequestHeader("x-access-token", utente.accessToken);
+    xmlHttp.send(null);
+
 }
 
 var flag;
@@ -267,6 +415,7 @@ export default function ModificaPrenotazione() {
                     </CardHeader>
                     <CardBody>
                       <Form className="form" name="form_modifica_prenotazione" id="form_modifica_prenotazione">
+                        <input type="hidden" id="input_importo" name="input_importo"/>
                         <InputGroup
                           className={classnames({
                             "input-group-focus": partenzaF,
