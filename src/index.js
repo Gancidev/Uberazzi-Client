@@ -22,7 +22,7 @@ import PrenotazioniPage from "views/PrenotazioniPage.js";
 import BoundaryPrenota from "views/BoundaryPrenota.js";
 import BoundaryModificaPrenota from "views/BoundaryModificaPrenota.js";
 import BoundaryListaVeicoli from "views/BoundaryListaVeicoli.js";
-import PermessiUtentiPage from "views/PermessiUtentiPage.js";
+import BoundaryAdmin from "views/BoundaryAdmin.js";
 import BoundaryAccettaCorsa from "views/BoundaryAccettaCorsa.js";
 import BoundaryRecPassword from "views/BoundaryRecPassword.js";
 import BoundaryNotRitardo from "views/BoundaryNotRitardo.js";
@@ -74,7 +74,7 @@ ReactDOM.render(
       />
       <Route
         path="/permessi_utenti"
-        render={(props) => <PermessiUtentiPage {...props} />}
+        render={(props) => <BoundaryAdmin {...props} />}
       />
       <Route
         path="/corse"
