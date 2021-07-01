@@ -70,6 +70,7 @@ function mostraCorse(messaggio){
     if(messaggio["corse"].length===0){
         tr = document.createElement("tr");
         th = document.createElement("th");
+        th.className="colonna_superflua";
         td1 = document.createElement("td");
         td2 = document.createElement("td");
         td3 = document.createElement("td");
@@ -86,6 +87,7 @@ function mostraCorse(messaggio){
     for(var i=1;i<messaggio["corse"].length+1;i++){
         tr = document.createElement("tr");
         th = document.createElement("th");
+        th.className="colonna_superflua";
         td1 = document.createElement("td");
         td2 = document.createElement("td");
         td3 = document.createElement("td");
@@ -222,7 +224,7 @@ export default function CorsePage() {
                             <Table>
                                 <thead>
                                     <tr>
-                                    <th>ID</th>
+                                    <th className="colonna_superflua">ID</th>
                                     <th>Partenza</th>
                                     <th>Arrivo</th>
                                     <th>Data e Ora</th>
