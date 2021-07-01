@@ -77,15 +77,18 @@ export default function IndexNavbar() {
           <NavbarBrand id="navbar-brand" href="/home">
             <img src={"https://raw.githubusercontent.com/Gancidev/Uberazzi-Client/main/src/assets/img/logo.webp?token=AROXCTQNP2G52TBPBDRDMHDA325X4"} id="logo" alt="" style={{width:"40%"}}/>
           </NavbarBrand>
-          <button
-            aria-expanded={collapseOpen}
-            className="navbar-toggler navbar-toggler"
-            onClick={toggleCollapse}
-          >
-            <span className="navbar-toggler-bar bar1" />
-            <span className="navbar-toggler-bar bar2" />
-            <span className="navbar-toggler-bar bar3" />
-          </button>
+          {window.localStorage.getItem("Utente") &&
+            <button
+              aria-expanded={collapseOpen}
+              className="navbar-toggler navbar-toggler"
+              onClick={toggleCollapse}
+            >
+              <span className="navbar-toggler-bar bar1" />
+              <span className="navbar-toggler-bar bar2" />
+              <span className="navbar-toggler-bar bar3" />
+            </button>
+          }
+
         </div>
         <Collapse
           className={"justify-content-end " + collapseOut}
