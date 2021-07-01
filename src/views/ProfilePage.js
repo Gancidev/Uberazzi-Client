@@ -99,6 +99,13 @@ function stampa_notifiche(messaggio){
   var tbody = document.getElementById("lista_notifiche");
   var tr, td1, td2;
   if(messaggio.length===0){
+    tr = document.createElement("tr");
+          td1 = document.createElement("td");
+          td2 = document.createElement("td");
+          td2.innerHTML="Nessuna notifica.";
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+      tbody.appendChild(tr);
     return false;
   }
   for(var i=1;i<messaggio.length+1;i++){
