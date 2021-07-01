@@ -140,7 +140,7 @@ export default function RegisterPage() {
                         </InputGroup>
                         <FormGroup check>
                           <a
-                          href="/password-smarrita"
+                          href="/recupero_password"
                           >
                             Password Smarrita?
                           </a>
