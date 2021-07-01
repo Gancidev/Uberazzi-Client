@@ -117,8 +117,5 @@ $asset-base-path: '../../../../assets' !default;
 
 @import "blk-design-system-react/react/react-differences";
 
-@media screen and (max-width: 430px){
-    .colonna_superflua{
-        display: none;
-    }
-}
+//Personal
+@import "blk-design-system-react/custom/personal.scss";

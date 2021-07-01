@@ -156,7 +156,7 @@ export default function RegisterPage() {
     <>
       <PersonalNavBar />
       <div className="wrapper">
-        <div className="page-header">
+        <div className="page-header resize_page_header">
           <div className="page-header-image" />
           <div className="content">
             <Container>
