@@ -30,6 +30,19 @@ import {
 import PersonalNavBar from "components/Navbars/PersonalNavBar.js";
 import Footer from "components/Footer/Footer.js";
 
+function invia(){
+  var email = document.getElementById("Email").value;
+  var soggetto = document.getElementById("Soggetto").value;
+  var messaggio = document.getElementById("Messaggio").value;
+  if(email==="" || soggetto==="" || messaggio===""){
+    alert("Compila tutti i campi per poterci contattare");
+    return false;
+  }
+  alert("E-mail inviata, sarai ricontattato al più presto da un nostro operatore.");
+  window.location.replace("/home");
+}
+
+
 export default function RegisterPage() {
   const [squares1to6, setSquares1to6] = React.useState("");
   const [squares7and8, setSquares7and8] = React.useState("");
@@ -91,7 +104,7 @@ export default function RegisterPage() {
                       <small>Compila questo form per inviarci un messaggio</small>
                     </CardHeader>
                     <CardBody>
-                      <Form className="form" method="post" action="contattaci.js">
+                      <Form className="form">
                       <Row>
                             <Col lg="12" md="6">
                                 <InputGroup
@@ -107,6 +120,7 @@ export default function RegisterPage() {
                                     <Input
                                         placeholder="Email*"
                                         type="email"
+                                        id="Email"
                                         onFocus={(e) => setEmailFocus(true)}
                                         onBlur={(e) => setEmailFocus(false)}
                                         required
@@ -129,6 +143,7 @@ export default function RegisterPage() {
                                     <Input
                                         placeholder="Soggetto*"
                                         type="text"
+                                        id="Soggetto"
                                         onFocus={(e) => setSoggettoFocus(true)}
                                         onBlur={(e) => setSoggettoFocus(false)}
                                         required
@@ -149,9 +164,10 @@ export default function RegisterPage() {
                                 </InputGroupText>
                               </InputGroupAddon>
                               <Input
-                                Style="border: none"
+                                style={{border: "none"}}
                                 placeholder="Testo messaggio"
                                 type="textarea"
+                                id="Messaggio"
                                 onBlur={(e) => setTestoFocus(false)}
                                 required
                               />
@@ -159,7 +175,7 @@ export default function RegisterPage() {
                             </Col>
                         </Row>
                         <FormGroup check>
-                            <Button className="btn-round" color="primary" size="lg" type="submit">
+                            <Button className="btn-round" color="primary" size="lg" type="button" onClick={invia}>
                                 Invia <i className="tim-icons icon-double-right"/>
                             </Button>
                         </FormGroup>
