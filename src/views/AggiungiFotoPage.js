@@ -107,7 +107,7 @@ export default function AggiungiFoto() {
                         >
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="tim-icons icon-email-85" />
+                              <i className="tim-icons icon-image-02"/>
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input

@@ -47,6 +47,7 @@ import {
             th = document.createElement("th");
             td1 = document.createElement("td");
             td2 = document.createElement("td");
+            td2.className="colonna_superflua";
             td3 = document.createElement("td");
             td3.innerHTML="Nessuna Prenotazione Attiva";
         tr.appendChild(th);
@@ -73,6 +74,7 @@ import {
 
           td2 = document.createElement("td");
           td2.innerHTML=messaggio[i-1].Stato;
+          td2.className="colonna_superflua";
           td3 = document.createElement("td");
           button = document.createElement("button");
           button.type="button";
@@ -198,7 +200,7 @@ export default function GestionePrenotazioniPage() {
                                     <tr>
                                     <th>ID</th>
                                     <th>Data e Ora</th>
-                                    <th>Stato</th>
+                                    <th className="colonna_superflua">Stato</th>
                                     <th>Modifica</th>
                                     </tr>
                                 </thead>

@@ -156,7 +156,7 @@ export default function NuovoVeicolo() {
                         >
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
-                            <i className="tim-icons icon-square-pin" />
+                            <i className="tim-icons icon-credit-card" />
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
@@ -176,7 +176,7 @@ export default function NuovoVeicolo() {
                         >
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
-                            <i className="tim-icons icon-square-pin" />
+                            <i className="tim-icons icon-badge" />
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
@@ -196,7 +196,7 @@ export default function NuovoVeicolo() {
                         >
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
-                            <i className="tim-icons icon-square-pin" />
+                            <i className="tim-icons icon-single-02" />
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
@@ -218,7 +218,7 @@ export default function NuovoVeicolo() {
                         >
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
-                            <i className="tim-icons icon-square-pin" />
+                            <i className="tim-icons icon-money-coins" />
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input

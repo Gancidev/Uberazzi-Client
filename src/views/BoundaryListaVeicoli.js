@@ -63,6 +63,7 @@ import {
             th = document.createElement("th");
             td1 = document.createElement("td");
             td2 = document.createElement("td");
+            td2.className="colonna_superflua";
             td3 = document.createElement("td");
             td3.innerHTML="Nessun Veicolo Da Consegnare";
         tr.appendChild(th);
@@ -81,6 +82,7 @@ import {
                 td1.innerHTML=messaggio[i-1].IDVeicolo;
                 td2 = document.createElement("td");
                 td2.innerHTML='<a href="/modifica_condizioni_veicolo?IDVeicolo='+messaggio[i-1].IDVeicolo+'">'+messaggio[i-1].Condizioni+'</a>';
+                td2.className="colonna_superflua";
                 td3 = document.createElement("td");
                 button = document.createElement("button");
                 button.type="button";
@@ -206,7 +208,7 @@ export default function VeicoliPage() {
                                 <thead>
                                     <tr>
                                     <th>Targa o Identificativo</th>
-                                    <th>Veicolo</th>
+                                    <th className="colonna_superflua">Veicolo</th>
                                     <th>Condizioni</th>
                                     <th>Conferma</th>
                                     </tr>

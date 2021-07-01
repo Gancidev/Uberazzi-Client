@@ -66,7 +66,12 @@ function stampa_prenotazioni(messaggio){
   if(lunghezza===0){
     row = document.createElement("div");
     row.className="row";
-    row.innerHTML="<h4>Nessuna Prenotazione Effettuata.</h4>";
+      var div = document.createElement("div");
+      div.className="col-md-6 col-lg-12";
+        var center = document.createElement("center");
+          center.innerHTML="<h4>Nessuna Prenotazione Effettuata.</h4>";
+      div.appendChild(center);
+    row.appendChild(div);
     container.appendChild(row);
     return false;
   }
