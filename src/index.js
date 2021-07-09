@@ -17,8 +17,8 @@ import "assets/demo/demo.css";
 import Home from "views/Home.js";
 import BoundaryRegistrazione from "views/BoundaryRegistrazione.js";
 import BoundaryLogin from "views/BoundaryLogin.js";
-import ProfilePage from "views/ProfilePage.js";
-import PrenotazioniPage from "views/PrenotazioniPage.js";
+import BoundaryProfilo from "views/BoundaryProfilo.js";
+import BoundaryPrenotazioni from "views/BoundaryPrenotazioni.js";
 import BoundaryPrenota from "views/BoundaryPrenota.js";
 import BoundaryModificaPrenota from "views/BoundaryModificaPrenota.js";
 import BoundaryListaVeicoli from "views/BoundaryListaVeicoli.js";
@@ -54,11 +54,11 @@ ReactDOM.render(
       />
       <Route
         path="/profilo"
-        render={(props) => <ProfilePage {...props} />}
+        render={(props) => <BoundaryProfilo {...props} />}
       />
       <Route
         path="/prenotazioni"
-        render={(props) => <PrenotazioniPage {...props} />}
+        render={(props) => <BoundaryPrenotazioni {...props} />}
       />
       <Route
         path="/nuova_prenotazione"
