@@ -14,7 +14,7 @@ import "assets/css/nucleo-icons.css";
 import "assets/scss/blk-design-system-react.scss?v=1.2.0";
 import "assets/demo/demo.css";
 
-import Home from "views/Home.js";
+import BoundaryHome from "views/BoundaryHome.js";
 import BoundaryRegistrazione from "views/BoundaryRegistrazione.js";
 import BoundaryLogin from "views/BoundaryLogin.js";
 import BoundaryProfilo from "views/BoundaryProfilo.js";
@@ -32,9 +32,9 @@ import BoundaryRitAddettoVeicolo from "views/BoundaryRitAddettoVeicolo.js";
 import BoundaryConVeicolo from "views/BoundaryConVeicolo.js";
 import BoundaryRitVeicolo from "views/BoundaryRitVeicolo.js";
 import GestionePrenotazioniPage from "views/GestionePrenotazioniPage.js";
-import NuovoVeicolo from "views/NuovoVeicoloPage.js";
+import BoundaryNuovoVeicolo from "views/BoundaryNuovoVeicolo.js";
 import BoundaryTicket from "views/BoundaryTicket.js";
-import AggiungiFoto from "views/AggiungiFotoPage.js";
+import BoundaryAggiungiFoto from "views/BoundaryAggiungiFoto.js";
 
 
 ReactDOM.render(
@@ -42,7 +42,7 @@ ReactDOM.render(
     <Switch>
       <Route
         path="/home"
-        render={(props) => <Home {...props} />}
+        render={(props) => <BoundaryHome {...props} />}
       />
       <Route
         path="/registrazione"
@@ -114,7 +114,7 @@ ReactDOM.render(
       />
       <Route
         path="/nuovo_veicolo"
-        render={(props) => <NuovoVeicolo {...props} />}
+        render={(props) => <BoundaryNuovoVeicolo {...props} />}
       />
       <Route
         path="/modifica_condizioni_veicolo"
@@ -122,7 +122,7 @@ ReactDOM.render(
       />
       <Route
         path="/aggiungi_foto"
-        render={(props) => <AggiungiFoto {...props} />}
+        render={(props) => <BoundaryAggiungiFoto {...props} />}
       />
 
       <Redirect from="/" to="/home" />
